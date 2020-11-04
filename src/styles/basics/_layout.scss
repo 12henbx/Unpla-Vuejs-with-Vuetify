@@ -1,0 +1,17 @@
+@import "variables";
+
+body, html {
+  margin: 0;
+  padding: 0;
+  min-height: 10000px;
+}
+
+.container-mobile{
+  display: block;
+  max-width: $max-phone-width;
+  min-height: 1000px;
+  width: 100%;
+  margin: 0 auto 5px;
+  padding: 0;
+  border: 0;
+}

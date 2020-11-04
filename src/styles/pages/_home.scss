@@ -1,0 +1,67 @@
+.img-product{
+  width: 100px;
+  height: 100px;
+}
+
+.col-img{
+  display: flex;
+  justify-content: center;
+}
+
+.col-content{
+
+}
+
+.card-list{
+  overflow-x: scroll;
+  white-space: nowrap;
+  height: 200px;
+  scrollbar-width: none;
+}
+
+.card-list::-webkit-scrollbar {
+  display: none;
+}
+
+.div-card{
+  display: inline-block;
+  width: 450px;
+}
+
+.cont-barang-pilihan{
+  display: flex;
+}
+
+.div-lihat-semua{
+  display: flex;
+  flex: 0 0 auto;
+}
+
+.a-lihat-semua{
+
+}
+
+.cont-list-itembp{
+  display: flex;
+  position: relative;
+  flex-flow: column nowrap;
+}
+
+.wrapper-list-itembp{
+  display: flex;
+  align-items: flex-start;
+}
+
+.col-item-left{
+  width: 50%;
+  padding-left: 8px;
+}
+
+.col-item-right{
+  width: 50%;
+  padding-left: 8px;
+}
+
+.card-product-item{
+  margin-bottom: 8px;
+}
