@@ -1,31 +1,22 @@
-.img-product{
-  width: 100px;
+.row-menu{
+  width: 100%;
   height: 100px;
 }
 
-.col-img{
-  display: flex;
-  justify-content: center;
+.box-menu-button{
+  width: 100%;
+  margin: 10px 0;
+  height: 100%;
+  border: #6a7680 2px solid;
+  border-radius: 10px;
 }
 
-.col-content{
-
-}
-
-.card-list{
-  overflow-x: scroll;
-  white-space: nowrap;
-  height: 200px;
-  scrollbar-width: none;
-}
-
-.card-list::-webkit-scrollbar {
-  display: none;
-}
-
-.div-card{
-  display: inline-block;
-  width: 450px;
+.button-menu{
+  margin: 10px 20px;
+  width: 72px;
+  height: 68px;
+  border: #6a7680 2px solid;
+  border-radius: 10px;
 }
 
 .cont-barang-pilihan{

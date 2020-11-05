@@ -2,19 +2,14 @@
   <div class="container-page">
     <v-toolbar extended>
       <v-app-bar-nav-icon></v-app-bar-nav-icon>
-
       <v-toolbar-title class="font-weight-bold"> UNPLA</v-toolbar-title>
-
       <v-spacer></v-spacer>
-
       <v-btn icon>
         <v-icon>mdi-magnify</v-icon>
       </v-btn>
-
       <v-btn icon>
         <v-icon>mdi-heart</v-icon>
       </v-btn>
-
       <v-btn icon>
         <v-icon>mdi-dots-vertical</v-icon>
       </v-btn>
@@ -29,65 +24,27 @@
     <div>
       <div>
         <h3>Daftar Sampah Saya</h3>
-        <div class="card-list">
-          <div class="div-card" v-for="item in 5" v-bind:key="item">
-            <v-card
-              class="mx-auto"
-            >
-              <v-container>
-                <v-row>
-                  <v-col class="col-img">
-                    <v-img class="img-product"
-                           src="https://cdn.vuetifyjs.com/images/cards/store.jpg"></v-img>
-                  </v-col>
-                  <v-col class="col-content">
-                    <v-list-item-content>
-                      <div class="overline mb-4">OVERLINE</div>
-                      <v-list-item-title class="headline mb-1">Headline 5</v-list-item-title>
-                      <v-list-item-subtitle>Greyhound divisely hello coldly fonwderfully</v-list-item-subtitle>
-                    </v-list-item-content>
-                  </v-col>
-                </v-row>
-              </v-container>
-            </v-card>
-          </div>
-        </div>
+        <UserWasteList></UserWasteList>
       </div>
     </div>
     <div>
       <div>
         <h3>Kategori Hasil Daur</h3>
-        <v-btn class="ma-2" outlined color="indigo">
-          <v-icon>mdi-pencil</v-icon>
-        </v-btn>
+        <div class="row-menu">
+          <div class="box-menu-button">
+            <div class="wrapper-menu">
+                <div class="button-menu">
+                  <v-icon large>mdi-domain</v-icon>
+                </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <div>
       <div>
         <h3>Daftar Usaha</h3>
-        <div class="card-list">
-          <div class="div-card" v-for="item in 5" v-bind:key="item">
-            <v-card
-              class="mx-auto"
-            >
-              <v-container>
-                <v-row>
-                  <v-col class="col-img">
-                    <v-img class="img-product"
-                           src="https://cdn.vuetifyjs.com/images/cards/store.jpg"></v-img>
-                  </v-col>
-                  <v-col class="col-content">
-                    <v-list-item-content>
-                      <div class="overline mb-4">OVERLINE</div>
-                      <v-list-item-title class="headline mb-1">Headline 5</v-list-item-title>
-                      <v-list-item-subtitle>Greyhound divisely hello coldly fonwderfully</v-list-item-subtitle>
-                    </v-list-item-content>
-                  </v-col>
-                </v-row>
-              </v-container>
-            </v-card>
-          </div>
-        </div>
+        <RecyclerList></RecyclerList>
       </div>
     </div>
     <div>
@@ -258,10 +215,11 @@
 </style>
 
 <script>
-// @ is an alias to /src
+import RecyclerList from '../components/RecyclerList'
+import UserWasteList from '../components/UserWasteList'
 
 export default {
   name: 'Home',
-  components: {}
+  components: { RecyclerList, UserWasteList }
 }
 </script>
