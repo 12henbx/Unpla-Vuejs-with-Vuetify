@@ -1,6 +1,6 @@
 <template>
   <div class="container-page">
-    <v-toolbar extended>
+    <v-toolbar extended extension-height="60px">
       <v-app-bar-nav-icon></v-app-bar-nav-icon>
       <v-toolbar-title class="font-weight-bold"> UNPLA</v-toolbar-title>
       <v-spacer></v-spacer>
@@ -14,11 +14,13 @@
         <v-icon>mdi-dots-vertical</v-icon>
       </v-btn>
       <template v-slot:extension>
-        <v-text-field
-          label="Solo"
-          placeholder="Placeholder"
-          solo
-        ></v-text-field>
+        <div class="div-field-search">
+          <v-text-field
+            label="Solo"
+            placeholder="Placeholder"
+            solo
+          ></v-text-field>
+        </div>
       </template>
     </v-toolbar>
     <div>
@@ -47,6 +49,7 @@
         <RecyclerList></RecyclerList>
       </div>
     </div>
+    <FloatingActionButton></FloatingActionButton>
     <div>
         <div class="cont-barang-pilihan">
           <div>
@@ -217,9 +220,10 @@
 <script>
 import RecyclerList from '../components/RecyclerList'
 import UserWasteList from '../components/UserWasteList'
+import FloatingActionButton from '../components/FloatingActionButton'
 
 export default {
   name: 'Home',
-  components: { RecyclerList, UserWasteList }
+  components: { FloatingActionButton, RecyclerList, UserWasteList }
 }
 </script>
