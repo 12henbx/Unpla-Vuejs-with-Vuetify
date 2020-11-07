@@ -1,7 +1,7 @@
 <template>
   <ul class="ul-fab">
     <li class="li-fab">
-      <div class="fab"> + JUAL </div>
+      <a class="fab"> + JUAL </a>
     </li>
   </ul>
 </template>
@@ -13,6 +13,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  @import "../styles/basics/variables";
   .ul-fab{
     margin: 0;
     padding: 0;
@@ -38,11 +39,11 @@ export default {
     //width: 150px;
     //height: 70px;
     background-color: white;
-    border-radius: 40%;
-    border: #2D8CFA 8px solid;
+    border-radius: 110px;
+    border: $fab-border-color 8px solid;
     box-shadow: 0 6px 10px 0 #666;
     transition: all 0.1s ease-in-out;
-    //
+
     font-size: 18px;
     //margin-left: auto;
     //margin-right: auto;
@@ -58,5 +59,10 @@ export default {
     width: 104px;
     height: 48px;
   }
+
+  /*.fab:hover {*/
+  /*  box-shadow: 0 6px 14px 0 #666;*/
+  /*  transform: scale(1.05);*/
+  /*}*/
 
 </style>

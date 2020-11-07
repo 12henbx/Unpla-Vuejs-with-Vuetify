@@ -17,7 +17,7 @@
         <div class="div-field-search">
           <v-text-field
             label="Solo"
-            placeholder="Placeholder"
+            placeholder="Search"
             solo
           ></v-text-field>
         </div>
