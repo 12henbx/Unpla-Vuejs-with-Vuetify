@@ -1,8 +1,8 @@
 <template>
   <div class="card-list">
-    <div class="div-card" v-for="item in 5" v-bind:key="item">
+    <div class="div-card-waste" v-for="item in 5" v-bind:key="item">
       <v-card
-        class="mx-auto"
+        class="mx-auto card-waste"
       >
         <v-container>
           <v-row>
@@ -31,9 +31,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  @import "../styles/basics/variables";
+
+  .card-waste{
+    border: $border-card-color 2px solid;
+    border-radius: 20px;
+  }
+
   .img-product{
     width: 100px;
     height: 100px;
+    border-radius: 20px;
   }
 
   .col-img{
@@ -56,8 +64,9 @@ export default {
     display: none;
   }
 
-  .div-card{
+  .div-card-waste{
     display: inline-block;
-    width: 450px;
+    width: 300px;
+    margin-right: 10px;
   }
 </style>

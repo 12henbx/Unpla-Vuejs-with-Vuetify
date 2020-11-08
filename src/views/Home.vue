@@ -25,7 +25,7 @@
     </v-toolbar>
     <div>
       <div>
-        <h3>Daftar Sampah Saya</h3>
+        <h3 class="text-ht">Daftar Sampah Saya</h3>
         <UserWasteList></UserWasteList>
       </div>
     </div>
