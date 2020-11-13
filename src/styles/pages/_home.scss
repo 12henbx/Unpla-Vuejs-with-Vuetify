@@ -24,6 +24,11 @@
   border-radius: 10px;
 }
 
+.wrapper-menu{
+  display: flex;
+  flex-direction: row;
+}
+
 .button-menu{
   margin: 10px 20px;
   width: 72px;
@@ -32,8 +37,9 @@
   border-radius: 10px;
 }
 
-.cont-barang-pilihan{
+.cont-title{
   display: flex;
+  margin: 10px 0;
 }
 
 .div-lihat-semua{

@@ -38,6 +38,15 @@
                 <div class="button-menu">
                   <v-icon large>mdi-domain</v-icon>
                 </div>
+              <div class="button-menu">
+                <v-icon large>mdi-domain</v-icon>
+              </div>
+              <div class="button-menu">
+                <v-icon large>mdi-domain</v-icon>
+              </div>
+              <div class="button-menu">
+                <v-icon large>mdi-domain</v-icon>
+              </div>
             </div>
           </div>
         </div>
@@ -45,13 +54,20 @@
     </div>
     <div>
       <div>
-        <h3>Daftar Usaha</h3>
-        <RecyclerList></RecyclerList>
+        <div class="cont-title">
+          <div>
+            <h3>Daftar Usaha</h3>
+          </div>
+          <div class="div-lihat-semua">
+            <a class="a-lihat-semua">Lihat Semua</a>
+          </div>
+        </div>
+        <RecyclerCardList></RecyclerCardList>
       </div>
     </div>
     <FloatingActionButton></FloatingActionButton>
     <div>
-        <div class="cont-barang-pilihan">
+        <div class="cont-title">
           <div>
             <h3>Barang Pilihan Untukmmu</h3>
           </div>
@@ -218,12 +234,12 @@
 </style>
 
 <script>
-import RecyclerList from '../components/RecyclerList'
 import UserWasteList from '../components/UserWasteList'
 import FloatingActionButton from '../components/FloatingActionButton'
+import RecyclerCardList from '../components/RecyclerCardList'
 
 export default {
   name: 'Home',
-  components: { FloatingActionButton, RecyclerList, UserWasteList }
+  components: { RecyclerCardList, FloatingActionButton, UserWasteList }
 }
 </script>
