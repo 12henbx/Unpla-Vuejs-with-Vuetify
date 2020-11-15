@@ -51,19 +51,19 @@
           active-class="deep-purple--text text--accent-4"
         >
           <v-list-item>
-            <v-list-item-title>Foo</v-list-item-title>
+            <v-list-item-title>Jual Sampah</v-list-item-title>
           </v-list-item>
 
           <v-list-item>
-            <v-list-item-title>Bar</v-list-item-title>
+            <v-list-item-title>Riwayat Daur Ulang</v-list-item-title>
           </v-list-item>
 
           <v-list-item>
-            <v-list-item-title>Fizz</v-list-item-title>
+            <v-list-item-title>Statistik Usaha</v-list-item-title>
           </v-list-item>
 
           <v-list-item>
-            <v-list-item-title>Buzz</v-list-item-title>
+            <v-list-item-title>Keranjang Belanja</v-list-item-title>
           </v-list-item>
         </v-list-item-group>
       </v-list>
@@ -72,12 +72,13 @@
     <div>
       <div class="border-user-detail">
         <div class="spanner-user-detail">
+          <h3>Aktivitas Terakhir</h3>
+          <div class="card-profile">
 
+          </div>
         </div>
       </div>
     </div>
-
-    <h2>Aktivitas Terakhir</h2>
 
   </div>
 </template>

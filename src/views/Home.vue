@@ -65,7 +65,7 @@
         <RecyclerCardList></RecyclerCardList>
       </div>
     </div>
-    <FloatingActionButton></FloatingActionButton>
+    <FloatingActionButtonJual></FloatingActionButtonJual>
     <div>
         <div class="cont-title">
           <div>
@@ -235,11 +235,11 @@
 
 <script>
 import UserWasteList from '../components/UserWasteList'
-import FloatingActionButton from '../components/FloatingActionButton'
+import FloatingActionButtonJual from '../components/FloatingActionButtonJual'
 import RecyclerCardList from '../components/RecyclerCardList'
 
 export default {
   name: 'Home',
-  components: { RecyclerCardList, FloatingActionButton, UserWasteList }
+  components: { RecyclerCardList, FloatingActionButtonJual, UserWasteList }
 }
 </script>
