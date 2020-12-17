@@ -1,14 +1,24 @@
 <template>
   <ul class="ul-fab">
     <li class="li-fab">
-      <a class="fab"> + JUAL </a>
+      <a @click="openCamera()" class="fab"> + JUAL </a>
     </li>
   </ul>
 </template>
 
 <script>
+import router from '../router/index'
+
 export default {
-  name: 'FloatingActionButtonJual'
+  name: 'FloatingActionButtonJual',
+  props: {
+
+  },
+  methods: {
+    openCamera () {
+      router.push({ path: '/camera' })
+    }
+  }
 }
 </script>
 
