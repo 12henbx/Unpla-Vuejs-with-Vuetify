@@ -1,6 +1,8 @@
 <template>
   <div class="container-page">
-    <OneLevelPageHeader v-bind:setNotif="notify"></OneLevelPageHeader>
+    <div class="place-header">
+      <OneLevelPageHeader v-bind:setNotif="notify"></OneLevelPageHeader>
+    </div>
     <RecyclerListSellWasteItem></RecyclerListSellWasteItem>
   </div>
 </template>
@@ -21,5 +23,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+  @import "../../src/styles/pages/recyclerListToSellWasteItem";
 </style>

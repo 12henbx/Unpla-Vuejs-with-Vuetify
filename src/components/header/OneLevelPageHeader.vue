@@ -21,6 +21,7 @@
     <div>
       <span>
         <v-text-field
+          class="text-search"
           solo
           label="Prepend inner"
           prepend-inner-icon="mdi-magnify"
@@ -28,12 +29,6 @@
       </span>
     </div>
     <div>
-      <v-icon
-        large
-        color="green darken-2"
-      >
-        mdi-bell
-      </v-icon>
       <v-badge
         color="pink"
         dot
@@ -46,13 +41,7 @@
         </v-icon>
       </v-badge>
     </div>
-    <div>
-      <v-icon
-        large
-        color="green darken-2"
-      >
-        mdi-cart
-      </v-icon>
+    <div class="div-icon-buttons">
       <v-badge
         color="pink"
         dot
@@ -61,7 +50,7 @@
           large
           color="green darken-2"
         >
-          mdi-bell
+          mdi-cart
         </v-icon>
       </v-badge>
     </div>
@@ -77,6 +66,29 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+  @import "../../styles/basics/variables";
+  .header-box {
+    display: flex;
+    position: fixed;
+    height: 64px;
+    max-width: $max-phone-width - 2px;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    padding: 0 10px;
+    z-index: 100;
+    white-space: pre-wrap;
+    background-color: #fff;
+  }
 
+  .text-search{
+    width: 200px;
+    height: 30px;
+  }
+
+  .div-icon-buttons{
+    display: flex;
+    flex-direction: row;
+  }
 </style>

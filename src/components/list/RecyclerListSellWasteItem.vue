@@ -60,7 +60,12 @@
 
 <script>
 export default {
-  name: 'RecyclerListSellWasteItem'
+  name: 'RecyclerListSellWasteItem',
+  data: function () {
+    return {
+      show: true
+    }
+  }
 }
 </script>
 
