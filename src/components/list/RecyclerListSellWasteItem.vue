@@ -1,44 +1,30 @@
 <template>
-  <div class="card-list">
+  <div class="card-list-column">
     <div class="div-card-waste" v-for="item in 5" v-bind:key="item">
-      <v-card
-        class="mx-auto card-waste"
-      >
+      <v-card class="mx-auto card-waste">
         <div class="div-card-container">
-          <div class="div-card-row">
+          <div class="div-card-row" @click="routeToForm"> <!-- TODO: Add method -->
             <div class="col-content">
               <div class="div-waste-content">
-                <div class="judul-content">CV. Sejahtera Abadi</div>
+                <div class="judul-content"><span class="text-judul">CV. Sejahtera Abadi</span></div>
                 <div class="judul-content">
-                  <span>4,8(BINTANG)</span>
-                  <span>•</span>
-                  <span>(JARAK)1,5Km</span>
-                </div>  <!-- TODO: Add bintang -->
+                  <span>4,8 <v-icon small color="yellow darken-2">mdi-star</v-icon></span>
+                  <span>  •  </span>
+                  <span><v-icon small color="black darken-2">mdi-map-marker-distance</v-icon>1,5Km</span>
+                </div>
                 <div>
-                  <span>BUKA</span> <!-- TODO: Warna hijau -->
+                  <span>Buka</span>
                 </div>
                 <div class="judul-content">Yogyakarta</div>
               </div>
             </div>
             <div class="div-img">
-              <v-img class="img-product"
-                     src="https://cdn.vuetifyjs.com/images/cards/store.jpg"></v-img>
+              <v-img class="img-product" src="https://cdn.vuetifyjs.com/images/cards/store.jpg"></v-img>
             </div>
           </div>
           <v-card-actions>
-            <v-btn
-              color="orange lighten-2"
-              text
-            >
-              Explore
-            </v-btn>
-
             <v-spacer></v-spacer>
-
-            <v-btn
-              icon
-              @click="show = !show"
-            >
+            <v-btn icon @click="show = !show">
               <v-icon>{{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
             </v-btn>
           </v-card-actions>
@@ -46,9 +32,15 @@
           <v-expand-transition>
             <div v-show="show">
               <v-divider></v-divider>
-
               <v-card-text>
-                I'm a thing. But, like most politicians, he promised more than he could deliver. You won't have time for sleeping, soldier, not with all the bed making you'll be doing. Then we'll go with that data file! Hey, you add a one and two zeros to that or we walk! You're going to do his laundry? I've got to find a way to escape.
+                <div class="div-kategori-harga" v-for="item in 5" v-bind:key="item">
+                  <div class="kategori-harga-row">
+                    <span>Botol PET</span>
+                    <v-spacer></v-spacer>
+                    <span>Rp 3.000/Kg</span>
+                  </div>
+                  <hr class="hr-line">
+                </div>
               </v-card-text>
             </div>
           </v-expand-transition>
@@ -63,7 +55,7 @@ export default {
   name: 'RecyclerListSellWasteItem',
   data: function () {
     return {
-      show: true
+      show: false
     }
   }
 }
@@ -72,10 +64,9 @@ export default {
 <style lang="scss" scoped>
   @import "../../styles/basics/variables";
 
-  .card-list{
-    overflow-x: scroll;
-    white-space: nowrap;
-    height: 130px;
+  .card-list-column{
+    overflow-y: scroll;
+    width: $max-phone-width;
     scrollbar-width: none;
   }
 
@@ -85,47 +76,66 @@ export default {
 
   .div-card-waste{
     display: inline-block;
-    width: 300px;
+    width: 450px;
     margin-right: 10px;
   }
 
   .card-waste{
     border: $border-card-color 2px solid;
-    border-radius: 20px;
-    height: 120px;
+    height: auto;
+    width: 450px;
   }
 
   .div-card-container{
   }
 
   .div-card-row{
+    padding: 10px 20px 0;
     display: flex;
     flex-direction: row;
-    padding: 10px 5px;
   }
 
   .div-img{
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100px;
+    width: 120px;
     height: 100px;
     overflow: hidden;
   }
 
   .img-product{
-    max-width: 100px;
-    max-height: 100px;
+    width: 120px;
+    height: 100px;
     border-radius: 20px;
   }
 
   .col-content{
     display: flex;
-    width: 150px;
+    width: 350px;
+  }
+
+  .text-judul{
+    font-weight: bold;
+    font-size: 18px;
   }
 
   .div-waste-content{
-    padding: 8px 0;
+    padding: 8px 0 0;
     margin-left: 10px;
+  }
+
+  .div-kategori-harga{
+    margin: 8px 50px;
+  }
+
+  .kategori-harga-row{
+    display: flex;
+    flex-direction: row;
+  }
+
+  .hr-line{
+    color: #efefef;
+    margin-top: 3px;
   }
 </style>

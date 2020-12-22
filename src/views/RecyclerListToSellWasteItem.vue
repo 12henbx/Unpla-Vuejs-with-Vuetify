@@ -1,9 +1,11 @@
 <template>
   <div class="container-page">
     <div class="place-header">
-      <OneLevelPageHeader v-bind:setNotif="notify"></OneLevelPageHeader>
+      <OneLevelPageHeader v-bind:objHeader="objRecycler"></OneLevelPageHeader>
     </div>
-    <RecyclerListSellWasteItem></RecyclerListSellWasteItem>
+    <div>
+      <RecyclerListSellWasteItem></RecyclerListSellWasteItem>
+    </div>
   </div>
 </template>
 
@@ -16,12 +18,14 @@ export default {
   components: { OneLevelPageHeader, RecyclerListSellWasteItem },
   data: function () {
     return {
-      notify: false
+      objRecycler: { notify: true, menuTitle: 'Pilih Tempat Daur Ulang' }
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
+  @import "../../src/styles/basics/variables";
+  @import "../../src/styles/basics/viewpage";
   @import "../../src/styles/pages/recyclerListToSellWasteItem";
 </style>

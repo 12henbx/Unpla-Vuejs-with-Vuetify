@@ -6,6 +6,7 @@ import CameraDetection from '../views/CameraDetection'
 import DoneSellWasteItem from '../views/DoneSellWasteItem'
 import RecyclerListToSellWasteItem from '../views/RecyclerListToSellWasteItem'
 import SellWasteItemForm from '../views/SellWasteItemForm'
+import ReviewAndGreeting from '../views/ReviewAndGreeting'
 
 Vue.use(VueRouter)
 
@@ -41,6 +42,12 @@ const routes = [
     path: '/sell-item/sell',
     name: 'Sell Waste Item Form',
     component: SellWasteItemForm
+  },
+  {
+    // path: 'sell-item/:sub-waste-category/thank-you',
+    path: 'sell-item/thank-you',
+    name: 'Review and Greeting',
+    component: ReviewAndGreeting
   }
   // {
   // path: '/about',
