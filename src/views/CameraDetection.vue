@@ -1,7 +1,8 @@
 <template>
   <div class='ui container'>
-    <video v-if="!imageData.image" ref="video" class="camera-stream"></video>
-    <img v-else :src="imageData.image" class="camera-stream">
+<!--    <video ref="video" class="camera-stream"></video>-->
+    <video ref="camera" :width="450" :height="337.5" autoplay></video>
+<!--    <img src="imageData.image" class="camera-stream">-->
     <div class='ui divider'></div>
     <div class="icon-group">
       <div  class="camera-icon" @click="captureImage">
@@ -63,6 +64,14 @@ export default {
       //     this.response = response.data
       //   })
     }
+  },
+  mounted () {
+    navigator.mediaDevices.getUserMedia({ video: true })
+      .then(mediaStream => {
+        this.$refs.video.srcObject = mediaStream
+        this.$refs.video.play()
+        this.mediaStream = mediaStream
+      })
   }
 }
 </script>

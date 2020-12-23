@@ -15,11 +15,7 @@
       </v-btn>
       <template v-slot:extension>
         <div class="div-field-search">
-          <v-text-field
-            label="Solo"
-            placeholder="Search"
-            solo
-          ></v-text-field>
+          <v-text-field label="Solo" placeholder="Search" solo></v-text-field>
         </div>
       </template>
     </v-toolbar>
@@ -76,97 +72,7 @@
           </div>
         </div>
       <div class="cont-list-itembp">
-        <div class="wrapper-list-itembp">
-          <div class="col-item-left">
-            <v-card
-              :loading="loading"
-              class="mx-auto card-product-item"
-              max-width="374"
-            >
-              <template slot="progress">
-                <v-progress-linear
-                  color="deep-purple"
-                  height="10"
-                  indeterminate
-                ></v-progress-linear>
-              </template>
-
-              <v-img src="https://cdn.vuetifyjs.com/images/cards/cooking.png"></v-img>
-              <v-card-title>Cafe Badilico</v-card-title>
-              <v-card-text>
-                <v-row align="center" class="mx-0">
-                  <v-rating :value="4.5" color="amber" dense half-increments readonly size="14"></v-rating>
-                  <div class="grey--text ml-4">
-                    4.5 (413)
-                  </div>
-                </v-row>
-                <div class="my-4 subtitle-1">
-                  $ • Italian, Cafe
-                </div>
-            <div>Small plates, salads & sandwiches - an intimate setting with 12 indoor seats plus patio seating.</div>
-            </v-card-text>
-            <v-divider class="mx-4"></v-divider>
-            </v-card>
-          </div>
-          <div class="col-item-right">
-            <v-card :loading="loading" class="mx-auto card-product-item" max-width="374">
-              <template slot="progress">
-                <v-progress-linear
-                  color="deep-purple"
-                  height="10"
-                  indeterminate
-                ></v-progress-linear>
-              </template>
-
-              <v-img src="https://cdn.vuetifyjs.com/images/cards/cooking.png"></v-img>
-              <v-card-title>Cafe Badilico</v-card-title>
-              <v-card-text>
-                <v-row align="center" class="mx-0">
-                  <v-rating :value="4.5" color="amber" dense half-increments readonly size="14"></v-rating>
-
-                  <div class="grey--text ml-4">
-                    4.5 (413)
-                  </div>
-                </v-row>
-
-                <div class="my-4 subtitle-1">
-                  $ • Italian, Cafe
-                </div>
-              </v-card-text>
-
-              <v-divider class="mx-4"></v-divider>
-            </v-card>
-            <v-card
-              :loading="loading"
-              class="mx-auto card-product-item"
-              max-width="374"
-            >
-              <template slot="progress">
-                <v-progress-linear
-                  color="deep-purple"
-                  height="10"
-                  indeterminate
-                ></v-progress-linear>
-              </template>
-
-              <v-img src="https://cdn.vuetifyjs.com/images/cards/cooking.png"></v-img>
-              <v-card-title>Cafe Badilico</v-card-title>
-              <v-card-text>
-                <v-row align="center" class="mx-0">
-                  <v-rating :value="4.5" color="amber" dense half-increments readonly size="14"></v-rating>
-                  <div class="grey--text ml-4">
-                    4.5 (413)
-                  </div>
-                </v-row>
-                <div class="my-4 subtitle-1">
-                  $ • Italian, Cafe
-                </div>
-                <div>Small plates, salads & sandwiches - an intimate setting with 12 indoor seats plus patio seating.</div>
-              </v-card-text>
-              <v-divider class="mx-4"></v-divider>
-            </v-card>
-          </div>
-        </div>
+        <SelectedRecycledItemList></SelectedRecycledItemList>
       </div>
       </div>
     </div>
@@ -181,11 +87,17 @@
 
 <script>
 import UserWasteList from '../components/UserWasteList'
-import FloatingActionButtonJual from '../components/FloatingActionButtonJual'
+import FloatingActionButtonJual from '../components/fab/FloatingActionButtonJual'
 import RecyclerCardList from '../components/RecyclerCardList'
+import SelectedRecycledItemList from '../components/list/SelectedRecycledItemList'
 
 export default {
   name: 'Home',
-  components: { RecyclerCardList, FloatingActionButtonJual, UserWasteList }
+  components: { RecyclerCardList, FloatingActionButtonJual, UserWasteList, SelectedRecycledItemList },
+  data: function () {
+    return {
+
+    }
+  }
 }
 </script>

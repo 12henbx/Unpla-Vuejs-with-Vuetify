@@ -55,7 +55,7 @@ export default {
   .header-box {
     display: flex;
     position: fixed;
-    height: 64px;
+    height: 54px;
     max-width: $max-phone-width - 2px;
     width: 100%;
     flex-direction: row;

@@ -3,43 +3,53 @@
     <div class="place-header">
       <OneLevelPageHeader v-bind:objHeader="objRecycler"></OneLevelPageHeader>
     </div>
-    <div>
+    <div class="place-content">
       <div>Jual ke:</div>
-      <div>
-        <span>(Alamat)</span>
-        <span>(icon edit alamat)</span>
+      <div class="div-address">
+        <span class="text-address">(Alamat)</span>
+        <button><v-icon color="black darken-2">mdi-pencil</v-icon></button>
       </div>
       <div>
-        (Jenis Sampah: (min. 5Kg/ penjemputan))
+        Jenis Sampah: (min. 5Kg/ penjemputan)
+      </div>
+      <div class="div-waste-type">
+        <span class="span-icon"><button><v-icon large color="black darken-2">mdi-bottle-soda-classic-outline</v-icon></button></span>
+        <span class="span-waste-weight">Plastik (brapa Kg)</span>
+        <span><button><v-icon color="black darken-2">mdi-trash-can-outline</v-icon></button></span>
       </div>
       <div>
-        <span>icon plastik</span>
-        <span>Plastik (brapa Kg)</span>
-        <span>(icon delete)</span>
+        Tanggal Jemput:
       </div>
       <div>
-        (Tanggal Jemput:)
-      </div>
-      <div>
-        (input Tanggal Jemput)
+          <v-menu v-model="menu2" :close-on-content-click="false" :nudge-right="40" transition="scale-transition" offset-y min-width="290px">
+            <template v-slot:activator="{ on, attrs }">
+              <v-text-field v-model="date" label="Picker without buttons" prepend-icon="event" readonly v-bind="attrs" v-on="on"
+              ></v-text-field>
+            </template>
+            <v-date-picker v-model="date" @input="menu2 = false"></v-date-picker>
+          </v-menu>
       </div>
       <div>
         (Waktu Penjemputan:)
       </div>
       <div>
-        (Input Waktu Penjemputan)
+        <v-combobox></v-combobox>
       </div>
       <div>
         (Informasi Tambahan:)
       </div>
       <div>
-        (Input Informasi Tambahan)
+          <v-textarea name="input-7-1" label="Default style" value="" hint="Hint text"></v-textarea>
       </div>
       <div>
         (Foto:)
       </div>
       <div>
-<!--        <img src="">-->
+        <v-img
+          lazy-src="https://picsum.photos/id/11/10/6"
+          max-height="150"
+          max-width="250"
+        ></v-img>
       </div>
     </div>
   </div>
@@ -51,10 +61,17 @@ export default {
   name: 'SellWasteItemForm',
   components: {
     OneLevelPageHeader
+  },
+  data: function () {
+    return {
+      objRecycler: { notify: false, menuTitle: 'Jual Sampah' },
+      date: new Date().toISOString().substr(0, 10),
+      menu2: false
+    }
   }
 }
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
+  @import "../styles/pages/sellWasteItemForm";
 </style>

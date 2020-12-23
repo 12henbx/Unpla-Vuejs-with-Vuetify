@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import router from '../router/index'
+import router from '../../router'
 
 export default {
   name: 'FloatingActionButtonJual',
@@ -16,14 +16,14 @@ export default {
   },
   methods: {
     openCamera () {
-      router.push({ path: '/camera' })
+      router.push({ path: '/sell-item/camera' })
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-  @import "../styles/basics/variables";
+  @import "../../styles/basics/variables";
   .ul-fab{
     margin: 0;
     padding: 0;
@@ -46,22 +46,14 @@ export default {
   }
 
   .fab{
-    //width: 150px;
-    //height: 70px;
     background-color: white;
     border-radius: 110px;
-    border: $fab-border-color 8px solid;
+    border: $fab-border-color 7px solid;
     box-shadow: 0 6px 10px 0 #666;
     transition: all 0.1s ease-in-out;
-
-    font-size: 18px;
-    //margin-left: auto;
-    //margin-right: auto;
-    //text-align: center;
-    //line-height: 70px;
-    //
-    //position: fixed;
-    //bottom: 50px;
+    font-size: 17px;
+    font-weight: bold;
+    color: #000;
     padding-top: 5px;
     padding-bottom: auto;
     position: relative;
@@ -69,10 +61,5 @@ export default {
     width: 104px;
     height: 48px;
   }
-
-  /*.fab:hover {*/
-  /*  box-shadow: 0 6px 14px 0 #666;*/
-  /*  transform: scale(1.05);*/
-  /*}*/
 
 </style>

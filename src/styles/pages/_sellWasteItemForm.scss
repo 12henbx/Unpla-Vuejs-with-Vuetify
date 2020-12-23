@@ -1,0 +1,28 @@
+.place-content{
+}
+
+.div-address{
+  display: flex;
+  flex-direction: row;
+}
+
+.text-address{
+  display: flex;
+  margin-left: 20px;
+  width: 250px;
+}
+
+.div-waste-type{
+  display: flex;
+  height: 80px;
+  align-items: center;
+}
+
+.span-icon{
+  margin-left: 20px;
+  width: 40px;
+}
+
+.span-waste-weight{
+  width: 210px;
+}
