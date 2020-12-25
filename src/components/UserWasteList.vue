@@ -35,8 +35,9 @@ export default {
 
   .card-list{
     overflow-x: scroll;
+    overflow-y: hidden;
     white-space: nowrap;
-    height: 130px;
+    height: 150px;
     scrollbar-width: none;
   }
 

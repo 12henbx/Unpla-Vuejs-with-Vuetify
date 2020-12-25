@@ -1,77 +1,96 @@
 <template>
-  <div class='ui container'>
-<!--    <video ref="video" class="camera-stream"></video>-->
-    <video ref="camera" :width="450" :height="337.5" autoplay></video>
-<!--    <img src="imageData.image" class="camera-stream">-->
-    <div class='ui divider'></div>
-    <div class="icon-group">
-      <div  class="camera-icon" @click="captureImage">
-        <i class="big camera icon" ></i>
-        <p>Take Picture</p>
-      </div>
-      <div class="camera-icon" @click="cancelImage">
-        <i class="big cancel icon"></i>
-        <p>Cancel</p>
-      </div>
-      <div  class='camera-icon' @click="uploadImage">
-        <i class="big thumbs up outline icon"></i>
-        <p>Done</p>
-      </div>
+  <div class="container-page">
+    <div class="border">
+      <vue-web-cam ref="webcam" :device-id="deviceId" width="100%" height="370px"
+        @started="onStarted"
+        @stopped="onStopped"
+        @error="onError"
+        @cameras="onCameras"
+        @camera-change="onCameraChange"
+      />
+    </div>
+    <div class="col-md-12 row">
+      <figure class="figure">
+        <img :src="img" class="img-responsive" alt="imagePreview"/>
+      </figure>
+      <button type="button" class="btn btn-danger" @click="onStop">Stop Camera</button>
+      <v-btn icon @click="onCapture"><v-icon class="icon-record">mdi-record-circle-outline</v-icon></v-btn>
+      <button type="button" class="btn btn-success" @click="onStart">Start Camera</button>
     </div>
   </div>
 </template>
 
 <script>
 // import axios from 'axios'
+import { WebCam } from 'vue-web-cam'
+import image from '../assets/rect.png'
 
 export default {
   name: 'CameraDetection',
-  data: function () {
+  components: {
+    'vue-web-cam': WebCam
+  },
+  data () {
     return {
-      defaultImage: '../assets/logo.png',
-      mediaStream: null,
-      imageData: {
-        image: '',
-        image_orientation: 0
+      img: image,
+      camera: null,
+      deviceId: null,
+      devices: []
+    }
+  },
+  computed: {
+    device: function () {
+      return this.devices.find(n => n.deviceId === this.deviceId)
+    }
+  },
+  watch: {
+    camera: function (id) {
+      this.deviceId = id
+    },
+    devices: function () {
+      // Once we have a list select the first one
+      // eslint-disable-next-line no-unused-vars
+      const [first, ...tail] = this.devices
+      if (first) {
+        this.camera = first.deviceId
+        this.deviceId = first.deviceId
       }
     }
   },
   methods: {
-    captureImage () {
-      const mediaStreamTrack = this.mediaStream.getVideoTracks()[0]
-      const imageCapture = new window.ImageCapture(mediaStreamTrack)
-      const reader = new FileReader()
-      return imageCapture.takePhoto().then(blob => {
-        reader.readAsDataURL(blob)
-        reader.onload = () => {
-          this.imageData.image = reader.result
-        }
-      })
+    onCapture () {
+      this.img = this.$refs.webcam.capture()
+      // eslint-disable-next-line no-undef
+      uploadFiles(this.img)
     },
-    cancelImage () {
-      this.imageData.image = null
-      this.showCameraModal = true
-      navigator.mediaDevices.getUserMedia({ video: true })
-        .then(mediaStream => {
-          this.$refs.video.srcObject = mediaStream
-          this.$refs.video.play()
-          this.mediaStream = mediaStream
-        })
+    onStarted (stream) {
+      console.log('On Started Event', stream)
     },
-    uploadImage () {
-      // axios({ method: 'POST', url: API_IMAGE_ENDPOINT, data: this.imageData })
-      //   .then(response => {
-      //     this.response = response.data
-      //   })
+    onStopped (stream) {
+      console.log('On Stopped Event', stream)
+    },
+    onStop () {
+      this.$refs.webcam.stop()
+    },
+    onStart () {
+      this.$refs.webcam.start()
+    },
+    onError (error) {
+      console.log('On Error Event', error)
+    },
+    onCameras (cameras) {
+      this.devices = cameras
+      console.log('On Cameras Event', cameras)
+    },
+    onCameraChange (deviceId) {
+      this.deviceId = deviceId
+      this.camera = deviceId
+      console.log('On Camera Change Event', deviceId)
+    },
+    detectImage () {
+      // eslint-disable-next-line no-undef
+      uploadFiles(this.img)
     }
-  },
-  mounted () {
-    navigator.mediaDevices.getUserMedia({ video: true })
-      .then(mediaStream => {
-        this.$refs.video.srcObject = mediaStream
-        this.$refs.video.play()
-        this.mediaStream = mediaStream
-      })
   }
 }
 </script>
@@ -79,21 +98,12 @@ export default {
 <style lang="scss" scoped>
   @import "../styles/basics/variables";
 
-  .icon-group {
+  .icon-record{
+    font-size: 88px;
+  }
+
+  .img-responsive{
     display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    margin: 12px auto;
-  }
-
-  .camera-icon {
-    width: 15%;
-    vertical-align: middle;
-    margin: auto;
-  }
-
-  .camera-stream {
-    margin: 120px 170px;
-    width: 50%;
+    width: 75px;
   }
 </style>

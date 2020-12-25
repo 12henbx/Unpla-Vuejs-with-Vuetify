@@ -9,7 +9,7 @@
         <span class="text-address">(Alamat)</span>
         <button><v-icon color="black darken-2">mdi-pencil</v-icon></button>
       </div>
-      <div>
+      <div class="div-title-input">
         Jenis Sampah: (min. 5Kg/ penjemputan)
       </div>
       <div class="div-waste-type">
@@ -45,21 +45,21 @@
         (Foto:)
       </div>
       <div>
-        <v-img
-          lazy-src="https://picsum.photos/id/11/10/6"
-          max-height="150"
-          max-width="250"
-        ></v-img>
+        <v-img lazy-src="https://picsum.photos/id/11/10/6" max-height="150" max-width="250"></v-img>
       </div>
+      <FabWasteItemForm></FabWasteItemForm>
     </div>
   </div>
 </template>
 
 <script>
 import OneLevelPageHeader from '../components/header/OneLevelPageHeader'
+import FabWasteItemForm from '../components/fab/FabWasteItemForm'
+
 export default {
   name: 'SellWasteItemForm',
   components: {
+    FabWasteItemForm,
     OneLevelPageHeader
   },
   data: function () {
