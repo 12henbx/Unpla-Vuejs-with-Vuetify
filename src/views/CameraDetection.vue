@@ -14,7 +14,7 @@
         <img :src="img" class="img-responsive" alt="imagePreview"/>
       </figure>
       <button type="button" class="btn btn-danger" @click="onStop">Stop Camera</button>
-      <v-btn icon @click="onCapture"><v-icon class="icon-record">mdi-record-circle-outline</v-icon></v-btn>
+      <v-btn icon @click="onCapture($event)"><v-icon class="icon-record">mdi-record-circle-outline</v-icon></v-btn>
       <button type="button" class="btn btn-success" @click="onStart">Start Camera</button>
     </div>
   </div>
@@ -24,6 +24,7 @@
 // import axios from 'axios'
 import { WebCam } from 'vue-web-cam'
 import image from '../assets/rect.png'
+import { VisionFunction } from '../vision/main.js'
 
 export default {
   name: 'CameraDetection',
@@ -58,10 +59,9 @@ export default {
     }
   },
   methods: {
-    onCapture () {
+    onCapture (event) {
       this.img = this.$refs.webcam.capture()
-      // eslint-disable-next-line no-undef
-      uploadFiles(this.img)
+      VisionFunction.sendFileToCloudVision(this.img)
     },
     onStarted (stream) {
       console.log('On Started Event', stream)
