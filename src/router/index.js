@@ -7,6 +7,9 @@ import DoneSellWasteItem from '../views/DoneSellWasteItem'
 import RecyclerListToSellWasteItem from '../views/RecyclerListToSellWasteItem'
 import SellWasteItemForm from '../views/SellWasteItemForm'
 import ReviewAndGreeting from '../views/ReviewAndGreeting'
+import Notification from '../views/Notification'
+import SellRecycledItemForm from '../views/SellRecycledItemForm'
+import ProductDetail from '../views/ProductDetail'
 
 Vue.use(VueRouter)
 
@@ -44,10 +47,32 @@ const routes = [
     component: SellWasteItemForm
   },
   {
-    // path: 'sell-item/:sub-waste-category/thank-you',
-    path: 'sell-item/thank-you',
-    name: 'Review and Greeting',
+    // path: '/sell-item/:sub-waste-category/thank-you',
+    path: '/sell-item/thank-you',
+    name: 'ReviewAndGreeting',
     component: ReviewAndGreeting
+  },
+  {
+    path: '/notification',
+    name: 'Notification',
+    component: Notification
+  },
+  {
+    path: '/sell-product/sell',
+    name: 'SellRecycledItemForm',
+    component: SellRecycledItemForm
+  },
+  {
+    // path: '/sell-item/:sub-waste-category/sell/type',
+    path: '/sell-item/sell/type',
+    name: 'SellRecycledItemForm',
+    component: SellRecycledItemForm
+  },
+  {
+    // path: '/sell-item/:sub-waste-category/sell/type',
+    path: '/product/:category/:productName',
+    name: 'ProductDetail',
+    component: ProductDetail
   }
   // {
   // path: '/about',

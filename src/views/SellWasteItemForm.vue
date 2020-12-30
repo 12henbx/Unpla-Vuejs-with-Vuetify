@@ -33,18 +33,18 @@
         (Waktu Penjemputan:)
       </div>
       <div>
-        <v-combobox></v-combobox>
+        <v-combobox class="combobox-periode"></v-combobox>
       </div>
       <div>
         (Informasi Tambahan:)
       </div>
       <div>
-          <v-textarea name="input-7-1" label="Default style" value="" hint="Hint text"></v-textarea>
+          <v-textarea name="input-7-1" value="" hint="Hint text"></v-textarea>
       </div>
       <div>
         (Foto:)
       </div>
-      <div>
+      <div class="div-photo">
         <v-img lazy-src="https://picsum.photos/id/11/10/6" max-height="150" max-width="250"></v-img>
       </div>
       <FabWasteItemForm></FabWasteItemForm>
@@ -73,5 +73,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  @import "../styles/basics/variables";
+  @import "../styles/basics/layout";
+  @import "../styles/basics/viewpage";
   @import "../styles/pages/sellWasteItemForm";
 </style>

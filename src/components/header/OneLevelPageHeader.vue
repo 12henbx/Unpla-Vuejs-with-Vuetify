@@ -2,7 +2,7 @@
   <header class="header-box">
     <div @click="back" class="icon-box">
       <span class="icon-span">
-        <v-icon large color="green darken-2">mdi-arrow-left</v-icon>
+        <v-icon large color="white">mdi-arrow-left</v-icon>
       </span>
     </div>
     <div class="title-box">
@@ -63,7 +63,8 @@ export default {
     padding: 0 10px;
     z-index: 100;
     white-space: pre-wrap;
-    background-color: #fff;
+    background-color: $header-background;
+    color: #fff;
   }
 
   .text-search{
