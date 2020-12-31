@@ -23,7 +23,7 @@
       <div>
           <v-menu v-model="menu2" :close-on-content-click="false" :nudge-right="40" transition="scale-transition" offset-y min-width="290px">
             <template v-slot:activator="{ on, attrs }">
-              <v-text-field v-model="date" label="Picker without buttons" prepend-icon="event" readonly v-bind="attrs" v-on="on"
+              <v-text-field v-model="date" label="Picker without buttons" prepend-icon="event" readonly v-bind="attrs" v-on="on" outlined
               ></v-text-field>
             </template>
             <v-date-picker v-model="date" @input="menu2 = false"></v-date-picker>
@@ -33,13 +33,13 @@
         (Waktu Penjemputan:)
       </div>
       <div>
-        <v-combobox class="combobox-periode"></v-combobox>
+        <v-select :items="items" class="select-periode" label="Outlined style" outlined></v-select>
       </div>
       <div>
         (Informasi Tambahan:)
       </div>
       <div>
-          <v-textarea name="input-7-1" value="" hint="Hint text"></v-textarea>
+        <v-textarea label="One row" auto-grow outlined rows="1" filled row-height="15"></v-textarea>
       </div>
       <div>
         (Foto:)

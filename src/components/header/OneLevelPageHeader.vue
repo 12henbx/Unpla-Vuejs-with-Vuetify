@@ -5,7 +5,7 @@
         <v-icon large color="white">mdi-arrow-left</v-icon>
       </span>
     </div>
-    <div class="title-box">
+    <div v-if="objHeader.menuTitle !== 'ProductDetail'" class="title-box">
       <h4 class="menu-title">{{objHeader.menuTitle}}</h4>
     </div>
 <!--    <div class="add-button-box" v-if="menuTitle === 'Tambah Barang CA' || menuTitle === 'Pick Sales Order' || menuTitle === 'Container Activity'">-->
@@ -18,19 +18,19 @@
 <!--          <button class="add-button" @click="scanContainer">Scan Container</button>-->
 <!--      </span>-->
 <!--    </div>-->
-    <div v-if="menuTitle === 'Home'">
+    <div v-if="objHeader.menuTitle === 'ProductDetail'" class="search-box">
       <span>
         <v-text-field class="text-search" solo label="Prepend inner" prepend-inner-icon="mdi-magnify"></v-text-field>
       </span>
     </div>
-    <div class="div-icon-buttons" v-if="menuTitle === 'Home'">
+    <div class="div-icon-buttons" v-if="objHeader.menuTitle === 'Home' || objHeader.menuTitle === 'ProductTitle'">
       <v-badge color="pink" dot>
         <v-icon large color="green darken-2">
           mdi-bell
         </v-icon>
       </v-badge>
     </div>
-    <div class="div-icon-buttons" v-if="menuTitle === 'Home'">
+    <div class="div-icon-buttons" v-if="menuTitle === 'Home' || objHeader.menuTitle === 'ProductTitle'">
       <v-badge color="pink" dot>
         <v-icon large color="green darken-2">
           mdi-cart

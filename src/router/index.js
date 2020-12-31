@@ -10,10 +10,16 @@ import ReviewAndGreeting from '../views/ReviewAndGreeting'
 import Notification from '../views/Notification'
 import SellRecycledItemForm from '../views/SellRecycledItemForm'
 import ProductDetail from '../views/ProductDetail'
+import Login from '../views/Login'
 
 Vue.use(VueRouter)
 
 const routes = [
+  {
+    path: '/login',
+    name: 'Login',
+    component: Login
+  },
   {
     path: '/',
     name: 'Home',

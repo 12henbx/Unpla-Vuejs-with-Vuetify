@@ -110,7 +110,7 @@ export default {
   components: { RecyclerCardList, FloatingActionButtonJual, UserWasteList, SelectedRecycledItemList },
   data: function () {
     return {
-
+      objRecycler: { notify: false, menuTitle: 'Home' }
     }
   }
 }

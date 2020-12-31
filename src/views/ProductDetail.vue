@@ -1,7 +1,7 @@
 <template>
   <div class="container-page">
     <div class="place-header">
-      <OneLevelPageHeader></OneLevelPageHeader>
+      <OneLevelPageHeader v-bind:objHeader="objRecycler"></OneLevelPageHeader>
     </div>
     <div class="place-content">
       <div class="wrapper-content">
@@ -32,7 +32,12 @@ import OneLevelPageHeader from '../components/header/OneLevelPageHeader'
 
 export default {
   name: 'ProductDetail',
-  components: { OneLevelPageHeader }
+  components: { OneLevelPageHeader },
+  data: function () {
+    return {
+      objRecycler: { notify: false, menuTitle: 'ProductDetail' }
+    }
+  }
 }
 </script>
 
@@ -40,5 +45,5 @@ export default {
   @import "../styles/basics/variables";
   @import "../styles/basics/layout";
   @import "../styles/basics/viewpage";
-
+  @import "../styles/pages/productDetail";
 </style>

@@ -38,7 +38,7 @@ export default {
   },
   data: function () {
     return {
-      objRecycler: { notify: false, menuTitle: 'Jual Barang' }
+      objRecycler: { notify: false, menuTitle: '' }
     }
   }
 }
