@@ -8,31 +8,24 @@
     <div v-if="objHeader.menuTitle !== 'ProductDetail'" class="title-box">
       <h4 class="menu-title">{{objHeader.menuTitle}}</h4>
     </div>
-<!--    <div class="add-button-box" v-if="menuTitle === 'Tambah Barang CA' || menuTitle === 'Pick Sales Order' || menuTitle === 'Container Activity'">-->
-<!--      <span class="add-button">-->
-<!--          <button class="add-button" @click="submitItem">Tambah</button>-->
-<!--      </span>-->
-<!--    </div>-->
-<!--    <div class="add-button-box" v-else-if="menuTitle === 'Map Inbound'">-->
-<!--      <span class="add-button">-->
-<!--          <button class="add-button" @click="scanContainer">Scan Container</button>-->
-<!--      </span>-->
-<!--    </div>-->
     <div v-if="objHeader.menuTitle === 'ProductDetail'" class="search-box">
-      <span>
-        <v-text-field class="text-search" solo label="Prepend inner" prepend-inner-icon="mdi-magnify"></v-text-field>
-      </span>
+<!--        <v-text-field class="text-search" solo label="Prepend inner" prepend-inner-icon="mdi-magnify"></v-text-field>-->
+        <div class="div-input-search">
+          <v-icon class="icon-magnify">mdi-magnify</v-icon>
+          <input type="text" aria-label="unf-searchbar" class="input-searchbar" value="" data-cy="topnavSearchbar" placeholder="Cari Barang" margin="0">
+        </div>
     </div>
-    <div class="div-icon-buttons" v-if="objHeader.menuTitle === 'Home' || objHeader.menuTitle === 'ProductTitle'">
+    <v-spacer></v-spacer>
+    <div class="div-icon-notif" v-if="objHeader.menuTitle === 'Home' || objHeader.menuTitle === 'ProductDetail'">
       <v-badge color="pink" dot>
-        <v-icon large color="green darken-2">
+        <v-icon class="icon-notif" color="white">
           mdi-bell
         </v-icon>
       </v-badge>
     </div>
-    <div class="div-icon-buttons" v-if="menuTitle === 'Home' || objHeader.menuTitle === 'ProductTitle'">
+    <div class="div-icon-cart" v-if="menuTitle === 'Home' || objHeader.menuTitle === 'ProductDetail'">
       <v-badge color="pink" dot>
-        <v-icon large color="green darken-2">
+        <v-icon class="icon-cart" color="white">
           mdi-cart
         </v-icon>
       </v-badge>
@@ -67,13 +60,65 @@ export default {
     color: #fff;
   }
 
+  .search-box{
+    height: 36px;
+    width: 300px;
+  }
+
+  .icon-magnify{
+    color: rgba(90, 97, 105, 0.96);
+    margin-left: 10px;
+    font-size: 20px;
+  }
+
+  .css-sc90cu-unf-searchbar::before {
+    content: '';
+    display: flex;
+    width: 24px;
+    height: 24px;
+    background-image: url("https://assets.tokopedia.net/assets-tokopedia-lite/v2/atreus/kratos/d3d8fc05.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .div-input-search {
+    display: flex;
+    height: 36px;
+    width: 100%;
+    margin-left: 10px;
+    border: none;
+    border-radius: 8px;
+    outline: none;
+    background-color: #F3F4F5;
+    color: rgba(49,53,59,0.96);
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .input-searchbar{
+    background-color: #F3F4F5;
+    margin-left: 5px;
+  }
+
   .text-search{
     width: 200px;
     height: 30px;
   }
 
-  .div-icon-buttons{
+  .div-icon-notif{
     display: flex;
-    flex-direction: row;
+    margin-right: 10px;
+  }
+
+  .div-icon-cart{
+    margin-right: 20px;
+  }
+
+  .icon-notif{
+    font-size: 24px;
+  }
+
+  .icon-cart{
+    font-size: 24px;
   }
 </style>

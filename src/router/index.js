@@ -75,8 +75,8 @@ const routes = [
     component: SellRecycledItemForm
   },
   {
-    // path: '/sell-item/:sub-waste-category/sell/type',
-    path: '/product/:category/:productName',
+    // path: '/product/:category/:productName',
+    path: '/product',
     name: 'ProductDetail',
     component: ProductDetail
   }
