@@ -11,6 +11,7 @@ import Notification from '../views/Notification'
 import SellRecycledItemForm from '../views/SellRecycledItemForm'
 import ProductDetail from '../views/ProductDetail'
 import Login from '../views/Login'
+import SignUp from '../views/SignUp'
 
 Vue.use(VueRouter)
 
@@ -19,6 +20,11 @@ const routes = [
     path: '/login',
     name: 'Login',
     component: Login
+  },
+  {
+    path: '/signup',
+    name: 'sign up',
+    component: SignUp
   },
   {
     path: '/',

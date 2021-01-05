@@ -6,7 +6,7 @@
       </span>
     </div>
     <div v-if="objHeader.menuTitle !== 'ProductDetail'" class="title-box">
-      <h4 class="menu-title">{{objHeader.menuTitle}}</h4>
+      <h3 class="menu-title">{{objHeader.menuTitle}}</h3>
     </div>
     <div v-if="objHeader.menuTitle === 'ProductDetail'" class="search-box">
 <!--        <v-text-field class="text-search" solo label="Prepend inner" prepend-inner-icon="mdi-magnify"></v-text-field>-->
@@ -17,18 +17,18 @@
     </div>
     <v-spacer></v-spacer>
     <div class="div-icon-notif" v-if="objHeader.menuTitle === 'Home' || objHeader.menuTitle === 'ProductDetail'">
-      <v-badge color="pink" dot>
+<!--      <v-badge color="pink" dot>-->
         <v-icon class="icon-notif" color="white">
           mdi-bell
         </v-icon>
-      </v-badge>
+<!--      </v-badge>-->
     </div>
     <div class="div-icon-cart" v-if="menuTitle === 'Home' || objHeader.menuTitle === 'ProductDetail'">
-      <v-badge color="pink" dot>
+<!--      <v-badge color="pink" dot>-->
         <v-icon class="icon-cart" color="white">
           mdi-cart
         </v-icon>
-      </v-badge>
+<!--      </v-badge>-->
     </div>
   </header>
 </template>
@@ -58,6 +58,10 @@ export default {
     white-space: pre-wrap;
     background-color: $header-background;
     color: #fff;
+  }
+
+  .menu-title{
+    margin-left: 16px;
   }
 
   .search-box{
@@ -115,7 +119,7 @@ export default {
   }
 
   .icon-notif{
-    font-size: 24px;
+    font-size: 26px;
   }
 
   .icon-cart{

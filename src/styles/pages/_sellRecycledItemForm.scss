@@ -1,0 +1,32 @@
+.place-content{
+  padding: 16px;
+}
+
+.wrapper-background-image{
+  display: flex;
+  margin: 10px 10px;
+  width: 80px;
+  height: 75px;
+  background: #c4c4c4;
+  border-radius: 8px;
+  align-items: center;
+  justify-content: center;
+}
+
+.row-owl-list{
+  display: flex;
+  flex-direction: row;
+}
+
+.div-btn-submit{
+  display: flex;
+  width: inherit;
+  justify-content: center;
+}
+
+.btn-submit{
+  background: rgba(222,107,74,0.96);
+  width: 250px;
+  height: 50px;
+  border-radius: 15px;
+}

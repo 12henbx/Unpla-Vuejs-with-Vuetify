@@ -6,24 +6,21 @@ import store from './store'
 import vuetify from './plugins/vuetify'
 import 'material-design-icons-iconfont/dist/material-design-icons.css'
 import { WebCam } from 'vue-web-cam'
+import axios from 'axios'
 
 Vue.use(WebCam)
 
-// var firebaseConfig = {
-//   apiKey: 'AIzaSyDdklG9dc70Gauqo59lBWBv4aLOGx8Mq5I',
-//   authDomain: 'unpla-b1308.firebaseapp.com',
-//   databaseURL: 'https://unpla-b1308.firebaseio.com',
-//   projectId: 'unpla-b1308',
-//   storageBucket: 'unpla-b1308.appspot.com',
-//   messagingSenderId: '1033893574191',
-//   appId: '1:1033893574191:web:caade5c1bf488584d2f8da',
-//   measurementId: 'G-5S03L5JXQH'
-// }
-// // Initialize Firebase
-// firebase.initializeApp(firebaseConfig)
-// firebase.analytics()
-
-// var storage = firebase.storage()
+axios.defaults.withCredentials = true
+axios.interceptors.response.use(undefined, function (error) {
+  if (error) {
+    const originalRequest = error.config
+    if (error.response.status === 401 && !originalRequest._retry) {
+      originalRequest._retry = true
+      store.dispatch('LogOut')
+      return router.push('/login')
+    }
+  }
+})
 
 Vue.config.productionTip = false
 

@@ -1,9 +1,9 @@
 <template>
-    <div class="container-page">
-      <div class="place-header">
-        <OneLevelPageHeader v-bind:objHeader="objRecycler"></OneLevelPageHeader>
-      </div>
-      <div class="place-content">
+  <div class="container-page">
+    <div class="place-header">
+      <OneLevelPageHeader v-bind:objHeader="objRecycler"></OneLevelPageHeader>
+    </div>
+    <div class="place-content">
       <div class="div-notification-icon">
         <div class="wrapper-notification-icon">
           <a class="text-title">
@@ -12,12 +12,20 @@
           <div class="div-icon-name">
             <div class="div-wrap-icon">
               <v-icon large color="black">mdi-clock-time-nine-outline</v-icon>
+              <a>Menunggu Konfirmasi</a>
             </div>
             <div class="div-wrap-icon">
               <v-icon large color="black">mdi-sync</v-icon>
+              <a>Sedang Diproses</a>
             </div>
-            <v-icon large color="black">mdi-cube-send</v-icon>
+            <div class="div-wrap-icon">
+              <v-icon large color="black">mdi-cube-send</v-icon>
+              <a>Dalam Pengiriman</a>
+            </div>
+            <div class="div-wrap-icon">
               <v-icon large color="black">mdi-map-marker-radius-outline</v-icon>
+              <a>Telah Sampai</a>
+            </div>
           </div>
         </div>
       </div>
@@ -26,11 +34,23 @@
           <a class="text-title">
             Penjualan Hasil Daur Ulang
           </a>
-          <div class="div-icon">
-            <v-icon large color="black">mdi-buffer</v-icon>
-            <v-icon large color="black">mdi-sync</v-icon>
-            <v-icon large color="black">mdi-check-box-outline</v-icon>
-            <v-icon large color="black">mdi-map-marker-radius-outline</v-icon>
+          <div class="div-icon-name">
+            <div class="div-wrap-icon">
+              <v-icon large color="black">mdi-buffer</v-icon>
+              <a>Pesanan Baru</a>
+            </div>
+            <div class="div-wrap-icon">
+              <v-icon large color="black">mdi-sync</v-icon>
+              <a>Siap Dikirim</a>
+            </div>
+            <div class="div-wrap-icon">
+              <v-icon large color="black">mdi-check-box-outline</v-icon>
+              <a>Sudah Dikirim</a>
+            </div>
+            <div class="div-wrap-icon">
+              <v-icon large color="black">mdi-map-marker-radius-outline</v-icon>
+              <a>Telah Sampai</a>
+            </div>
           </div>
         </div>
       </div>
@@ -39,11 +59,23 @@
           <a class="text-title">
             Kirim Sampah Plastik
           </a>
-          <div class="div-icon">
-            <v-icon large color="black">mdi-clock-time-nine-outline</v-icon>
-            <v-icon large color="black">mdi-sync</v-icon>
-            <v-icon large color="black">mdi-cube-send</v-icon>
-            <v-icon large color="black">mdi-map-marker-radius-outline</v-icon>
+          <div class="div-icon-name">
+            <div class="div-wrap-icon">
+              <v-icon large color="black">mdi-clock-time-nine-outline</v-icon>
+              <a>Menunggu Konfirmasi</a>
+            </div>
+            <div class="div-wrap-icon">
+              <v-icon large color="black">mdi-sync</v-icon>
+              <a>Sedang Diproses</a>
+            </div>
+            <div class="div-wrap-icon">
+              <v-icon large color="black">mdi-cube-send</v-icon>
+              <a>Dalam Pengiriman</a>
+            </div>
+            <div class="div-wrap-icon">
+              <v-icon large color="black">mdi-map-marker-radius-outline</v-icon>
+              <a>Telah Sampai</a>
+            </div>
           </div>
         </div>
       </div>
@@ -52,16 +84,28 @@
           <a class="text-title">
             Terima Sampah Plastik
           </a>
-          <div class="div-icon">
-            <v-icon large color="black">mdi-buffer</v-icon>
-            <v-icon large color="black">mdi-sync</v-icon>
-            <v-icon large color="black">mdi-check-box-outline</v-icon>
-            <v-icon large color="black">mdi-map-marker-radius-outline</v-icon>
+          <div class="div-icon-name">
+            <div class="div-wrap-icon">
+              <v-icon large color="black">mdi-buffer</v-icon>
+              <a>Pesanan Baru</a>
+            </div>
+            <div class="div-wrap-icon">
+              <v-icon large color="black">mdi-sync</v-icon>
+              <a>Siap Dikirim</a>
+            </div>
+            <div class="div-wrap-icon">
+              <v-icon large color="black">mdi-check-box-outline</v-icon>
+              <a>Sudah Dikirim</a>
+            </div>
+            <div class="div-wrap-icon">
+              <v-icon large color="black">mdi-map-marker-radius-outline</v-icon>
+              <a>Telah Sampai</a>
+            </div>
           </div>
         </div>
       </div>
-      </div>
     </div>
+  </div>
 </template>
 
 <script>
@@ -81,6 +125,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  @import "../styles/basics/variables";
+  @import "../styles/basics/layout";
+  @import "../styles/basics/viewpage";
   @import "../styles/pages/notification";
 
 </style>
