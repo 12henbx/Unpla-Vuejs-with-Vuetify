@@ -1,5 +1,7 @@
 <template>
+  <div class="place-content">
 
+  </div>
 </template>
 
 <script>
@@ -8,6 +10,9 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
+  .place-content{
+    display: flex;
+    width: inherit;
+  }
 </style>

@@ -92,18 +92,12 @@
     </div>
 </template>
 
-<style scoped lang="scss">
-  @import "../styles/basics/variables";
-  @import "../styles/basics/layout";
-  @import "../styles/basics/viewpage";
-  @import "../styles/pages/home";
-</style>
-
 <script>
 import UserWasteList from '../components/UserWasteList'
 import FloatingActionButtonJual from '../components/fab/FloatingActionButtonJual'
 import RecyclerCardList from '../components/RecyclerCardList'
 import SelectedRecycledItemList from '../components/list/SelectedRecycledItemList'
+import axios from "axios";
 
 export default {
   name: 'Home',
@@ -112,6 +106,32 @@ export default {
     return {
       objRecycler: { notify: false, menuTitle: 'Home' }
     }
+  },
+  async beforeMount () {
+    // this.userId = firebase.auth().currentUser.uid;
+    try {
+      const response = await axios.get('http://localhost:8080/api/transactions/' + this.userId)
+      this.credit = response.data.credit
+      this.debit = response.data.debit
+    } catch (err) {
+      console.log(err)
+    }
+    try {
+      const response = await axios.get('http://localhost:8080/waste-item/' + this.userId + '/balance')
+      this.balance_idr = response.data.value_in_rupiah.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')
+      this.raw_idr = response.data.raw_balance_in_rupiah.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')
+      this.balance_mwb = response.data.value_in_mwb.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')
+      this.balance_raw_idr = (response.data.value_in_rupiah + response.data.raw_balance_in_rupiah).toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')
+    } catch (err) {
+      console.log(err)
+    }
   }
 }
 </script>
+
+<style scoped lang="scss">
+  @import "../styles/basics/variables";
+  @import "../styles/basics/layout";
+  @import "../styles/basics/viewpage";
+  @import "../styles/pages/home";
+</style>

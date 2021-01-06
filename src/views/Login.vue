@@ -22,8 +22,8 @@
       <button class="btn-login">Login</button>
     </div>
     <span class="bottom-text">Don't have an account? <a href="/signup">Sign Up</a></span>
+    <p v-if="showError" class="p-error">Username or Password is incorrect</p>
   </form>
-  <p v-if="showError" class="p-error">Username or Password is incorrect</p>
 </template>
 
 <script>
