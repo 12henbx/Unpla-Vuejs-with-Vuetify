@@ -97,7 +97,7 @@ import UserWasteList from '../components/UserWasteList'
 import FloatingActionButtonJual from '../components/fab/FloatingActionButtonJual'
 import RecyclerCardList from '../components/RecyclerCardList'
 import SelectedRecycledItemList from '../components/list/SelectedRecycledItemList'
-import axios from "axios";
+import axios from 'axios'
 
 export default {
   name: 'Home',

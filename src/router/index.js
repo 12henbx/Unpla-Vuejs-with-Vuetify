@@ -74,12 +74,12 @@ const routes = [
     name: 'SellRecycledItemForm',
     component: SellRecycledItemForm
   },
-  {
-    // path: '/sell-item/:sub-waste-category/sell/type',
-    path: '/sell-item/sell/type',
-    name: 'SellRecycledItemForm',
-    component: SellRecycledItemForm
-  },
+  // {
+  //   // path: '/sell-item/:sub-waste-category/sell/type',
+  //   path: '/sell-item/sell/type',
+  //   name: 'SellRecycledItemForm',
+  //   component: SellRecycledItemForm
+  // },
   {
     // path: '/product/:category/:productName',
     path: '/product',

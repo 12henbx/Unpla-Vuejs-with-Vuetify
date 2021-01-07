@@ -1,6 +1,6 @@
 <template>
   <form class="container-page">
-    <h1>Welcome to Unpla</h1>
+    <h1 @click="bla">Welcome to Unpla</h1>
     <p>Please sign in to proceed to your account</p>
     <div class="username-box">
       <div class="wrapper-text-field">
@@ -19,7 +19,7 @@
       </div>
     </div>
     <div class="div-button">
-      <button class="btn-login">Login</button>
+      <v-btn class="btn-login" @click="submit">Login</v-btn>
     </div>
     <span class="bottom-text">Don't have an account? <a href="/signup">Sign Up</a></span>
     <p v-if="showError" class="p-error">Username or Password is incorrect</p>
@@ -41,6 +41,9 @@ export default {
     }
   },
   methods: {
+    bla () {
+      console.log('HaloBla')
+    },
     ...mapActions(['LogIn']),
     async submit () {
       const User = new FormData()
