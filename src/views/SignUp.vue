@@ -13,18 +13,18 @@
     </div>
     <div class="text-input-box">
       <div class="wrapper-text-field">
-        <v-text-field v-model="form.re_pass" type="password" label="Confirm Password" outlined></v-text-field>
+        <v-text-field type="password" label="Confirm Password" outlined></v-text-field>
       </div>
     </div>
     <div class="text-input-box">
       <div class="wrapper-text-field">
-        <v-text-field v-model="first" label="Name" outlined></v-text-field>
+        <v-text-field v-model="form.name" label="Name" outlined></v-text-field>
       </div>
     </div>
     <div class="div-button">
       <v-btn class="btn-login" @click="submit">Sign Up</v-btn>
     </div>
-    <span class="bottom-text">Don't have an account? <a href="/signup">Sign Up</a></span>
+    <span class="bottom-text">Have an account? <a href="/login">Login</a></span>
   </form>
 </template>
 
@@ -37,9 +37,9 @@ export default {
     return {
       form: {
         username: '',
-        full_name: '',
-        password: '',
-        re_pass: ''
+        name: '',
+        password: ''
+        // re_pass: ''
       },
       first: '',
       showError: false
@@ -52,7 +52,7 @@ export default {
       try {
         await this.Register(this.form)
         console.log('TESTmasuk reegister')
-        // this.$router.push({ name: 'Home' })
+        this.$router.push({ name: 'Login' })
         this.showError = false
       } catch (error) {
         this.showError = true

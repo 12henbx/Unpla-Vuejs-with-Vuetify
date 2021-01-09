@@ -97,7 +97,9 @@ import UserWasteList from '../components/UserWasteList'
 import FloatingActionButtonJual from '../components/fab/FloatingActionButtonJual'
 import RecyclerCardList from '../components/RecyclerCardList'
 import SelectedRecycledItemList from '../components/list/SelectedRecycledItemList'
+import { mapState } from 'vuex'
 import axios from 'axios'
+import store from '../store/modules/auth'
 
 export default {
   name: 'Home',
@@ -107,24 +109,31 @@ export default {
       objRecycler: { notify: false, menuTitle: 'Home' }
     }
   },
+  computed: {
+    ...mapState(['userId'])
+  },
   async beforeMount () {
-    // this.userId = firebase.auth().currentUser.uid;
+    console.log(this.$auth.state.userId)
     try {
-      const response = await axios.get('http://localhost:8080/api/transactions/' + this.userId)
+      const response = await axios.get('http://localhost:8080/waste-item/' + this.userId)
       this.credit = response.data.credit
       this.debit = response.data.debit
     } catch (err) {
       console.log(err)
     }
-    try {
-      const response = await axios.get('http://localhost:8080/waste-item/' + this.userId + '/balance')
-      this.balance_idr = response.data.value_in_rupiah.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')
-      this.raw_idr = response.data.raw_balance_in_rupiah.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')
-      this.balance_mwb = response.data.value_in_mwb.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')
-      this.balance_raw_idr = (response.data.value_in_rupiah + response.data.raw_balance_in_rupiah).toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')
-    } catch (err) {
-      console.log(err)
-    }
+    // try {
+    //   const response = await axios.get('http://localhost:8080/waste-item/' + this.userId + '/balance')
+    //   this.balance_idr = response.data.value_in_rupiah.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')
+    //   this.raw_idr = response.data.raw_balance_in_rupiah.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')
+    //   this.balance_mwb = response.data.value_in_mwb.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')
+    //   this.balance_raw_idr = (response.data.value_in_rupiah + response.data.raw_balance_in_rupiah).toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')
+    // } catch (err) {
+    //   console.log(err)
+    // }
+  },
+  mounted () {
+    console.log('store.getters.StateUserId')
+    console.log(store.state.userId.toString())
   }
 }
 </script>

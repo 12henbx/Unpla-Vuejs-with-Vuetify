@@ -1,25 +1,19 @@
 <template>
-  <form class="container-page">
-    <h1 @click="bla">Welcome to Unpla</h1>
+  <form class="container-page" @submit.prevent="submit">
+    <h1>Welcome to Unpla</h1>
     <p>Please sign in to proceed to your account</p>
     <div class="username-box">
       <div class="wrapper-text-field">
-        <v-text-field v-model="form.username" label="Username" outlined></v-text-field>
+        <v-text-field v-model="form.username" label="Username" filled outlined></v-text-field>
       </div>
     </div>
     <div class="password-box">
       <div class="wrapper-text-field">
-<!--        <div class="text-user-box">-->
-<!--          <span class="text-user"><v-icon large color="black">mdi-lock</v-icon></span>-->
-<!--        </div>-->
-<!--        <div class="input-username-box">-->
-<!--          <input placeholder="Password" class="login-input" type="password">-->
-<!--        </div>-->
-        <v-text-field v-model="form.password" type="password" label="Password" outlined></v-text-field>
+        <v-text-field v-model="form.password" type="password" label="Password" filled outlined></v-text-field>
       </div>
     </div>
     <div class="div-button">
-      <v-btn class="btn-login" @click="submit">Login</v-btn>
+      <v-btn block class="btn-login" @click="submit">Login</v-btn>
     </div>
     <span class="bottom-text">Don't have an account? <a href="/signup">Sign Up</a></span>
     <p v-if="showError" class="p-error">Username or Password is incorrect</p>
@@ -41,17 +35,11 @@ export default {
     }
   },
   methods: {
-    bla () {
-      console.log('HaloBla')
-    },
     ...mapActions(['LogIn']),
     async submit () {
-      const User = new FormData()
-      User.append('username', this.form.username)
-      User.append('password', this.form.password)
       try {
-        await this.LogIn(User)
-        this.$router.push('/')
+        await this.LogIn(this.form)
+        await this.$router.push('/')
         this.showError = false
       } catch (error) {
         this.showError = true

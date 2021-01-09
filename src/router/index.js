@@ -12,6 +12,8 @@ import SellRecycledItemForm from '../views/SellRecycledItemForm'
 import ProductDetail from '../views/ProductDetail'
 import Login from '../views/Login'
 import SignUp from '../views/SignUp'
+import WasteTypeDetail from '../views/WasteTypeDetail'
+import Cart from '../views/Cart'
 
 Vue.use(VueRouter)
 
@@ -74,17 +76,22 @@ const routes = [
     name: 'SellRecycledItemForm',
     component: SellRecycledItemForm
   },
-  // {
-  //   // path: '/sell-item/:sub-waste-category/sell/type',
-  //   path: '/sell-item/sell/type',
-  //   name: 'SellRecycledItemForm',
-  //   component: SellRecycledItemForm
-  // },
+  {
+    // path: '/sell-item/:sub-waste-category/sell/type',
+    path: '/sell-item/sell/type',
+    name: 'Waste Type Detail',
+    component: WasteTypeDetail
+  },
   {
     // path: '/product/:category/:productName',
     path: '/product',
     name: 'ProductDetail',
     component: ProductDetail
+  },
+  {
+    path: '/cart',
+    name: 'Cart',
+    component: Cart
   }
   // {
   // path: '/about',
