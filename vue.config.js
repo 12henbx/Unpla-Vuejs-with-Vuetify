@@ -4,6 +4,7 @@ module.exports = {
   ],
   devServer: {
     // port: 3000,
-    // proxy: 'http://myweb.test/'
+    // proxy: 'http://localhost/',
+    // changeOrigin: true
   }
 }

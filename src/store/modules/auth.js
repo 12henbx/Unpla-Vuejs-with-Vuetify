@@ -26,11 +26,9 @@ const actions = {
   async LogIn ({ commit }, user) {
     console.log('blalogin')
     await axios.post('http://localhost:8080/login', user).then(function (response) {
-      console.log(response.data)
       console.log('   Ini ID: ')
-      console.log(response.data.data.id)
-      commit('setUserId', response.data.data.id)
-      console.log(state.userId)
+      console.log(response.data)
+      commit('setUserId', response.data)
     })
   },
 
@@ -38,6 +36,11 @@ const actions = {
     const user = null
     commit('logout', user)
   }
+
+  // async GetPosts({ commit }) {
+  //   let response = await axios.get("posts");
+  //   commit("setPosts", response.data);
+  // },
 }
 
 const mutations = {
@@ -46,8 +49,6 @@ const mutations = {
   },
   setUserId (state, userid) {
     state.userId = userid
-    console.log('   Ini di mutation: ')
-    console.log(state.userId)
   },
   logout (state) {
     // eslint-disable-next-line no-unused-expressions

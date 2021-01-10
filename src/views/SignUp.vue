@@ -52,7 +52,7 @@ export default {
       try {
         await this.Register(this.form)
         console.log('TESTmasuk reegister')
-        this.$router.push({ name: 'Login' })
+        await this.$router.push({ name: 'Login' })
         this.showError = false
       } catch (error) {
         this.showError = true

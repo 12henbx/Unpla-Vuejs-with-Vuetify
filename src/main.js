@@ -2,7 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import './registerServiceWorker'
 import router from './router'
-import store from './store/index'
+import store from './store'
 import vuetify from './plugins/vuetify'
 import 'material-design-icons-iconfont/dist/material-design-icons.css'
 import { WebCam } from 'vue-web-cam'
@@ -17,7 +17,7 @@ axios.interceptors.response.use(undefined, function (error) {
     if (error.response.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true
       store.dispatch('LogOut')
-      return router.push('/login')
+      return this.$router.push('/login')
     }
   }
 })

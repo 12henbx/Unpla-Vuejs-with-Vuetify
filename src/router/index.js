@@ -14,6 +14,7 @@ import Login from '../views/Login'
 import SignUp from '../views/SignUp'
 import WasteTypeDetail from '../views/WasteTypeDetail'
 import Cart from '../views/Cart'
+// import store from '../store/modules/auth'
 
 Vue.use(VueRouter)
 
@@ -108,5 +109,29 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 })
+
+// router.beforeEach((to, from, next) => {
+//   if (to.matched.some((record) => record.meta.requiresAuth)) {
+//     if (store.getters.isAuthenticated) {
+//       next()
+//       return
+//     }
+//     next('/login')
+//   } else {
+//     next()
+//   }
+// })
+//
+// router.beforeEach((to, from, next) => {
+//   if (to.matched.some((record) => record.meta.guest)) {
+//     if (store.getters.isAuthenticated) {
+//       next('/')
+//       return
+//     }
+//     next()
+//   } else {
+//     next()
+//   }
+// })
 
 export default router

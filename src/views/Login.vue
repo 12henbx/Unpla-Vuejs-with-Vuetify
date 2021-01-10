@@ -42,6 +42,7 @@ export default {
         await this.$router.push('/')
         this.showError = false
       } catch (error) {
+        console.log(error)
         this.showError = true
       }
     }

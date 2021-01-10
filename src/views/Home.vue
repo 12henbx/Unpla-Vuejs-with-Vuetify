@@ -66,6 +66,7 @@
         <div class="cont-title">
           <div>
             <h3 class="text-ht">Daftar Usaha</h3>
+<!--            <span>{{userId}}</span>-->
           </div>
           <div class="div-grow-header"></div>
           <div class="div-lihat-semua">
@@ -97,9 +98,9 @@ import UserWasteList from '../components/UserWasteList'
 import FloatingActionButtonJual from '../components/fab/FloatingActionButtonJual'
 import RecyclerCardList from '../components/RecyclerCardList'
 import SelectedRecycledItemList from '../components/list/SelectedRecycledItemList'
-import { mapState } from 'vuex'
+import { mapGetters } from 'vuex'
 import axios from 'axios'
-import store from '../store/modules/auth'
+// import store from '../store/modules/auth'
 
 export default {
   name: 'Home',
@@ -110,30 +111,16 @@ export default {
     }
   },
   computed: {
-    ...mapState(['userId'])
+    ...mapGetters({ userId: 'StateUserId' })
   },
   async beforeMount () {
-    console.log(this.$auth.state.userId)
+    console.log(this.userId)
     try {
-      const response = await axios.get('http://localhost:8080/waste-item/' + this.userId)
-      this.credit = response.data.credit
-      this.debit = response.data.debit
+      const response = await axios.get('http://localhost:8080/waste-item/' + this.userId, { params: { page: 1, size: 10 } })
+      console.log(response.data)
     } catch (err) {
       console.log(err)
     }
-    // try {
-    //   const response = await axios.get('http://localhost:8080/waste-item/' + this.userId + '/balance')
-    //   this.balance_idr = response.data.value_in_rupiah.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')
-    //   this.raw_idr = response.data.raw_balance_in_rupiah.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')
-    //   this.balance_mwb = response.data.value_in_mwb.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')
-    //   this.balance_raw_idr = (response.data.value_in_rupiah + response.data.raw_balance_in_rupiah).toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')
-    // } catch (err) {
-    //   console.log(err)
-    // }
-  },
-  mounted () {
-    console.log('store.getters.StateUserId')
-    console.log(store.state.userId.toString())
   }
 }
 </script>
