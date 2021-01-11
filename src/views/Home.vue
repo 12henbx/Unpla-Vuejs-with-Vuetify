@@ -1,17 +1,17 @@
 <template>
   <div class="container-page">
-    <v-toolbar extended extension-height="60px">
-      <v-app-bar-nav-icon></v-app-bar-nav-icon>
+    <v-toolbar class="primary toolbar-header" extended extension-height="60px">
+      <v-app-bar-nav-icon color="#fff"></v-app-bar-nav-icon>
       <v-toolbar-title class="font-weight-bold">UNPLA</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn icon>
-        <v-icon>mdi-map-marker</v-icon>
+        <v-icon color="#fff">mdi-map-marker</v-icon>
       </v-btn>
       <v-btn icon>
-        <v-icon>mdi-bell</v-icon>
+        <v-icon color="#fff">mdi-bell</v-icon>
       </v-btn>
       <v-btn icon>
-        <v-icon>mdi-cart</v-icon>
+        <v-icon color="#fff">mdi-cart</v-icon>
       </v-btn>
       <template v-slot:extension>
         <div class="div-field-search">
@@ -19,15 +19,19 @@
         </div>
       </template>
     </v-toolbar>
-    <div>
-      <div>
-        <div class="cont-title">
-          <h3 class="text-ht">Daftar Sampah Saya</h3>
+    <div v-if="objUserWasteItem !== null" class="div-my-waste">
+      <div class="cont-title">
+        <h3 class="text-ht">Daftar Sampah Saya</h3>
+      </div>
+      <div class="card-list">
+        <div v-for="item in objUserWasteItem" :key="item.wasteItemId" class="div-each-card">
+          <UserWasteList v-bind:dataWasteList="item"></UserWasteList>
         </div>
-        <UserWasteList></UserWasteList>
       </div>
     </div>
+    <div class="css-19xlv9d"></div>
     <div class="row-menu">
+      <h3 class="text-ht">Kategori Hasil Daur</h3>
       <div class="box-menu-button">
         <div class="wrapper-menu">
           <div class="div-grow-header"></div>
@@ -62,35 +66,39 @@
         </div>
       </div>
     </div>
-      <div>
-        <div class="cont-title">
-          <div>
-            <h3 class="text-ht">Daftar Usaha</h3>
-<!--            <span>{{userId}}</span>-->
-          </div>
-          <div class="div-grow-header"></div>
-          <div class="div-lihat-semua">
-            <a class="a-lihat-semua">Lihat Semua</a>
-          </div>
+    <div class="css-19xlv9d"></div>
+    <div v-if="objRecyclers !== null" class="div-recycler-list">
+      <div class="cont-title">
+          <h3 class="text-ht">Daftar Usaha</h3>
+        <div class="div-grow-header"></div>
+        <div class="div-lihat-semua">
+          <a class="a-lihat-semua">Lihat Semua</a>
         </div>
-        <RecyclerCardList></RecyclerCardList>
       </div>
-    <FloatingActionButtonJual></FloatingActionButtonJual>
-    <div>
-        <div class="cont-title">
-          <div>
-            <h3 class="text-ht">Barang Pilihan Untukmmu</h3>
-          </div>
-          <div class="div-grow-header"></div>
-          <div class="div-lihat-semua">
-            <a class="a-lihat-semua">Lihat Semua</a>
-          </div>
+      <div class="card-list">
+        <div v-for="itemRec in objRecyclers" :key="itemRec.wasteItemIdW" class="div-each-card">
+          <RecyclerCardList v-bind:dataWasteListW="itemRec"></RecyclerCardList>
         </div>
-      <div class="cont-list-itembp">
-        <SelectedRecycledItemList></SelectedRecycledItemList>
-      </div>
       </div>
     </div>
+    <FloatingActionButtonJual></FloatingActionButtonJual>
+    <div v-if="objPickProducts !== null" class="div-pick-product">
+      <div class="cont-title">
+        <div>
+          <h3 class="text-ht">Barang Pilihan Untukmmu</h3>
+        </div>
+        <div class="div-grow-header"></div>
+        <div class="div-lihat-semua">
+          <a class="a-lihat-semua">Lihat Semua</a>
+        </div>
+      </div>
+      <div class="cont-list-itembp">
+          <div v-for="itemPPro in objPickProducts" :key="itemPPro.wasteItemIdW" class="div-each-card">
+        <SelectedRecycledItemList v-bind:dataPickProducts="itemPPro"></SelectedRecycledItemList>
+          </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -107,7 +115,10 @@ export default {
   components: { RecyclerCardList, FloatingActionButtonJual, UserWasteList, SelectedRecycledItemList },
   data: function () {
     return {
-      objRecycler: { notify: false, menuTitle: 'Home' }
+      objRecycler: { notify: false, menuTitle: 'Home' },
+      objUserWasteItem: [{}],
+      objRecyclers: [{}],
+      objPickProducts: [{}]
     }
   },
   computed: {
@@ -116,8 +127,14 @@ export default {
   async beforeMount () {
     console.log(this.userId)
     try {
-      const response = await axios.get('http://localhost:8080/waste-item/' + this.userId, { params: { page: 1, size: 10 } })
-      console.log(response.data)
+      const response = await axios.get('http://localhost:8080/waste-item/' + this.userId, {
+        params: {
+          page: 1,
+          size: 10
+        }
+      })
+      console.log(response.data.data)
+      this.objUserWasteItem = response.data.data.listWasteItem
     } catch (err) {
       console.log(err)
     }

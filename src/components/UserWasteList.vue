@@ -1,49 +1,48 @@
 <template>
-  <div class="card-list">
-    <div class="div-card-waste" v-for="item in 5" v-bind:key="item">
-      <v-card
-        class="mx-auto card-waste"
-      >
+    <div class="div-card-waste">
+      <v-card class="mx-auto card-waste">
         <div class="div-card-container">
           <div class="div-card-row">
             <div class="div-img">
-              <v-img class="img-product"
-                     src="https://cdn.vuetifyjs.com/images/cards/store.jpg"></v-img>
+              <v-img class="img-product" :src="dataWasteList.photo[0]"></v-img>
+<!--              <span>{{dataWasteList.photo[0]}}</span>-->
             </div>
             <div class="col-content">
               <div class="div-waste-content">
-                <div class="judul-content">Plastik Botol Bening</div>
-                <div class="judul-content">27 Agustus 2020</div>
-                <div class="judul-content">5 Kg</div>
+                <div class="judul-content">{{dataWasteList.subWasteCategory}}</div>
+                <div class="judul-content">{{dataWasteList.pickUpDate}}</div>
+                <div class="judul-content">{{dataWasteList.weightValue}} Kg</div>
               </div>
             </div>
           </div>
         </div>
       </v-card>
     </div>
-  </div>
 </template>
 
 <script>
 export default {
-  name: 'UserWasteList'
+  name: 'UserWasteList',
+  props: {
+    dataWasteList: Object
+  }
 }
 </script>
 
 <style lang="scss" scoped>
   @import "../styles/basics/variables";
 
-  .card-list{
-    overflow-x: scroll;
-    overflow-y: hidden;
-    white-space: nowrap;
-    height: 150px;
-    scrollbar-width: none;
-  }
+  /*.card-list{*/
+  /*  overflow-x: scroll;*/
+  /*  overflow-y: hidden;*/
+  /*  white-space: nowrap;*/
+  /*  height: 150px;*/
+  /*  scrollbar-width: none;*/
+  /*}*/
 
-  .card-list::-webkit-scrollbar {
-    display: none;
-  }
+  /*.card-list::-webkit-scrollbar {*/
+  /*  display: none;*/
+  /*}*/
 
   .div-card-waste{
     display: inline-block;
