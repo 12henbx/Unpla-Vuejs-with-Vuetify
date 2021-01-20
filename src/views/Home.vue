@@ -1,7 +1,7 @@
 <template>
   <div class="container-page">
     <v-toolbar class="primary toolbar-header" extended extension-height="60px">
-      <v-app-bar-nav-icon color="#fff"></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer" color="#fff"></v-app-bar-nav-icon>
       <v-toolbar-title class="font-weight-bold">UNPLA</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn icon>
@@ -92,11 +92,18 @@
           <a class="a-lihat-semua">Lihat Semua</a>
         </div>
       </div>
-      <div class="cont-list-itembp">
-          <div v-for="itemPPro in objPickProducts" :key="itemPPro.wasteItemIdW" class="div-each-card">
-        <SelectedRecycledItemList v-bind:dataPickProducts="itemPPro"></SelectedRecycledItemList>
-          </div>
-      </div>
+<!--      <div class="cont-list-itembp">-->
+<!--          <div v-for="itemPPro in objPickProducts" :key="itemPPro.wasteItemIdW" class="div-each-card">-->
+<!--        <SelectedRecycledItemList v-bind:dataPickProducts="itemPPro"></SelectedRecycledItemList>-->
+<!--          </div>-->
+<!--      </div>-->
+      <v-container fluid>
+        <v-row dense>
+          <v-col v-for="itemPPro in objPickProducts" :key="itemPPro.id" :cols="6">
+            <SelectedRecycledItemList v-bind:dataPickProducts="itemPPro"></SelectedRecycledItemList>
+          </v-col>
+        </v-row>
+      </v-container>
     </div>
   </div>
 </template>
@@ -118,7 +125,13 @@ export default {
       objRecycler: { notify: false, menuTitle: 'Home' },
       objUserWasteItem: [{}],
       objRecyclers: [{}],
-      objPickProducts: [{}]
+      objPickProducts: [{}],
+      drawer: false
+    }
+  },
+  watch: {
+    group () {
+      this.drawer = false
     }
   },
   computed: {
@@ -127,14 +140,21 @@ export default {
   async beforeMount () {
     console.log(this.userId)
     try {
-      const response = await axios.get('http://localhost:8080/waste-item/' + this.userId, {
+      const resWI = await axios.get('/waste-item/' + this.userId, {
         params: {
           page: 1,
           size: 10
         }
       })
-      console.log(response.data.data)
-      this.objUserWasteItem = response.data.data.listWasteItem
+      // console.log(response.data.data)
+      this.objUserWasteItem = resWI.data.data.listWasteItem
+    } catch (err) {
+      console.log(err)
+    }
+    try {
+      const resRP = await axios.get('http://localhost:8080/recycled-product/all')
+      console.log(resRP.data.data)
+      this.objPickProducts = resRP.data.data.recycledProductList
     } catch (err) {
       console.log(err)
     }

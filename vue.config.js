@@ -3,8 +3,19 @@ module.exports = {
     'vuetify'
   ],
   devServer: {
-    // port: 3000,
-    // proxy: 'http://localhost/',
-    // changeOrigin: true
+    proxy:{
+      // '^/waste-item/': {
+      //   target: 'http://localhost:8080/',
+      //   changeOrigin: true
+      // },
+      // '^/login': {
+      //   target: 'http://localhost:8080/',
+      //   changeOrigin: true
+      // },
+      '^/api': {
+        target: 'http://localhost:8080/',
+        changeOrigin: true
+      }
+    }
   }
 }

@@ -1,20 +1,20 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
-import Profile from '../views/Profile'
-import CameraDetection from '../views/CameraDetection'
-import DoneSellWasteItem from '../views/DoneSellWasteItem'
-import RecyclerListToSellWasteItem from '../views/RecyclerListToSellWasteItem'
-import SellWasteItemForm from '../views/SellWasteItemForm'
-import ReviewAndGreeting from '../views/ReviewAndGreeting'
-import Notification from '../views/Notification'
-import SellRecycledItemForm from '../views/SellRecycledItemForm'
-import ProductDetail from '../views/ProductDetail'
-import Login from '../views/Login'
-import SignUp from '../views/SignUp'
-import WasteTypeDetail from '../views/WasteTypeDetail'
-import Cart from '../views/Cart'
-// import store from '../store/modules/auth'
+
+const Home = () => import('../views/Home.vue')
+const Profile = () => import('../views/Profile')
+const CameraDetection = () => import('../views/CameraDetection')
+const DoneSellWasteItem = () => import('../views/DoneSellWasteItem')
+const RecyclerListToSellWasteItem = () => import('../views/RecyclerListToSellWasteItem')
+const SellWasteItemForm = () => import('../views/SellWasteItemForm')
+const ReviewAndGreeting = () => import('../views/ReviewAndGreeting')
+const Notification = () => import('../views/Notification')
+const SellRecycledItemForm = () => import('../views/SellRecycledItemForm')
+const ProductDetail = () => import('../views/ProductDetail')
+const Login = () => import('../views/Login')
+const SignUp = () => import('../views/SignUp')
+const WasteTypeDetail = () => import('../views/WasteTypeDetail')
+const Cart = () => import('../views/Cart')
 
 Vue.use(VueRouter)
 

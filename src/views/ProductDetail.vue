@@ -25,7 +25,7 @@
           </div>
         </div>
         <div class="div-feature-section">
-
+          <ProductDetailFeatureList></ProductDetailFeatureList>
         </div>
         <div class="div-product-info">
           <div name="product_description" class="css-19xlv9d"></div>
@@ -43,13 +43,11 @@
             </div>
             <span></span>
           </div>
-<!--          <span class="title-product-info">Informasi Produk</span>-->
-<!--          <p class="par-product-info"></p>-->
         </div>
         <div class="div-recycler-account">
-          <div data-testid="pdpShopCredibilityRow" class="css-1ptigug">
-            <a data-testid="pdpShopLogoLink">
-              <img data-testid="pdpShopImage" class="css-14a39gt" src="https://ecs7-p.tokopedia.net/img/cache/215-square/shops-1/2016/5/23/1110373/1110373_e75ed84a-5551-4537-b685-463471f0b763.jpg" alt="Logo MadisonShop">
+          <div class="css-1ptigug">
+            <a>
+              <img class="css-14a39gt" src="https://ecs7-p.tokopedia.net/img/cache/215-square/shops-1/2016/5/23/1110373/1110373_e75ed84a-5551-4537-b685-463471f0b763.jpg" alt="Logo MadisonShop">
             </a>
             <div>
               <a class="recyler-name-photo">
@@ -68,19 +66,16 @@
     <div class="place-bottom">
       <div class="unf-card css-ofrc7i-unf-card e1ukdezh0">
         <div data-testid="pdpBottomNavRow" class="css-yeresf">
-          <span data-testid="pdpChatButton" role="presentation" class="css-1j7nfit">
-            <i></i>
-          </span>
           <div class="css-3d0aq e1s4a49r0">
             <div>
-              <button class="unf-btn unf-btn--animate unf-btn--transaction unf-btn--block css-10looxd-unf-btn e1pumv1o0" data-testid="pdpBtnNormalSecondary" type="button">
+              <button class="unf-btn unf-btn--animate unf-btn--transaction unf-btn--block css-10looxd-unf-btn e1pumv1o0" type="button">
                 <span>Beli</span>
               </button>
             </div>
           </div>
           <div class="css-3d0aq e1s4a49r0">
             <div>
-              <button class="unf-btn unf-btn--animate unf-btn--filled unf-btn--transaction unf-btn--block css-17i3wt4-unf-btn e1pumv1o0" data-testid="pdpBtnNormalPrimary" type="button">
+              <button class="unf-btn unf-btn--animate unf-btn--filled unf-btn--transaction unf-btn--block css-17i3wt4-unf-btn e1pumv1o0" type="button">
                 <span>+ Keranjang</span>
               </button>
             </div>
@@ -93,10 +88,14 @@
 
 <script>
 import OneLevelPageHeader from '../components/header/OneLevelPageHeader'
+import ProductDetailFeatureList from '../components/list/ProductDetailFeatureList'
 
 export default {
   name: 'ProductDetail',
-  components: { OneLevelPageHeader },
+  components: {
+    OneLevelPageHeader,
+    ProductDetailFeatureList
+  },
   data: function () {
     return {
       objRecycler: { notify: false, menuTitle: 'ProductDetail' },

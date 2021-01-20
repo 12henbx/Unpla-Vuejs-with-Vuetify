@@ -25,7 +25,7 @@ const actions = {
 
   async LogIn ({ commit }, user) {
     console.log('blalogin')
-    await axios.post('http://localhost:8080/login', user).then(function (response) {
+    await axios.post('/login', user).then(function (response) {
       console.log('   Ini ID: ')
       console.log(response.data)
       commit('setUserId', response.data)

@@ -31,7 +31,7 @@ export const VisionFunction = {
         },
         features: [{
           type: type,
-          maxResults: 2
+          maxResults: 5
         }]
       }]
     })
