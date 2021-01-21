@@ -25,11 +25,12 @@
           </div>
         </div>
         <div class="div-feature-section">
+          <div name="product_description" class="css-19xlv9d"></div>
           <ProductDetailFeatureList></ProductDetailFeatureList>
         </div>
         <div class="div-product-info">
           <div name="product_description" class="css-19xlv9d"></div>
-          <div data-testid="pdpDescriptionContainer" class="css-19midj6">
+          <div class="css-19midj6">
             <h2 class="css-1n6ebyd">Deskripsi produk
               <br>
               <p class="css-c0gh7v">P1 Face shield kacamata bahan akrilik full face shield new model</p>

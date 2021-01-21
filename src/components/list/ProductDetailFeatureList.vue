@@ -1,25 +1,37 @@
 <template>
 <div class="div-feature-list">
-  <img src=""/>
+  <div class="feature-barter">
+  <div name="fade" v-if="show">
+    <img src=""/>
+  </div>
   <div class="div-hide-feature">
     <v-icon>mdi-package-variant-closed</v-icon>
     <span>
       Rincian Paket
     </span>
-    <v-icon>mdi-chevron-down</v-icon>
+    <button v-if="!show" @click="show = !show"><v-icon>mdi-chevron-down</v-icon></button>
+    <button v-else @click="show = !show"><v-icon>mdi-chevron-up</v-icon></button>
   </div>
-  <transition name="expand">
-    <p v-if="show">hello</p>
-  </transition>
+  </div>
+  <div class="feature-link-user">
+
+  </div>
 </div>
 </template>
 
 <script>
 export default {
-  name: 'ProductDetailFeatureList'
+  name: 'ProductDetailFeatureList',
+  data: function () {
+    return {
+      show: false
+    }
+  }
 }
 </script>
 
 <style lang="scss" scoped>
-
+.div-feature-list{
+  padding: 16px;
+}
 </style>

@@ -13,19 +13,10 @@
             </v-tab>
             <v-tab-item>
               <v-card flat>
-                <v-card-text v-text="text">
+                <v-card-text>
                   <a>TEST</a>
                   <p>paragraph</p>
-                  <!--              <div class="place-content">-->
-                  <!--                <div class="border-user-detail">-->
-                  <!--                  <div class="spanner-user-detail">-->
-                  <!--                    <h3>Aktivitas Terakhir</h3>-->
-                  <!--                    <div class="card-profile">-->
-
-                  <!--                    </div>-->
-                  <!--                  </div>-->
-                  <!--                </div>-->
-                  <!--              </div>-->
+                  <UserProfile v-bind:dataActivityList="objUser"></UserProfile>
                 </v-card-text>
               </v-card>
             </v-tab-item>
@@ -34,16 +25,7 @@
                 <v-card-text>
                   <a>TEST</a>
                   <p>paragraph</p>
-                  <!--              <div class="place-content">-->
-                  <!--                <div class="border-user-detail">-->
-                  <!--                  <div class="spanner-user-detail">-->
-                  <!--                    <h3>Aktivitas Terakhir</h3>-->
-                  <!--                    <div class="card-profile">-->
-
-                  <!--                    </div>-->
-                  <!--                  </div>-->
-                  <!--                </div>-->
-                  <!--              </div>-->
+                  <RecyclerProfile v-bind:dataActivityList="objRecycler"></RecyclerProfile>
                 </v-card-text>
               </v-card>
             </v-tab-item>
@@ -57,15 +39,12 @@
           <v-list-item>
             <v-list-item-title>Jual Sampah</v-list-item-title>
           </v-list-item>
-
           <v-list-item>
             <v-list-item-title>Riwayat Daur Ulang</v-list-item-title>
           </v-list-item>
-
           <v-list-item>
             <v-list-item-title>Statistik Usaha</v-list-item-title>
           </v-list-item>
-
           <v-list-item>
             <v-list-item-title>Keranjang Belanja</v-list-item-title>
           </v-list-item>
@@ -76,8 +55,14 @@
 </template>
 
 <script>
+import RecyclerProfile from '../components/tab/RecyclerProfile'
+import UserProfile from '../components/tab/UserProfile'
 export default {
   name: 'Profile',
+  components: {
+    RecyclerProfile,
+    UserProfile
+  },
   data: () => ({
     drawer: false,
     group: null,
