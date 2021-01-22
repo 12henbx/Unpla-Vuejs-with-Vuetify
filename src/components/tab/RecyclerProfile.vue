@@ -4,11 +4,13 @@
       <div class="wrapper-bos-profile">
         <img src="">
         <div>
-          <a>Henoch Hernanda C</a>
-          <span>
-            <a>point review</a>
-          <v-icon>mdi-star</v-icon>
-        </span>
+          <a>{{ dataRecycler.name }}</a>
+          <span v-for="eachMain in dataRecycler.mainWasteCategories" v-bind:key="eachMain">
+            <a>{{ eachMain }}</a>
+          </span>
+          <span v-for="eachSub in dataRecycler.subWasteCategories" v-bind:key="eachSub">
+            <a>{{ eachSub }}</a>
+          </span>
         </div>
       </div>
     </div>
@@ -27,7 +29,10 @@
 
 <script>
 export default {
-  name: 'RecyclerProfile'
+  name: 'RecyclerProfile',
+  props: {
+    dataRecycler: Object
+  }
 }
 </script>
 

@@ -8,9 +8,10 @@
           </div>
           <div class="col-content">
             <div class="div-waste-content">
-              <div class="judul-content">{{dataInDataActList.subWasteCategory}}</div>
-              <div class="judul-content">{{dataInDataActList.pickUpDate}}</div>
-              <div class="judul-content">{{dataInDataActList.weightValue}} item</div>
+              <div class="judul-content">{{dataInDataActList.productName}}</div>
+              <div class="judul-content">{{dataInDataActList.recyclerName}}</div>
+              <div class="judul-content">{{dataInDataActList.transactionDate}}</div>
+              <div class="judul-content">{{dataInDataActList.totalPrice}} item</div>
             </div>
           </div>
         </div>
@@ -23,7 +24,7 @@
 export default {
   name: 'LastActivityList',
   props: {
-      dataInDataActList: Object
+    dataInDataActList: Object
   }
 }
 </script>

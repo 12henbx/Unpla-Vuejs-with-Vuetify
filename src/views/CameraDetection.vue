@@ -17,6 +17,9 @@
       <v-btn icon @click="onCapture($event)"><v-icon class="icon-record">mdi-record-circle-outline</v-icon></v-btn>
       <button type="button" class="btn btn-success" @click="onStart">Start Camera</button>
     </div>
+    <div v-if="showModal" class="modal-route">
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 
@@ -36,7 +39,8 @@ export default {
       img: image,
       camera: null,
       deviceId: null,
-      devices: []
+      devices: [],
+      showModal: false
     }
   },
   computed: {

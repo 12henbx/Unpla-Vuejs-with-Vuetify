@@ -2,6 +2,24 @@
   <div class="container-page">
     <v-toolbar class="primary toolbar-header" extended extension-height="60px">
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" color="#fff"></v-app-bar-nav-icon>
+      <v-navigation-drawer v-model="drawer" absolute temporary>
+        <v-list rounded dense nav>
+          <v-list-item-group v-model="group" active-class="deep-purple--text text--accent-4">
+            <v-list-item>
+              <v-list-item-title>Jual Sampah</v-list-item-title>
+            </v-list-item>
+            <v-list-item>
+              <v-list-item-title>Riwayat Daur Ulang</v-list-item-title>
+            </v-list-item>
+            <v-list-item>
+              <v-list-item-title>Statistik Usaha</v-list-item-title>
+            </v-list-item>
+            <v-list-item>
+              <v-list-item-title>Keranjang Belanja</v-list-item-title>
+            </v-list-item>
+          </v-list-item-group>
+        </v-list>
+      </v-navigation-drawer>
       <v-toolbar-title class="font-weight-bold">UNPLA</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn icon>
@@ -92,11 +110,6 @@
           <a class="a-lihat-semua">Lihat Semua</a>
         </div>
       </div>
-<!--      <div class="cont-list-itembp">-->
-<!--          <div v-for="itemPPro in objPickProducts" :key="itemPPro.wasteItemIdW" class="div-each-card">-->
-<!--        <SelectedRecycledItemList v-bind:dataPickProducts="itemPPro"></SelectedRecycledItemList>-->
-<!--          </div>-->
-<!--      </div>-->
       <v-container fluid>
         <v-row dense>
           <v-col v-for="itemPPro in objPickProducts" :key="itemPPro.id" :cols="6">

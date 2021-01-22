@@ -4,6 +4,7 @@ import VueRouter from 'vue-router'
 const Home = () => import('../views/Home.vue')
 const Profile = () => import('../views/Profile')
 const CameraDetection = () => import('../views/CameraDetection')
+const SelectWasteCategory = () => import('../components/modal/SelectWasteCategory')
 const DoneSellWasteItem = () => import('../views/DoneSellWasteItem')
 const RecyclerListToSellWasteItem = () => import('../views/RecyclerListToSellWasteItem')
 const SellWasteItemForm = () => import('../views/SellWasteItemForm')
@@ -42,7 +43,18 @@ const routes = [
   {
     path: '/sell-item/camera',
     name: 'Camera Detection',
-    component: CameraDetection
+    component: CameraDetection,
+    children: [
+      {
+        // path: ':wasteId',
+        path: 'wasteId',
+        component: SelectWasteCategory,
+        props: true,
+        meta: {
+          showModal: true
+        }
+      }
+    ]
   },
   {
     path: '/sell-item/:id/success',
