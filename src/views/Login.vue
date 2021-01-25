@@ -13,7 +13,7 @@
       </div>
     </div>
     <div class="div-button">
-      <v-btn block class="btn-login" @click="submit">Login</v-btn>
+      <v-btn block dark class="btn-login" @click="submit">Login</v-btn>
     </div>
     <span class="bottom-text">Don't have an account? <a href="/signup">Sign Up</a></span>
     <p v-if="showError" class="p-error">Username or Password is incorrect</p>

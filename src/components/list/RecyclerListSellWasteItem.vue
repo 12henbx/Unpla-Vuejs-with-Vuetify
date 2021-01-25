@@ -3,19 +3,26 @@
     <div class="div-card-waste" v-for="item in 5" v-bind:key="item">
       <v-card class="mx-auto card-waste">
         <div class="div-card-container">
-          <div class="div-card-row" @click="routeToForm"> <!-- TODO: Add method -->
+          <div class="div-card-row"> <!-- TODO: Add method @click="routeToForm"-->
             <div class="col-content">
               <div class="div-waste-content">
                 <div class="judul-content"><span class="text-judul">CV. Sejahtera Abadi</span></div>
+                <span class="sub-judul">Yogyakarta</span>
                 <div class="judul-content">
-                  <span>4,8 <v-icon small color="yellow darken-2">mdi-star</v-icon></span>
-                  <span>  •  </span>
-                  <span><v-icon small color="black darken-2">mdi-map-marker-distance</v-icon>1,5Km</span>
+                  <span class="content-left">4,8 <v-icon small color="yellow darken-2">mdi-star</v-icon></span>
+                  <span class="content-middle">•</span>
+                  <span class="content-right"><v-icon small color="black darken-2">mdi-map-marker-distance</v-icon>1,5Km</span>
                 </div>
-                <div>
-                  <span>Buka</span>
+                <div class="judul-content">
+                  <span class="content-left">Buka</span>
+                  <span class="content-middle">•</span>
+                  <span class="content-right">Tutup</span>
                 </div>
-                <div class="judul-content">Yogyakarta</div>
+                <div class="judul-content">
+                  <span class="content-left"></span>
+                  <span class="content-middle"></span>
+                  <span class="content-right">18.00</span>
+                </div>
               </div>
             </div>
             <div class="div-img">
@@ -55,7 +62,7 @@ export default {
   name: 'RecyclerListSellWasteItem',
   data: function () {
     return {
-      show: false
+      show: true
     }
   }
 }
@@ -68,6 +75,7 @@ export default {
     overflow-y: scroll;
     width: $max-phone-width;
     scrollbar-width: none;
+    text-align: center;
   }
 
   .card-list::-webkit-scrollbar {
@@ -77,7 +85,8 @@ export default {
   .div-card-waste{
     display: inline-block;
     width: 450px;
-    margin-right: 10px;
+    margin-top: 10px;
+    /*margin-right: 10px;*/
   }
 
   .card-waste{
@@ -121,8 +130,44 @@ export default {
   }
 
   .div-waste-content{
+    display: flex;
+    flex-direction: column;
     padding: 8px 0 0;
     margin-left: 10px;
+  }
+
+  .judul-content{
+    display: flex;
+    justify-content: left;
+  }
+
+  .sub-judul{
+    display: flex;
+    justify-content: left;
+    color: #5e5e5e;
+    font-family: "Roboto", sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+  }
+
+  .content-left{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    width: 60px;
+  }
+
+  .content-middle{
+    width: 30px;
+    font-size: 22px;
+    font-weight: bolder;
+  }
+
+  .content-right{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    width: 80px;
   }
 
   .div-kategori-harga{

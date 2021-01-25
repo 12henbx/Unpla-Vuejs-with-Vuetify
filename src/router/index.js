@@ -3,9 +3,11 @@ import VueRouter from 'vue-router'
 
 const Home = () => import('../views/Home.vue')
 const Profile = () => import('../views/Profile')
+// const RecyclerProfile = () => import('../components/tab/RecyclerProfile')
+// const UserProfile = () => import('../components/tab/UserProfile')
 const CameraDetection = () => import('../views/CameraDetection')
 const SelectWasteCategory = () => import('../components/modal/SelectWasteCategory')
-const DoneSellWasteItem = () => import('../views/DoneSellWasteItem')
+// const DoneSellWasteItem = () => import('../views/DoneSellWasteItem')
 const RecyclerListToSellWasteItem = () => import('../views/RecyclerListToSellWasteItem')
 const SellWasteItemForm = () => import('../views/SellWasteItemForm')
 const ReviewAndGreeting = () => import('../views/ReviewAndGreeting')
@@ -47,35 +49,32 @@ const routes = [
     children: [
       {
         // path: ':wasteId',
-        path: 'wasteId',
+        path: 'wasteid',
         component: SelectWasteCategory,
-        props: true,
-        meta: {
-          showModal: true
-        }
+        props: true
       }
     ]
   },
+  // {
+  //   path: '/sell-item/:id/success',
+  //   name: 'Done Sell Waste Item',
+  //   component: DoneSellWasteItem
+  // },
   {
-    path: '/sell-item/:id/success',
-    name: 'Done Sell Waste Item',
-    component: DoneSellWasteItem
-  },
-  {
-    // path: '/sell-item/:sub-waste-category/list-recycler',
-    path: '/sell-item/list-recycler',
+    // path: '/waste-item/:sub-waste-category/list-recycler',
+    path: '/waste-item/list-recycler',
     name: 'Recyclers Sell Waste Item',
     component: RecyclerListToSellWasteItem
   },
   {
-    // path: '/sell-item/:sub-waste-category/sell',
-    path: '/sell-item/sell',
+    // path: '/waste-item/:sub-waste-category/sell',
+    path: '/waste-item/sell',
     name: 'Sell Waste Item Form',
     component: SellWasteItemForm
   },
   {
-    // path: '/sell-item/:sub-waste-category/thank-you',
-    path: '/sell-item/thank-you',
+    // path: '/waste-item/:sub-waste-category/thank-you',
+    path: '/waste-item/thank-you',
     name: 'ReviewAndGreeting',
     component: ReviewAndGreeting
   },

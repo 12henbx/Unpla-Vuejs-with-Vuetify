@@ -1,34 +1,35 @@
 <template>
   <div class="container-page">
     <v-card>
-      <v-toolbar dark flat class="toolbar-section">
-        <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+      <v-toolbar flat class="primary toolbar-section">
+        <v-app-bar-nav-icon @click.stop="drawer = !drawer" color="#fff"></v-app-bar-nav-icon>
         <v-toolbar-title>Your Dashboard</v-toolbar-title>
         <v-spacer></v-spacer>
         <template v-slot:extension>
-          <v-tabs v-model="tab" centered grow>
+          <v-tabs background-color="transparent" v-model="tab" centered grow dark>
             <v-tabs-slider color="yellow"></v-tabs-slider>
-            <v-tab v-for="item in items" :key="item">
-              {{ item }}
+            <v-tab href="#usertab" class="color-tab">
+              Profile Pribadi
             </v-tab>
-            <v-tab-item>
-              <v-card flat>
-                <v-card-text>
-                  <a>TEST</a>
-                  <p>paragraph</p>
-                  <UserProfile v-bind:dataActivityList="objUser"></UserProfile>
-                </v-card-text>
-              </v-card>
-            </v-tab-item>
-            <v-tab-item>
-              <v-card flat>
-                <v-card-text>
-                  <a>TEST</a>
-                  <p>paragraph</p>
-                  <RecyclerProfile v-bind:dataActivityList="objRecycler"></RecyclerProfile>
-                </v-card-text>
-              </v-card>
-            </v-tab-item>
+            <v-tab href="#recyclertab" class="color-tab">
+              Profile Usaha
+            </v-tab>
+            <v-tabs-items :value="tab">
+              <v-tab-item value="usertab">
+                <v-card flat>
+                  <v-card-text>
+                    <UserProfile v-bind:dataUser="objUser"></UserProfile>
+                  </v-card-text>
+                </v-card>
+              </v-tab-item>
+              <v-tab-item value="recyclertab">
+                <v-card flat>
+                  <v-card-text>
+                    <RecyclerProfile v-bind:dataRecycler="objRecycler"></RecyclerProfile>
+                  </v-card-text>
+                </v-card>
+              </v-tab-item>
+            </v-tabs-items>
           </v-tabs>
         </template>
       </v-toolbar>
@@ -63,11 +64,23 @@ export default {
     RecyclerProfile,
     UserProfile
   },
+  computed: {
+    tab: {
+      set (tab) {
+        this.$router.replace({ query: { ...this.$route.query, tab } })
+      },
+      get () {
+        return this.$route.query.tab
+      }
+    }
+  },
   data: () => ({
     drawer: false,
     group: null,
     items: ['Profile Pribadi', 'Profile Usaha'],
-    text: 'HaloHaloHaloHaloHaloHaloHaloHalo'
+    text: 'HaloHaloHaloHaloHaloHaloHaloHalo',
+    objUser: { fullName: 'Test Name' },
+    objRecycler: { name: 'CV Abadi' }
   }),
 
   watch: {
@@ -78,7 +91,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   @import "../styles/basics/variables";
   @import "../styles/basics/layout";
   @import "../styles/basics/viewpage";

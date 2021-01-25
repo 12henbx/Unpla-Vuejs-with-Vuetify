@@ -2,24 +2,6 @@
   <div class="container-page">
     <v-toolbar class="primary toolbar-header" extended extension-height="60px">
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" color="#fff"></v-app-bar-nav-icon>
-      <v-navigation-drawer v-model="drawer" absolute temporary>
-        <v-list rounded dense nav>
-          <v-list-item-group v-model="group" active-class="deep-purple--text text--accent-4">
-            <v-list-item>
-              <v-list-item-title>Jual Sampah</v-list-item-title>
-            </v-list-item>
-            <v-list-item>
-              <v-list-item-title>Riwayat Daur Ulang</v-list-item-title>
-            </v-list-item>
-            <v-list-item>
-              <v-list-item-title>Statistik Usaha</v-list-item-title>
-            </v-list-item>
-            <v-list-item>
-              <v-list-item-title>Keranjang Belanja</v-list-item-title>
-            </v-list-item>
-          </v-list-item-group>
-        </v-list>
-      </v-navigation-drawer>
       <v-toolbar-title class="font-weight-bold">UNPLA</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn icon>
@@ -118,6 +100,24 @@
         </v-row>
       </v-container>
     </div>
+    <v-navigation-drawer v-model="drawer" absolute temporary>
+      <v-list rounded dense nav>
+        <v-list-item-group v-model="group" active-class="deep-purple--text text--accent-4">
+          <v-list-item>
+            <v-list-item-title>Jual Sampah</v-list-item-title>
+          </v-list-item>
+          <v-list-item>
+            <v-list-item-title>Riwayat Daur Ulang</v-list-item-title>
+          </v-list-item>
+          <v-list-item>
+            <v-list-item-title>Statistik Usaha</v-list-item-title>
+          </v-list-item>
+          <v-list-item>
+            <v-list-item-title>Keranjang Belanja</v-list-item-title>
+          </v-list-item>
+        </v-list-item-group>
+      </v-list>
+    </v-navigation-drawer>
   </div>
 </template>
 
@@ -153,7 +153,7 @@ export default {
   async beforeMount () {
     console.log(this.userId)
     try {
-      const resWI = await axios.get('/waste-item/' + this.userId, {
+      const resWI = await axios.get('/api/waste-item/' + this.userId, {
         params: {
           page: 1,
           size: 10
@@ -165,7 +165,7 @@ export default {
       console.log(err)
     }
     try {
-      const resRP = await axios.get('http://localhost:8080/recycled-product/all')
+      const resRP = await axios.get('/api/recycled-product/all')
       console.log(resRP.data.data)
       this.objPickProducts = resRP.data.data.recycledProductList
     } catch (err) {

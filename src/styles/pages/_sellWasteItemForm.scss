@@ -19,7 +19,7 @@
 
 .div-waste-type{
   display: flex;
-  height: 80px;
+  height: 60px;
   align-items: center;
 }
 
@@ -32,10 +32,31 @@
   width: 210px;
 }
 
+.div-input-pick-date{
+  display: flex;
+  height: 70px;
+  margin-top: 15px;
+}
+
+.div-pick-time{
+  height: 70px;
+}
+
 .select-periode{
-  width: 200px;
+  width: auto;
+  margin-top: 10px;
+}
+
+.div-desc{
+  height: 70px;
+}
+
+.input-desc{
+  width: auto;
+  margin-top: 10px;
 }
 
 .div-photo{
+  margin-top: 10px;
   margin-bottom: 100px;
 }

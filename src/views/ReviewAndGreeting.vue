@@ -4,9 +4,7 @@
       <img class="img-greeting" src="../assets/8441.webp" alt="conserve-pic">
     </div>
     <div class="div-greeting">
-      <p class="p-greeting">
-        Terima kasih, anda telah mendaur ulang <a class="highlight-text">__Kg</a> sampah kategori<a class="highlight-text">{kategori sampah}</a> yang sangat berarti untuk pelestarian lingkungan.
-      </p>
+      <p class="p-greeting">Terima kasih, anda telah mendaur ulang <a class="highlight-text">__Kg</a> sampah kategori<a class="highlight-text"> {kategori sampah}</a> yang sangat berarti untuk pelestarian lingkungan.</p>
     </div>
     <div class="text-review">
       Ulasan:
@@ -18,7 +16,7 @@
         background-color="grey darken-1"
         empty-icon="$vuetify.icons.ratingFull"
         half-increments
-        size="64"
+        size="54"
         hover
       ></v-rating>
     </div>
@@ -26,12 +24,13 @@
       <v-textarea
         clearable
         clear-icon="cancel"
-        label="Text"
+        label="Ulasan"
       ></v-textarea>
     </div>
-    <button class="btn-submit">
+    <v-btn class="btn-submit">
       Submit
-    </button>
+    </v-btn>
+    <a  class="text-skip">Ulas nanti</a>
   </div>
 </template>
 

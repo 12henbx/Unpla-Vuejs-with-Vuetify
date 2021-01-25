@@ -20,7 +20,7 @@
       <div>
         Tanggal Jemput:
       </div>
-      <div>
+      <div class="div-input-pick-date">
           <v-menu v-model="menu2" :close-on-content-click="false" :nudge-right="40" transition="scale-transition" offset-y min-width="290px">
             <template v-slot:activator="{ on, attrs }">
               <v-text-field v-model="date" label="Picker without buttons" prepend-icon="event" readonly v-bind="attrs" v-on="on" outlined
@@ -32,14 +32,14 @@
       <div>
         (Waktu Penjemputan:)
       </div>
-      <div>
+      <div class="div-pick-time">
         <v-select :items="items" class="select-periode" label="Outlined style" outlined></v-select>
       </div>
       <div>
         (Informasi Tambahan:)
       </div>
-      <div>
-        <v-textarea label="One row" auto-grow outlined rows="1" filled row-height="15"></v-textarea>
+      <div class="div-desc">
+        <v-textarea label="Deskripsi" class="input-desc" auto-grow outlined rows="1" filled row-height="15"></v-textarea>
       </div>
       <div>
         (Foto:)

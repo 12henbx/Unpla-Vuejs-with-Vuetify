@@ -4,7 +4,7 @@
       <v-card-title>Select Country</v-card-title>
       <v-divider></v-divider>
       <v-card-text style="height: 300px;">
-        <v-radio-group v-model="dialogm1" column>
+        <v-radio-group v-model="dialog" column>
           <v-radio label="Bahamas, The" value="bahamas"></v-radio>
           <v-radio label="Bahrain" value="bahrain"></v-radio>
         </v-radio-group>
@@ -24,10 +24,15 @@
 
 <script>
 export default {
-  name: 'SelectWasteCategory'
+  name: 'SelectWasteCategory',
+  data: function () {
+    return {
+      dialog: true
+    }
+  }
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 
 </style>

@@ -1,3 +1,7 @@
+.container-page{
+  padding: 16px;
+}
+
 .div-img{
   display: flex;
   justify-content: center;
@@ -6,21 +10,29 @@
 
 .img-greeting{
   display: flex;
-  width: $max-phone-width;
+  width: 400px;
 }
 
 .div-greeting{
   display: flex;
-  width: 400px;
+  width: auto;
   justify-content: center;
   overflow: hidden;
 }
 
 .p-greeting{
-  display: flex;
+  display: inline;
   width: 400px;
   justify-content: center;
   overflow: hidden;
+  font-size: 16px;
+}
+
+.highlight-text{
+  display: inline;
+  color: #000;
+  font-weight: bold;
+  font-size: 18px;
 }
 
 .text-review{
@@ -41,5 +53,9 @@
 
 .btn-submit{
 
+}
+
+.text-skip{
+  margin-top: 20px;
 }
 

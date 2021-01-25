@@ -14,7 +14,7 @@ const getters = {
 const actions = {
   async Register ({ dispatch }, form) {
     console.log('TEST MASUK Register')
-    await axios.post('http://localhost:8080/signup', form).then(function (res) {
+    await axios.post('/api/user/signup', form).then(function (res) {
       console.log(res)
     })
     const UserForm = new FormData()
@@ -25,7 +25,7 @@ const actions = {
 
   async LogIn ({ commit }, user) {
     console.log('blalogin')
-    await axios.post('/login', user).then(function (response) {
+    await axios.post('/api/user/login', user).then(function (response) {
       console.log('   Ini ID: ')
       console.log(response.data)
       commit('setUserId', response.data)

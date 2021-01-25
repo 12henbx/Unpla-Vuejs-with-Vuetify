@@ -26,7 +26,6 @@
       </div>
       <div class="list-of-category">
         <div class="div-list-sub-category">
-          <div class="radio-group-right">
             <v-radio-group v-model="column" column class="list-radio-btn">
               <template v-slot:label>
                 <div class="text-select-title"><strong>Sub Jenis Plastik: </strong></div>
@@ -39,7 +38,6 @@
               <hr>
               <v-radio class="each-radio" label="Plastik Putih HDPE(botol sampo, tutup botol, wadah cat-tembok, dll.)" value="radio-2"></v-radio>
             </v-radio-group>
-          </div>
         </div>
       </div>
     </div>
