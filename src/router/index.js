@@ -49,7 +49,8 @@ const routes = [
     children: [
       {
         // path: ':wasteId',
-        path: 'wasteid',
+        path: '/set',
+        name: 'Select Waste Category',
         component: SelectWasteCategory,
         props: true
       }

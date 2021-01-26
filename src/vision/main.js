@@ -17,6 +17,27 @@ import { apiKey } from './key'
 var CV_URL = 'https://vision.googleapis.com/v1/images:annotate?key=' + apiKey
 
 export const VisionFunction = {
+  checkWasteCategory: function (jsonObj) {
+    jsonObj.forEach((item) => { // TODO : masih mendeteksi main waste
+      if (item.description.toUpperCase() === 'PLASTIC BOTTLE' || item.description.toUpperCase() === 'PLASTIC') {
+        return 'Plastik'
+      } else if (item.description.toUpperCase() === 'TIN' || item.description.toUpperCase() === 'BEVERAGE CAN' ||
+        item.description.toUpperCase() === 'TIN CAN') {
+        return 'Kaleng'
+      } else if (item.description.toUpperCase() === 'PAPER' || item.description.toUpperCase() === 'NEWSPAPER') {
+        return 'Kertas'
+      } else if (item.description.toUpperCase() === 'CARTON' || item.description.toUpperCase() === 'CARDBOARD') {
+        return 'Karton'
+      } else if (item.description.toUpperCase() === 'WORKWEAR' ||
+        item.description.toUpperCase() === 'PERSONAL PROTECTIVE EQUIPMENT') {
+        return 'Limbah_Medis'
+      } else {
+        return null
+      }
+    })
+    // if (jsonObj[] ===)
+    // return jsonObj !== null
+  },
   /**
    * Sends the given file contents to the Cloud Vision API and outputs the
    * results.
@@ -24,7 +45,7 @@ export const VisionFunction = {
   sendFileToCloudVision: async function (content) {
     const type = 'LABEL_DETECTION'
     content = content.replace('data:image/jpeg;base64,', '')
-    axios.post(CV_URL, {
+    const response = axios.post(CV_URL, {
       requests: [{
         image: {
           content: content
@@ -35,10 +56,12 @@ export const VisionFunction = {
         }]
       }]
     })
-      .then(response => console.log(response.data))
+      .then(res => res.data)
       .catch(error => {
         this.errorMessage = error.message
         console.error('There was an error!', this.errorMessage)
       })
+    return this.checkWasteCategory(response.responses[0].labelAnnotations)
+    // return response
   }
 }

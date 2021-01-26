@@ -28,6 +28,7 @@
 import { WebCam } from 'vue-web-cam'
 import image from '../assets/rect.png'
 import { VisionFunction } from '../vision/main.js'
+import router from '../router'
 
 export default {
   name: 'CameraDetection',
@@ -64,7 +65,12 @@ export default {
   methods: {
     onCapture (event) {
       this.img = this.$refs.webcam.capture()
-      VisionFunction.sendFileToCloudVision(this.img)
+      const output = VisionFunction.sendFileToCloudVision(this.img)
+      if (output === null) {
+        router.push({ name: 'Select Waste Category' })
+      } else {
+        router.push({ name: 'Recyclers Sell Waste Item', query: { subWaste: output } })
+      }
     },
     onStarted (stream) {
       console.log('On Started Event', stream)
@@ -92,7 +98,7 @@ export default {
     },
     detectImage () {
       // eslint-disable-next-line no-undef
-      uploadFiles(this.img)
+      // uploadFiles(this.img)
     }
   }
 }

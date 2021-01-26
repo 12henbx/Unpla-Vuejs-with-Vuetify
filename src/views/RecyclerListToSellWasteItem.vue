@@ -18,7 +18,20 @@ export default {
   components: { OneLevelPageHeader, RecyclerListSellWasteItem },
   data: function () {
     return {
-      objRecycler: { notify: true, menuTitle: 'Pilih Tempat Daur Ulang' }
+      objRecycler: { notify: true, menuTitle: 'Pilih Tempat Daur Ulang' },
+      subwaste: '',
+      responseAxios: ''
+    }
+  },
+  created () {
+    this.subwaste = this.$route.query.subWaste
+  },
+  async beforeMount () {
+    try {
+      const response = await axios.get('/api/recycler/' + this.$route.query.subWaste)
+      this.responseAxios = response.data
+    } catch (err) {
+      console.log(err)
     }
   }
 }
