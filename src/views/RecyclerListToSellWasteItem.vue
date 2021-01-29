@@ -12,6 +12,7 @@
 <script>
 import OneLevelPageHeader from '../components/header/OneLevelPageHeader'
 import RecyclerListSellWasteItem from '../components/list/RecyclerListSellWasteItem'
+import axios from 'axios'
 
 export default {
   name: 'RecyclerListToSellWasteItem',
@@ -24,11 +25,11 @@ export default {
     }
   },
   created () {
-    this.subwaste = this.$route.query.subWaste
+    console.log(this.$route.params.subwastecategory + ' check subwaste category')
   },
   async beforeMount () {
     try {
-      const response = await axios.get('/api/recycler/' + this.$route.query.subWaste)
+      const response = await axios.get('/api/recycler/' + this.$route.params.subwastecategory.output + '/recyclers')
       this.responseAxios = response.data
     } catch (err) {
       console.log(err)

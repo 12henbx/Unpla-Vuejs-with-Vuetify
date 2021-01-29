@@ -159,14 +159,14 @@ export default {
           size: 10
         }
       })
-      // console.log(response.data.data)
+      // console.log(resWI.data)
       this.objUserWasteItem = resWI.data.data.listWasteItem
     } catch (err) {
       console.log(err)
     }
     try {
       const resRP = await axios.get('/api/recycled-product/all')
-      console.log(resRP.data.data)
+      // console.log(resRP.data)
       this.objPickProducts = resRP.data.data.recycledProductList
     } catch (err) {
       console.log(err)

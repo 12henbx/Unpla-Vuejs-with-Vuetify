@@ -24,6 +24,10 @@ module.exports = {
       '^/api': {
         target: 'http://localhost:8080/',
         changeOrigin: true
+      },
+      '^/v1': {
+        target: 'https://vision.googleapis.com/',
+        changeOrigin: true
       }
     }
   }

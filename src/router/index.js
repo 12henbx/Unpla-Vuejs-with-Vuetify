@@ -49,7 +49,8 @@ const routes = [
     children: [
       {
         // path: ':wasteId',
-        path: '/set',
+        // path: '/set',
+        path: '/sell-item/camera/:prop',
         name: 'Select Waste Category',
         component: SelectWasteCategory,
         props: true
@@ -62,8 +63,7 @@ const routes = [
   //   component: DoneSellWasteItem
   // },
   {
-    // path: '/waste-item/:sub-waste-category/list-recycler',
-    path: '/waste-item/list-recycler',
+    path: '/waste-item/list-recycler/:subwastecategory',
     name: 'Recyclers Sell Waste Item',
     component: RecyclerListToSellWasteItem
   },

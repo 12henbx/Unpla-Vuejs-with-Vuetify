@@ -5,8 +5,10 @@
       <v-divider></v-divider>
       <v-card-text style="height: 300px;">
         <v-radio-group v-model="dialog" column>
-          <v-radio label="Bahamas, The" value="bahamas"></v-radio>
-          <v-radio label="Bahrain" value="bahrain"></v-radio>
+          <v-radio v-for="select in objQuery"
+                   :key="select"
+                   :label="select"
+                   :value="select"></v-radio>
         </v-radio-group>
       </v-card-text>
       <v-divider></v-divider>
@@ -14,7 +16,7 @@
         <v-btn color="blue darken-1" text @click="dialog = false">
           Close
         </v-btn>
-        <v-btn color="blue darken-1" text @click="dialog = false">
+        <v-btn color="blue darken-1" text @click="toRecycledList">
           Save
         </v-btn>
       </v-card-actions>
@@ -23,11 +25,24 @@
 </template>
 
 <script>
+import router from '../../router'
+
 export default {
   name: 'SelectWasteCategory',
   data: function () {
     return {
-      dialog: true
+      dialog: null,
+      objQuery: this.$route.query.subWaste
+    }
+  },
+  props: ['prop'],
+  mounted () {
+    console.log(this.prop + ' propssss')
+  },
+  methods: {
+    toRecycledList () {
+      this.dialog = false
+      router.push({ name: 'Recyclers Sell Waste Item', params: { subwastecategory: this.dialog } })
     }
   }
 }

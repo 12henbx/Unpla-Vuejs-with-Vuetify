@@ -13,9 +13,62 @@
   justify-content: center;
 }
 
+.div-price-stock{
+  display: flex;
+  flex-direction: row;
+  .div-input-price{
+    width: 120%;
+    margin-right: 20px;
+  }
+
+  .div-input-stock{
+    width: 80%;
+  }
+}
+
+.div-text-switch{
+  margin-bottom: 20px;
+}
+
+.div-input-title{
+  font-size: 12px;
+}
+
+.wrapper-feature{
+  display: flex;
+  flex-direction: row;
+}
+
+.text-feature{
+  display: flex;
+  flex-direction: column;
+}
+
+.text-field-waste{
+  width: 100%;
+}
+
+.text-field-amount{
+  width: 100px;
+}
+
 .row-owl-list{
   display: flex;
   flex-direction: row;
+}
+
+.div-kategori-harga{
+  margin: 8px 50px;
+}
+
+.kategori-harga-row{
+  display: flex;
+  flex-direction: row;
+}
+
+.hr-line{
+  color: #efefef;
+  margin-top: 3px;
 }
 
 .div-btn-submit{

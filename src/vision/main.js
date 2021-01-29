@@ -14,54 +14,91 @@
 import axios from 'axios'
 import { apiKey } from './key'
 
-var CV_URL = 'https://vision.googleapis.com/v1/images:annotate?key=' + apiKey
+var CV_URL = '/v1/images:annotate?key=' + apiKey
 
-export const VisionFunction = {
-  checkWasteCategory: function (jsonObj) {
-    jsonObj.forEach((item) => { // TODO : masih mendeteksi main waste
-      if (item.description.toUpperCase() === 'PLASTIC BOTTLE' || item.description.toUpperCase() === 'PLASTIC') {
-        return 'Plastik'
-      } else if (item.description.toUpperCase() === 'TIN' || item.description.toUpperCase() === 'BEVERAGE CAN' ||
-        item.description.toUpperCase() === 'TIN CAN') {
-        return 'Kaleng'
-      } else if (item.description.toUpperCase() === 'PAPER' || item.description.toUpperCase() === 'NEWSPAPER') {
-        return 'Kertas'
-      } else if (item.description.toUpperCase() === 'CARTON' || item.description.toUpperCase() === 'CARDBOARD') {
-        return 'Karton'
-      } else if (item.description.toUpperCase() === 'WORKWEAR' ||
-        item.description.toUpperCase() === 'PERSONAL PROTECTIVE EQUIPMENT') {
-        return 'Limbah_Medis'
-      } else {
-        return null
+export function tesFunc (halo) {
+  return console.log(halo)
+}
+
+function checkWasteCategory (jsonObj) {
+  // let tell = {}
+  console.log(jsonObj[0].description + ' test bla')
+  for (var item of jsonObj) {
+    console.log(item.description + ' INI FOREACH ')
+    if (item.description.toUpperCase() === 'PLASTIC BOTTLE') {
+      console.log(item.description.toUpperCase() + ' INI APINYA')
+      return { output: 'Plastic Bottle', check: true, checkTable: ['Botol_Bening', 'Botol_Warna'] }
+    } else if (item.description.toUpperCase() === 'PLASTIC BAG') {
+      return { output: 'Kantong_Plastik', check: false }
+    } else if (item.description.toUpperCase() === 'PLASTIC') {
+      return { output: 'Plastik', check: true, checkTable: ['Plastik_Keras', 'Plastik_Sedotan', 'Plastik_Lainnya'] }
+    } else if (item.description.toUpperCase() === 'TIN' || item.description.toUpperCase() === 'BEVERAGE CAN' ||
+      item.description.toUpperCase() === 'TIN CAN') {
+      return { output: 'Kaleng', check: false }
+    } else if (item.description.toUpperCase() === 'PAPER' || item.description.toUpperCase() === 'NEWSPAPER') {
+      return {
+        output: 'Kertas',
+        check: true,
+        checkTable: ['Koran', 'Kertas_Putih', 'Dupleks',
+          'Kertas_Buram', 'Kertas_Semen', 'Kertas_lainnya']
       }
-    })
-    // if (jsonObj[] ===)
-    // return jsonObj !== null
-  },
-  /**
+    } else if (item.description.toUpperCase() === 'CARTON' || item.description.toUpperCase() === 'CARDBOARD') {
+      return { output: 'Karton', check: false }
+    } else if (item.description.toUpperCase() === 'WORKWEAR' ||
+      item.description.toUpperCase() === 'PERSONAL PROTECTIVE EQUIPMENT') {
+      return { output: 'Limbah_Medis', check: false }
+    }
+  }
+  return {
+    output: null,
+    check: true,
+    checkTable: ['Botol_Bening', 'Botol_Warna', 'Plastik_Keras', 'Plastik_Sedotan', 'Kantong_Plastik', 'Plastik_Lainnya',
+      'Karton', 'Kardus',
+      'Koran', 'Kertas_Putih', 'Dupleks', 'Kertas_Buram', 'Kertas_Semen', 'Kertas_lainnya',
+      'Kaleng',
+      'Limbah_Medis']
+  }
+  // return tell
+}
+/**
    * Sends the given file contents to the Cloud Vision API and outputs the
    * results.
    */
-  sendFileToCloudVision: async function (content) {
-    const type = 'LABEL_DETECTION'
-    content = content.replace('data:image/jpeg;base64,', '')
-    const response = axios.post(CV_URL, {
-      requests: [{
-        image: {
-          content: content
-        },
-        features: [{
-          type: type,
-          maxResults: 5
-        }]
+export async function sendFileToCloudVision (content) {
+  // const resAxios = null
+  const type = 'LABEL_DETECTION'
+  content = content.replace('data:image/jpeg;base64,', '')
+  // const response = await axios.post(CV_URL, {
+  //   requests: [{
+  //     image: {
+  //       content: content
+  //     },
+  //     features: [{
+  //       type: type,
+  //       maxResults: 7
+  //     }]
+  //   }]
+  // })
+  const response = await axios.post(CV_URL, {
+    requests: [{
+      image: {
+        content: content
+      },
+      features: [{
+        type: type,
+        maxResults: 7
       }]
+    }]
+  })
+    .then(res => res.data)
+    .catch(error => {
+      this.errorMessage = error.message
+      console.error('There was an error!', this.errorMessage)
     })
-      .then(res => res.data)
-      .catch(error => {
-        this.errorMessage = error.message
-        console.error('There was an error!', this.errorMessage)
-      })
-    return this.checkWasteCategory(response.responses[0].labelAnnotations)
-    // return response
-  }
+  console.log(response + ' TEST API 1')
+  console.log(response.responses[0].labelAnnotations + ' TEST API 2')
+  const tmp = checkWasteCategory(response.responses[0].labelAnnotations)
+  return tmp
 }
+//   }
+// })

@@ -27,7 +27,7 @@
 // import axios from 'axios'
 import { WebCam } from 'vue-web-cam'
 import image from '../assets/rect.png'
-import { VisionFunction } from '../vision/main.js'
+import { sendFileToCloudVision } from '../vision/main.js'
 import router from '../router'
 
 export default {
@@ -64,13 +64,12 @@ export default {
   },
   methods: {
     onCapture (event) {
+      // const jsom = [{ description: 'plastic bottle' }, { description: 'plastic bottle' }]
+      // const hyt = checkWasteCategory(undefined)
       this.img = this.$refs.webcam.capture()
-      const output = VisionFunction.sendFileToCloudVision(this.img)
-      if (output === null) {
-        router.push({ name: 'Select Waste Category' })
-      } else {
-        router.push({ name: 'Recyclers Sell Waste Item', query: { subWaste: output } })
-      }
+      const output = sendFileToCloudVision(this.img)
+      console.log(output, ' BG BG')
+      this.checkOutputObject(output)
     },
     onStarted (stream) {
       console.log('On Started Event', stream)
@@ -96,7 +95,20 @@ export default {
       this.camera = deviceId
       console.log('On Camera Change Event', deviceId)
     },
-    detectImage () {
+    async checkOutputObject (check) {
+      const waitCheck = await check
+      if (waitCheck.check === true) {
+        console.log(waitCheck.check + ' ini waitCheck check')
+        await router.push({
+          name: 'Select Waste Category',
+          params: { prop: waitCheck.output },
+          query: { subWaste: waitCheck.checkTable }
+        })
+      } else if (waitCheck.check === false) {
+        console.log(waitCheck.check + ' ini waitCheck check 2')
+        console.log(waitCheck.output + ' ini waitCheck check 3')
+        await router.push({ name: 'Recyclers Sell Waste Item', params: { subwastecategory: waitCheck.output } })
+      }
       // eslint-disable-next-line no-undef
       // uploadFiles(this.img)
     }

@@ -16,29 +16,74 @@
           outlined
         ></v-text-field>
       </div>
-      <div class="div-input-price">
-        <v-text-field
-          label="Harga"
-          outlined
-        ></v-text-field>
+      <div class="div-price-stock">
+        <div class="div-input-price">
+          <v-text-field
+            label="Harga"
+            outlined
+          ></v-text-field>
+        </div>
+        <v-spacer></v-spacer>
+        <div class="div-input-stock">
+          <v-text-field
+            label="Jumlah Stok"
+            outlined
+          ></v-text-field>
+        </div>
       </div>
-      <div class="div-input-stock">
-        <v-text-field
-          label="Jumlah Stok"
-          outlined
-        ></v-text-field>
+      <div class="div-text-switch">
+        <div class="wrapper-feature">
+          <div class="text-feature">
+            <span class="text-title">Tambahkan "Bayar dengan sampah"</span>
+            <span class="text-sub-title">Sampah ini dibutuhkan sebagai bahan baku pembuatan produk</span>
+          </div>
+          <v-switch
+            v-model="switchFeature"
+            inset
+          ></v-switch>
+        </div>
       </div>
       <div class="div-ordered-waste-list">
         <div class="row-owl-list">
-          <v-select
-            :items="items"
-            label="Outlined style"
-            outlined
-          ></v-select>
-          <v-text-field
-            label="Jumlah"
-            outlined
-          ></v-text-field>
+          <div class="text-field-waste">
+<!--            <v-select-->
+<!--              :items="items"-->
+<!--              label="Sampah yang Dibutuhkan"-->
+<!--              outlined-->
+<!--              class="text-field-waste"-->
+<!--            ></v-select>-->
+            <v-combobox
+              v-model="select"
+              :items="items"
+              label="Sampah yang Dibutuhkan"
+              multiple
+              outlined
+              dense
+            ></v-combobox>
+          </div>
+<!--          <v-spacer></v-spacer>-->
+<!--          <div class="text-field-amount">-->
+<!--            <v-text-field-->
+<!--              label="Jumlah"-->
+<!--              outlined-->
+<!--              class="text-field-amount"-->
+<!--            ></v-text-field>-->
+<!--          </div>-->
+        </div>
+        <div>
+          <div v-show="show">
+            <v-divider></v-divider>
+            <v-card-text>
+              <div class="div-kategori-harga" v-for="item in 5" v-bind:key="item">
+                <div class="kategori-harga-row">
+                  <span>Botol PET</span>
+                  <v-spacer></v-spacer>
+                  <span>Rp 3.000/Kg</span>
+                </div>
+                <hr class="hr-line">
+              </div>
+            </v-card-text>
+          </div>
         </div>
       </div>
       <div class="div-material-list">
@@ -71,6 +116,12 @@ export default {
   components: {
     OneLevelPageHeader
   },
+  watch: {
+    select: function (val) {
+      this.totalPanjang = val.length
+      console.log(this.totalPanjang)
+    }
+  },
   data: function () {
     return {
       objRecycler: { notify: false, menuTitle: 'Jual Barang' },
@@ -80,7 +131,10 @@ export default {
         'Gelas Plastik',
         'Tutup Botol',
         'Botol Minuman Kemasan'
-      ]
+      ],
+      switchFeature: false,
+      totalPanjang: 0,
+      show: true
     }
   }
 }
