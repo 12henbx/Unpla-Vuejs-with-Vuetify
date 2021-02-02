@@ -2,6 +2,35 @@
   padding: 16px;
 }
 
+.div-add-photo{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.div-each-photo{
+  display: flex;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+}
+
+.img-preview{
+  //height: auto;
+  //width: auto;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.box-add-icon{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
 .wrapper-background-image{
   display: flex;
   margin: 10px 10px;
@@ -26,14 +55,6 @@
   }
 }
 
-.div-text-switch{
-  margin-bottom: 20px;
-}
-
-.div-input-title{
-  font-size: 12px;
-}
-
 .wrapper-feature{
   display: flex;
   flex-direction: row;
@@ -42,6 +63,37 @@
 .text-feature{
   display: flex;
   flex-direction: column;
+  justify-content: center;
+}
+
+.text-title{
+  font-size: 15px;
+}
+
+.text-sub-title{
+  font-size: 12px;
+  font-weight: normal;
+}
+
+.div-text-switch{
+  margin-bottom: 20px;
+  padding: 5px;
+  background-color: #ff5e00;
+  color: #fff;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.inactive-text-switch{
+  background-color: #fff;
+  color: #000;
+  margin-bottom: 20px;
+  padding: 5px;
+  font-size: 14px;
+}
+
+.div-input-title{
+  font-size: 12px;
 }
 
 .text-field-waste{
@@ -55,20 +107,22 @@
 .row-owl-list{
   display: flex;
   flex-direction: row;
+  height: 55px;
+}
+
+.extend-ord-waste{
+  margin-bottom: 16px;
 }
 
 .div-kategori-harga{
-  margin: 8px 50px;
+  margin: 0 10px;
 }
 
 .kategori-harga-row{
   display: flex;
   flex-direction: row;
-}
-
-.hr-line{
-  color: #efefef;
-  margin-top: 3px;
+  align-items: center;
+  height: 50px;
 }
 
 .div-btn-submit{
@@ -78,7 +132,7 @@
 }
 
 .btn-submit{
-  background: rgba(222,107,74,0.96);
+  background: rgba(0, 130, 222, 0.96);
   width: 250px;
   height: 50px;
   border-radius: 15px;

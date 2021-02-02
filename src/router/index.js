@@ -64,7 +64,7 @@ const routes = [
   // },
   {
     path: '/waste-item/list-recycler/:subwastecategory',
-    name: 'Recyclers Sell Waste Item',
+    name: 'Recycler List Sell Waste Item',
     component: RecyclerListToSellWasteItem
   },
   {

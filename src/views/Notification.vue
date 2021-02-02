@@ -110,6 +110,7 @@
 
 <script>
 import OneLevelPageHeader from '../components/header/OneLevelPageHeader'
+import axios from 'axios'
 
 export default {
   name: 'Notification',
@@ -120,6 +121,16 @@ export default {
     return {
       objRecycler: { notify: false, menuTitle: 'Notifikasi' }
     }
+  },
+  async beforeMount () {
+    const response = await axios.post('/api/notification/' + this.$store.getters.StateUserId)
+      .then(res => res.data)
+      .catch(error => {
+        this.errorMessage = error.message
+        console.error('There was an error!', this.errorMessage)
+      })
+    console.log(this.$store.getters.StateUserId + ' ini Id ')
+    console.log(response + ' ini response')
   }
 }
 </script>

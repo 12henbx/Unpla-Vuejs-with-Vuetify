@@ -42,10 +42,21 @@
         <v-textarea label="Deskripsi" class="input-desc" auto-grow outlined rows="1" filled row-height="15"></v-textarea>
       </div>
       <div>
-        (Foto:)
+        Foto:
       </div>
-      <div class="div-photo">
-        <v-img lazy-src="https://picsum.photos/id/11/10/6" max-height="150" max-width="250"></v-img>
+      <div class="div-add-photo">
+        <div v-for="each in iterPhoto" :key="each">
+          <div v-if="imageData[each-1]!=null" class="div-each-photo">
+            <v-img class="img-preview" aspect-ratio="1.7" :src=imageData[each-1] alt="waste item photo"></v-img>
+            <br>
+          </div>
+        </div>
+        <div class="box-add-icon">
+          <div class="wrapper-background-image">
+            <v-icon @click="click1" x-large color="black">mdi-plus</v-icon>
+          </div>
+        </div>
+        <input type="file" ref="inputPhotos" style="display: none" @change="previewImage" accept="image/*" >
       </div>
       <FabWasteItemForm></FabWasteItemForm>
     </div>
@@ -66,7 +77,21 @@ export default {
     return {
       objRecycler: { notify: false, menuTitle: 'Jual Sampah' },
       date: new Date().toISOString().substr(0, 10),
-      menu2: false
+      menu2: false,
+      imageData: [],
+      iterPhoto: 0
+    }
+  },
+  methods: {
+    click1 () {
+      this.$refs.inputPhotos.click()
+    },
+    previewImage (event) {
+      // this.uploadValue = 0
+      this.imageData[this.iterPhoto] = URL.createObjectURL(event.target.files[0])
+      // this.sellReItemForm.photo[this.iterPhoto] = event.target.files[0]
+      this.iterPhoto++
+      // this.onUpload()
     }
   }
 }

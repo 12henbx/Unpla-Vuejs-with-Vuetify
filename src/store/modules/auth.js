@@ -2,12 +2,14 @@ import axios from 'axios'
 
 const state = {
   user: null,
-  userId: null
+  userId: null,
+  recyclerId: null
 }
 
 const getters = {
   isAuthenticated: state => !!state.user,
   StateUserId: state => state.userId,
+  StateRecyclerId: state => state.recyclerId,
   StateUser: state => state.user
 }
 
@@ -49,6 +51,9 @@ const mutations = {
   },
   setUserId (state, userid) {
     state.userId = userid
+  },
+  setRecyclerId (state, recyclerId) {
+    state.recyclerId = recyclerId
   },
   logout (state) {
     // eslint-disable-next-line no-unused-expressions

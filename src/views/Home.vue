@@ -7,7 +7,7 @@
       <v-btn icon>
         <v-icon color="#fff">mdi-map-marker</v-icon>
       </v-btn>
-      <v-btn icon>
+      <v-btn icon @click="toNotification">
         <v-icon color="#fff">mdi-bell</v-icon>
       </v-btn>
       <v-btn icon>
@@ -128,6 +128,7 @@ import RecyclerCardList from '../components/RecyclerCardList'
 import SelectedRecycledItemList from '../components/list/SelectedRecycledItemList'
 import { mapGetters } from 'vuex'
 import axios from 'axios'
+import router from '../router'
 // import store from '../store/modules/auth'
 
 export default {
@@ -170,6 +171,11 @@ export default {
       this.objPickProducts = resRP.data.data.recycledProductList
     } catch (err) {
       console.log(err)
+    }
+  },
+  methods: {
+    toNotification () {
+      router.push({ name: 'Notification' })
     }
   }
 }

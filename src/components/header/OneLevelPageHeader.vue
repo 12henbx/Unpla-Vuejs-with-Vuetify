@@ -34,11 +34,18 @@
 </template>
 
 <script>
+import router from '../../router'
+
 export default {
   name: 'header.OneLevelPageHeader',
   props: {
     objHeader: Object,
     menuTitle: String
+  },
+  methods: {
+    back () {
+      router.go(-1)
+    }
   }
 }
 </script>
