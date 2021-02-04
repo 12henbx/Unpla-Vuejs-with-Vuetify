@@ -3,13 +3,13 @@
     <li class="li-fab">
       <div class="row fab">
         <div>
-          <span class="text-category">Plastik</span>
+          <span class="text-category">{{dataFabInfo.wasteCategory}}</span>
           <br>
-          <span class="text-weight-date">5Kg, Senin 28 Agt 2020</span>
+          <span class="text-weight-date">{{dataFabInfo.weight}}Kg, {{dataFabInfo.date}}</span>
         </div>
         <div class="div-grow-header"></div>
         <div class="div-cont-button">
-          <button class="btn-cont">Lanjut</button>
+          <button class="btn-cont" @click="submitBtn">Lanjut</button>
         </div>
       </div>
     </li>
@@ -18,7 +18,15 @@
 
 <script>
 export default {
-  name: 'FabWasteItemForm'
+  name: 'FabWasteItemForm',
+  props: {
+    dataFabInfo: Object
+  },
+  method: {
+    submitBtn () {
+      this.$emit('submitBtn')
+    }
+  }
 }
 </script>
 
@@ -56,7 +64,7 @@ export default {
     padding-left: 10px;
     position: relative;
     display: inline-flex;
-    width: 404px;
+    width: 380px;
     height: 52px;
     text-align: left;
     align-items: center;

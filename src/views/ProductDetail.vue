@@ -90,6 +90,7 @@
 <script>
 import OneLevelPageHeader from '../components/header/OneLevelPageHeader'
 import ProductDetailFeatureList from '../components/list/ProductDetailFeatureList'
+import axios from 'axios'
 
 export default {
   name: 'ProductDetail',
@@ -108,6 +109,10 @@ export default {
         'deep-purple accent-4'
       ]
     }
+  },
+  async created () {
+    const resp = await axios.get('/api/recycled-product/' + this.route.params.reproduct)
+    console.log(resp + ' ini response product detail ')
   }
 }
 </script>

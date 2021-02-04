@@ -9,12 +9,15 @@
 
 .text-address{
   display: flex;
+  flex-direction: column;
   margin-left: 20px;
   width: 250px;
 }
 
 .div-title-input{
   margin-top: 10px;
+  font-weight: bold;
+  font-size: 16px;
 }
 
 .div-waste-type{
@@ -23,8 +26,12 @@
   align-items: center;
 }
 
-.span-icon{
+.div-set-weight{
+  width: 250px;
   margin-left: 20px;
+}
+
+.span-icon{
   width: 40px;
 }
 

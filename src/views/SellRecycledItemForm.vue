@@ -152,7 +152,7 @@ export default {
       imageData: [],
       iterPhoto: 0,
       sellReItemForm: {
-        photo: [],
+        photos: [],
         name: '',
         price: '',
         stock: '',
@@ -175,13 +175,13 @@ export default {
     previewImage (event) {
       // this.uploadValue = 0
       this.imageData[this.iterPhoto] = URL.createObjectURL(event.target.files[0])
-      this.sellReItemForm.photo[this.iterPhoto] = event.target.files[0]
+      this.sellReItemForm.photos[this.iterPhoto] = event.target.files[0]
       this.iterPhoto++
       // this.onUpload()
     },
     async submitForm () {
       const response = await axios.post('/api/recycled-product/add', {
-        productImages: this.sellReItemForm.photo,
+        productImages: this.sellReItemForm.photos,
         name: this.sellReItemForm.name,
         price: this.sellReItemForm.price,
         quantity: this.sellReItemForm.stock,

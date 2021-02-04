@@ -16,7 +16,7 @@ const SellRecycledItemForm = () => import('../views/SellRecycledItemForm')
 const ProductDetail = () => import('../views/ProductDetail')
 const Login = () => import('../views/Login')
 const SignUp = () => import('../views/SignUp')
-const WasteTypeDetail = () => import('../views/WasteTypeDetail')
+// const WasteTypeDetail = () => import('../views/WasteTypeDetail')
 const Cart = () => import('../views/Cart')
 
 Vue.use(VueRouter)
@@ -50,10 +50,10 @@ const routes = [
       {
         // path: ':wasteId',
         // path: '/set',
-        path: '/sell-item/camera/:prop',
+        path: '/sell-item/camera/:mainWaste',
         name: 'Select Waste Category',
         component: SelectWasteCategory,
-        props: true
+        props: { mainWaste: '' }
       }
     ]
   },
@@ -63,8 +63,8 @@ const routes = [
   //   component: DoneSellWasteItem
   // },
   {
-    path: '/waste-item/list-recycler/:subwastecategory',
-    name: 'Recycler List Sell Waste Item',
+    path: '/waste-item/list-recycler/:mainWaste',
+    name: 'RecyclerListSellWaste',
     component: RecyclerListToSellWasteItem
   },
   {
@@ -89,12 +89,12 @@ const routes = [
     name: 'SellRecycledItemForm',
     component: SellRecycledItemForm
   },
-  {
-    // path: '/sell-item/:sub-waste-category/sell/type',
-    path: '/sell-item/sell/type',
-    name: 'Waste Type Detail',
-    component: WasteTypeDetail
-  },
+  // {
+  //   // path: '/sell-item/:sub-waste-category/sell/type',
+  //   path: '/sell-item/sell/type',
+  //   name: 'Waste Type Detail',
+  //   component: WasteTypeDetail
+  // },
   {
     // path: '/product/:category/:productName',
     path: '/product',

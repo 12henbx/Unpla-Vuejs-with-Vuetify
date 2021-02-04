@@ -95,7 +95,7 @@ export default {
   .div-input-search {
     display: flex;
     height: 36px;
-    width: 100%;
+    width: 92%;
     margin-left: 10px;
     border: none;
     border-radius: 8px;

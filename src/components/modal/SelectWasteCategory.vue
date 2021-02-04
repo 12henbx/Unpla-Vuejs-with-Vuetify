@@ -4,7 +4,7 @@
       <v-card-title>Select Country</v-card-title>
       <v-divider></v-divider>
       <v-card-text style="height: 300px;">
-        <v-radio-group v-model="dialog" column>
+        <v-radio-group v-model="selectSubWaste" column>
           <v-radio v-for="select in objQuery"
                    :key="select"
                    :label="select"
@@ -31,18 +31,19 @@ export default {
   name: 'SelectWasteCategory',
   data: function () {
     return {
-      dialog: null,
+      dialog: true,
+      selectSubWaste: '',
       objQuery: this.$route.query.subWaste
     }
   },
-  props: ['prop'],
+  props: ['mainWaste'],
   mounted () {
-    console.log(this.prop + ' propssss')
+    console.log(this.$route.params.mainWaste + ' propssss')
   },
   methods: {
     toRecycledList () {
       this.dialog = false
-      router.push({ name: 'Recyclers Sell Waste Item', params: { subwastecategory: this.dialog } })
+      router.push({ name: 'RecyclerListSellWaste', params: { mainWaste: this.selectSubWaste } })
     }
   }
 }

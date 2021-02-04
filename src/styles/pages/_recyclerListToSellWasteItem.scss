@@ -1,0 +1,17 @@
+.card-list-column{
+  overflow-y: scroll;
+  width: $max-phone-width;
+  scrollbar-width: none;
+  text-align: center;
+}
+
+.card-list::-webkit-scrollbar {
+  display: none;
+}
+
+.div-card-waste{
+  display: inline-block;
+  width: 450px;
+  margin-top: 10px;
+  /*margin-right: 10px;*/
+}

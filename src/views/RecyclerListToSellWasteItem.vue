@@ -3,8 +3,10 @@
     <div class="place-header">
       <OneLevelPageHeader v-bind:objHeader="objRecycler"></OneLevelPageHeader>
     </div>
-    <div>
-      <RecyclerListSellWasteItem></RecyclerListSellWasteItem>
+    <div class="card-list-column">
+      <div v-for="eachRecycler in objRecyclerList" :key="eachRecycler" class="div-card-waste">
+        <RecyclerListSellWasteItem v-bind:eachDataRecycler="eachRecycler"></RecyclerListSellWasteItem>
+      </div>
     </div>
   </div>
 </template>
@@ -20,16 +22,17 @@ export default {
   data: function () {
     return {
       objRecycler: { notify: true, menuTitle: 'Pilih Tempat Daur Ulang' },
+      objRecyclerList: {},
       subwaste: '',
       responseAxios: ''
     }
   },
   created () {
-    console.log(this.$route.params.subwastecategory + ' check subwaste category')
+    console.log(this.$route.params.mainWaste + ' check subwaste category')
   },
   async beforeMount () {
     try {
-      const response = await axios.get('/api/recycler/' + this.$route.params.subwastecategory.output + '/recyclers')
+      const response = await axios.get('/api/recycler/' + this.$route.params.mainWaste + '/recyclers')
       this.responseAxios = response.data
     } catch (err) {
       console.log(err)

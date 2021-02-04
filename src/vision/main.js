@@ -27,7 +27,7 @@ function checkWasteCategory (jsonObj) {
     console.log(item.description + ' INI FOREACH ')
     if (item.description.toUpperCase() === 'PLASTIC BOTTLE') {
       console.log(item.description.toUpperCase() + ' INI APINYA')
-      return { output: 'Plastic Bottle', check: true, checkTable: ['Botol_Bening', 'Botol_Warna'] }
+      return { output: 'Plastic_Bottle', check: true, checkTable: ['Botol_Bening', 'Botol_Warna'] }
     } else if (item.description.toUpperCase() === 'PLASTIC BAG') {
       return { output: 'Kantong_Plastik', check: false }
     } else if (item.description.toUpperCase() === 'PLASTIC') {
