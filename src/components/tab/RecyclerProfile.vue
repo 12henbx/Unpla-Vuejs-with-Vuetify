@@ -17,24 +17,54 @@
         </div>
       </div>
     </div>
-    <h2 class="sub-title">Ativitas Terakhir</h2>
+<!--    <h2 class="sub-title">Ativitas Terakhir</h2>-->
     <div>
 
     </div>
     <h2 class="sub-title">Produk {{dataRecycler.name}}</h2>
     <div class="wrapper-product-list">
-      <div class="each-product-card">
-
-      </div>
+      <v-container fluid>
+        <v-row dense>
+          <v-col v-for="(itemRecPro, index) in objRecyclerProducts" :key="index" :cols="6">
+            <SelectedRecycledItemList v-bind:dataPickProducts="itemRecPro"></SelectedRecycledItemList>
+          </v-col>
+        </v-row>
+      </v-container>
     </div>
   </div>
 </template>
 
 <script>
+import SelectedRecycledItemList from '../list/SelectedRecycledItemList'
+import axios from 'axios'
+import router from '../../router'
+
 export default {
   name: 'RecyclerProfile',
+  components: {
+    SelectedRecycledItemList
+  },
   props: {
     dataRecycler: Object
+  },
+  data: function () {
+    return {
+      objRecyclerProducts: null
+    }
+  },
+  async beforeMount () {
+    try {
+      const resRecProduct = await axios.get('/api/recycled-product/all' + this.recyclerId)
+      // console.log(resWI.data)
+      // this.objUserWasteItem = resRecProduct.data.data.listWasteItem
+    } catch (err) {
+      console.log(err)
+    }
+  },
+  methods: {
+    clickProduct () {
+      router.push({ name: '' })
+    }
   }
 }
 </script>
@@ -60,7 +90,7 @@ export default {
     display: flex;
     flex-direction: column;
     padding-left: 20px;
-    align-items: center;
+    justify-content: center;
   }
 
   .div-image-wrapper{

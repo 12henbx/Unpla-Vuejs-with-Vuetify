@@ -1,7 +1,7 @@
 <template>
   <v-dialog v-model="dialog" scrollable persistent max-width="300px">
     <v-card>
-      <v-card-title>Select Country</v-card-title>
+      <v-card-title>Pilih Pendaur</v-card-title>
       <v-divider></v-divider>
       <v-card-text style="height: 300px;">
         <v-radio-group v-model="selectSubWaste" column>
@@ -13,9 +13,9 @@
       </v-card-text>
       <v-divider></v-divider>
       <v-card-actions>
-        <v-btn color="blue darken-1" text @click="dialog = false">
-          Close
-        </v-btn>
+<!--        <v-btn color="blue darken-1" text @click="dialog = false">-->
+<!--          Close-->
+<!--        </v-btn>-->
         <v-btn color="blue darken-1" text @click="toRecycledList">
           Save
         </v-btn>

@@ -1,3 +1,7 @@
+.place-content{
+  padding: 16px;
+}
+
 h1{
   margin: 60px 0;
 }
@@ -67,8 +71,7 @@ h1{
 .div-button{
   display: flex;
   justify-content: center;
-  margin-top: 20px;
-  margin-bottom: 10px;
+  margin: 30px 0 10px 0;
   color: #000;
 }
 
@@ -76,7 +79,7 @@ h1{
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 450px;
+  //width: 450px;
   background: $button-blue-background;
   color: #fff;
   border-radius: 4px;

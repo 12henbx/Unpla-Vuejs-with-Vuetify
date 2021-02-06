@@ -9,12 +9,12 @@
         @camera-change="onCameraChange"
       />
     </div>
-    <div class="col-md-12 row">
+    <div class="col-md-12 row nav-control">
       <figure class="figure">
         <img :src="img" class="img-responsive" alt="imagePreview"/>
       </figure>
       <button type="button" class="btn btn-danger" @click="onStop">Stop Camera</button>
-      <v-btn icon @click="onCapture($event)"><v-icon class="icon-record">mdi-record-circle-outline</v-icon></v-btn>
+      <v-btn icon @click="onCapture($event)"><v-icon x-large>mdi-record-circle-outline</v-icon></v-btn>
       <button type="button" class="btn btn-success" @click="onStart">Start Camera</button>
     </div>
     <div class="modal-route">
@@ -107,7 +107,7 @@ export default {
       } else if (waitCheck.check === false) {
         console.log(waitCheck.check + ' ini waitCheck check 2')
         console.log(waitCheck.output + ' ini waitCheck check 3')
-        await router.push({ name: 'RecyclerListSellWaste', params: { mainWaste: waitCheck.output } })
+        await router.push({ name: 'RecyclerListToSellWaste', params: { mainWaste: waitCheck.output } })
       }
       // eslint-disable-next-line no-undef
       // uploadFiles(this.img)
@@ -119,12 +119,16 @@ export default {
 <style lang="scss" scoped>
   @import "../styles/basics/variables";
 
-  .icon-record{
-    font-size: 88px;
+  .figure{
+    margin-right: 10px;
   }
 
   .img-responsive{
     display: flex;
     width: 75px;
+  }
+
+  .nav-control{
+    justify-content: center;
   }
 </style>

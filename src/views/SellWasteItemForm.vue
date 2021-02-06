@@ -1,6 +1,6 @@
 <template>
   <div class="container-page">
-    <WasteTypeDetail v-if="showDetail"></WasteTypeDetail>
+    <WasteTypeDetail v-bind:dataWasteCategory="objMainWaste" v-if="showDetail"></WasteTypeDetail>
     <div class="place-header">
       <OneLevelPageHeader v-bind:objHeader="objRecycler"></OneLevelPageHeader>
     </div>
@@ -9,10 +9,10 @@
       <div class="div-address">
         <div class="text-address">
           <span>
-            CV. Sejahtera Abadi
+            {{ objAccRecycler.name }}
           </span>
           <span>
-            Jalan Melongalia No.7 Surabaya
+            {{ objAccRecycler.address }}
           </span>
         </div>
         <v-btn
@@ -30,13 +30,11 @@
           <span class="span-icon">
             <v-icon x-large color="black darken-2">mdi-bottle-soda-classic-outline</v-icon>
           </span>
-          <span class="span-waste-weight">Plastik (brapa Kg)</span>
+          <span v-if="!sellWsItemForm.weightValue" class="span-waste-weight">Plastik ( _ _ Kg)</span>
+          <span v-else class="span-waste-weight">Plastik {{ sellWsItemForm.weightValue }}Kg</span>
         </div>
         <span><v-btn
-          class="ma-2"
-          text
-          icon
-          color="black"
+          class="ma-2" text icon color="black"
         ><v-icon color="black darken-2">mdi-trash-can-outline</v-icon></v-btn></span>
       </div>
 <!--      <div>-->
@@ -99,22 +97,31 @@ export default {
     FabWasteItemForm,
     OneLevelPageHeader
   },
+  props: ['recycler'],
   data: function () {
     return {
       objRecycler: { notify: false, menuTitle: 'Jual Sampah' },
-      objFabInfo: { wasteCategory: 'Plastik', date: new Date().toISOString().substr(0, 10), weight: '5' },
+      objAccRecycler: this.$route.params.recycler,
+      objFabInfo: { wasteCategory: this.$route.params.subwcategory, date: new Date().toISOString().substr(0, 10), weight: this.sellWsItemForm.weightValue },
+      objMainWaste: this.$route.params.subwcategory,
       date: new Date().toISOString().substr(0, 10),
       menu2: false,
       showDetail: false,
       imageData: [],
       iterPhoto: 0,
       sellWsItemForm: {
-        address: 'Jalan Melongalia No.7 Surabaya',
-        weight: '',
-        date: new Date().toISOString().substr(0, 10),
+        photos: '',
+        mainWasteCategory: '',
+        subWasteCategory: '',
+        weightValue: '',
+        magnitude: 'Kilogram',
+        userId: '',
+        pickUpDate: new Date().toISOString().substr(0, 10),
         pickUpPeriod: '',
+        totalPrice: '',
+        status: '',
         desc: '',
-        photos: []
+        recyclerId: this.recyclerId
       },
       items: ['Pagi (08.00 - 11.30)', 'Siang (11.30 - 15.00)', 'Malam (15.00 - 18.30)']
     }
@@ -122,6 +129,9 @@ export default {
   methods: {
     click1 () {
       this.$refs.inputPhotos.click()
+    },
+    setWeight (weight) {
+      this.sellWsItemForm.weightValue = weight
     },
     previewImage (event) {
       // this.uploadValue = 0
@@ -131,20 +141,7 @@ export default {
       // this.onUpload()
     },
     async submitBtn ($event) {
-      const response = await axios.post('/api/waste-item/add', {
-        photos: [],
-        mainWasteCategory: '',
-        subWasteCategory: this.sellReItemForm.photos,
-        weightValue: this.sellReItemForm.name,
-        magnitude: this.sellReItemForm.price,
-        userId: this.sellReItemForm.stock,
-        pickUpDate: [],
-        pickUpPeriod: [],
-        totalPrice: this.recyclerId,
-        status: '',
-        desc: '',
-        recyclerId: ''
-      })
+      const response = await axios.post('/api/waste-item/add', this.sellWsItemForm)
         .then(res => res.data)
         .catch(error => {
           this.errorMessage = error.message
@@ -153,7 +150,7 @@ export default {
         // console.log(JSON.stringify(this.sellReItemForm) + ' ini form ')
         // console.log(this.needWasteItem + ' ini waste amount ')
       console.log(response + ' ini adalah response ')
-      router.push({ name: 'ReviewAndGreeting' })
+      await router.push({ name: 'ReviewAndGreeting' })
     }
   }
 }

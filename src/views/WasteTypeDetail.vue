@@ -57,21 +57,13 @@
         dark
         color="primary"
       >
-        <v-btn
-          icon
-          dark
-          @click="dialog = false"
-        >
+        <v-btn icon dark @click="dialog = false">
           <v-icon>mdi-close</v-icon>
         </v-btn>
         <v-toolbar-title>Settings</v-toolbar-title>
         <v-spacer></v-spacer>
         <v-toolbar-items>
-          <v-btn
-            dark
-            text
-            @click="dialog = false"
-          >
+          <v-btn dark text @click="setWeight">
             Save
           </v-btn>
         </v-toolbar-items>
@@ -83,11 +75,12 @@
           </div>
           <div class="text-category">
             <span class="sub-heading-category">Perikaraan Berat</span>
-            <span class="text-heading">Plastik</span>
+            <span class="text-heading">{{dataWasteCategory}}</span>
           </div>
           <v-spacer></v-spacer>
           <div class="div-input-weight">
             <v-text-field
+              v-model="weightval"
               single-line
               type="number"
               suffix="Kg"
@@ -96,25 +89,25 @@
           </div>
         </div>
       </div>
-      <div class="list-of-category">
-        <div class="div-list-sub-category">
-          <v-radio-group v-model="setList" column class="list-radio-btn">
-            <template v-slot:label>
-              <div class="text-select-title"><strong>Sub Jenis Plastik: </strong></div>
-            </template>
-            <v-radio class="each-radio" label="Botol PET" value="radio-1"></v-radio>
-            <hr>
-            <v-radio class="each-radio" label="Plastik Putih HDPE(botol sampo, tutup botol, wadah cat-tembok, dll.)"
-                     value="radio-2"></v-radio>
-            <hr>
-            <v-radio class="each-radio" label="Plastik Putih HDPE(botol sampo, tutup botol, wadah cat-tembok, dll.)"
-                     value="radio-2"></v-radio>
-            <hr>
-            <v-radio class="each-radio" label="Plastik Putih HDPE(botol sampo, tutup botol, wadah cat-tembok, dll.)"
-                     value="radio-2"></v-radio>
-          </v-radio-group>
-        </div>
-      </div>
+<!--      <div class="list-of-category">-->
+<!--        <div class="div-list-sub-category">-->
+<!--          <v-radio-group v-model="setList" column class="list-radio-btn">-->
+<!--            <template v-slot:label>-->
+<!--              <div class="text-select-title"><strong>Sub Jenis Plastik: </strong></div>-->
+<!--            </template>-->
+<!--            <v-radio class="each-radio" label="Botol PET" value="radio-1"></v-radio>-->
+<!--            <hr>-->
+<!--            <v-radio class="each-radio" label="Plastik Putih HDPE(botol sampo, tutup botol, wadah cat-tembok, dll.)"-->
+<!--                     value="radio-2"></v-radio>-->
+<!--            <hr>-->
+<!--            <v-radio class="each-radio" label="Plastik Putih HDPE(botol sampo, tutup botol, wadah cat-tembok, dll.)"-->
+<!--                     value="radio-2"></v-radio>-->
+<!--            <hr>-->
+<!--            <v-radio class="each-radio" label="Plastik Putih HDPE(botol sampo, tutup botol, wadah cat-tembok, dll.)"-->
+<!--                     value="radio-2"></v-radio>-->
+<!--          </v-radio-group>-->
+<!--        </div>-->
+<!--      </div>-->
     </v-card>
   </v-dialog>
 </template>
@@ -123,12 +116,21 @@
 // import OneLevelPageHeader from '../components/header/OneLevelPageHeader'
 export default {
   name: 'WasteTypeDetail',
-  // components: { OneLevelPageHeader },
   data: function () {
     return {
       objRecycler: { notify: false, menuTitle: 'Jenis Sampah - ' },
       setList: [],
-      dialog: true
+      dialog: true,
+      weightval: ''
+    }
+  },
+  props: {
+    dataWasteCategory: String
+  },
+  methods: {
+    setWeight () {
+      this.dialog = false
+      this.$emit('setWeight', this.weightval)
     }
   }
 }

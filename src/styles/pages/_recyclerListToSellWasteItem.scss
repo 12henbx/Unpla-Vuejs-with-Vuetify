@@ -1,8 +1,8 @@
 .card-list-column{
   overflow-y: scroll;
-  width: $max-phone-width;
   scrollbar-width: none;
   text-align: center;
+  padding: 10px 0;
 }
 
 .card-list::-webkit-scrollbar {
@@ -11,7 +11,5 @@
 
 .div-card-waste{
   display: inline-block;
-  width: 450px;
-  margin-top: 10px;
-  /*margin-right: 10px;*/
+  width: 400px;
 }

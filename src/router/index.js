@@ -18,6 +18,7 @@ const Login = () => import('../views/Login')
 const SignUp = () => import('../views/SignUp')
 // const WasteTypeDetail = () => import('../views/WasteTypeDetail')
 const Cart = () => import('../views/Cart')
+const ProductBuy = () => import('../views/ProductBuy')
 
 Vue.use(VueRouter)
 
@@ -64,14 +65,14 @@ const routes = [
   // },
   {
     path: '/waste-item/list-recycler/:mainWaste',
-    name: 'RecyclerListSellWaste',
+    name: 'RecyclerListToSellWaste',
     component: RecyclerListToSellWasteItem
   },
   {
-    // path: '/waste-item/:sub-waste-category/sell',
-    path: '/waste-item/sell',
-    name: 'Sell Waste Item Form',
-    component: SellWasteItemForm
+    path: '/waste-item/:subwcategory/sell',
+    name: 'SellWasteItemForm',
+    component: SellWasteItemForm,
+    props: { recycler: '' }
   },
   {
     // path: '/waste-item/:sub-waste-category/thank-you',
@@ -105,6 +106,11 @@ const routes = [
     path: '/cart',
     name: 'Cart',
     component: Cart
+  },
+  {
+    path: '/product/buy',
+    name: 'ProductBuy',
+    component: ProductBuy
   }
   // {
   // path: '/about',

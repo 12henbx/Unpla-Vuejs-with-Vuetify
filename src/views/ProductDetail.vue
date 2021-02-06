@@ -69,7 +69,7 @@
         <div data-testid="pdpBottomNavRow" class="css-yeresf">
           <div class="css-3d0aq e1s4a49r0">
             <div>
-              <button class="unf-btn unf-btn--animate unf-btn--transaction unf-btn--block css-10looxd-unf-btn e1pumv1o0" type="button">
+              <button class="unf-btn unf-btn--animate unf-btn--transaction unf-btn--block css-10looxd-unf-btn e1pumv1o0" type="button" @click="clickBuy">
                 <span>Beli</span>
               </button>
             </div>
@@ -91,6 +91,7 @@
 import OneLevelPageHeader from '../components/header/OneLevelPageHeader'
 import ProductDetailFeatureList from '../components/list/ProductDetailFeatureList'
 import axios from 'axios'
+// import router from '../router'
 
 export default {
   name: 'ProductDetail',
@@ -107,12 +108,19 @@ export default {
         'pink darken-2',
         'red lighten-1',
         'deep-purple accent-4'
-      ]
+      ],
+      objProduct: ''
     }
   },
   async created () {
     const resp = await axios.get('/api/recycled-product/' + this.route.params.reproduct)
+    this.objProduct = resp
     console.log(resp + ' ini response product detail ')
+  },
+  methods: {
+    clickBuy () {
+      // router.push({})
+    }
   }
 }
 </script>

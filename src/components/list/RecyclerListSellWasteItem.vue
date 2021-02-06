@@ -4,7 +4,7 @@
       <div class="div-card-row" @click="routeToForm">
         <div class="col-content">
           <div class="div-waste-content">
-            <div class="judul-content"><span class="text-judul">{{ eachDataRecycler.name }}CV. Sejahtera Abadi</span></div>
+            <div class="judul-content"><span class="text-judul">{{ eachDataRecycler.name }}</span></div>
             <span class="sub-judul">Yogyakarta</span>
             <div class="judul-content">
               <span class="content-left">4,8 <v-icon small color="yellow darken-2">mdi-star</v-icon></span>
@@ -41,9 +41,9 @@
           <v-card-text>
             <div class="div-kategori-harga" v-for="item in eachDataRecycler.subWastePriceList" v-bind:key="item">
               <div class="kategori-harga-row">
-                <span>{{ item.subWasteCategory }}Botol PET</span>
+                <span>{{ item.subWasteCategory }}</span>
                 <v-spacer></v-spacer>
-                <span>{{ item.price }} {{ item.magnitude }}Rp 3.000/Kg</span>
+                <span> Rp {{ item.price }} /{{ item.magnitude }}</span>
               </div>
               <hr class="hr-line">
             </div>
@@ -55,6 +55,8 @@
 </template>
 
 <script>
+import router from '../../router'
+
 export default {
   name: 'RecyclerListSellWasteItem',
   props: {
@@ -62,12 +64,15 @@ export default {
   },
   data: function () {
     return {
-      show: true
+      show: this.eachDataRecycler.expand
     }
+  },
+  created () {
+    console.log(this.eachDataRecycler + ' halo jogja ')
   },
   methods: {
     routeToForm () {
-
+      router.push({ name: 'SellWasteItemForm', params: { recycler: this.eachDataRecycler, subwcategory: this.$route.params.mainWaste } })
     }
   }
 }
@@ -176,7 +181,7 @@ export default {
   }
 
   .div-kategori-harga {
-    margin: 8px 50px;
+    margin: 8px 20px;
   }
 
   .kategori-harga-row {

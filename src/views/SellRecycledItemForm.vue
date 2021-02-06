@@ -197,7 +197,7 @@ export default {
       // console.log(JSON.stringify(this.sellReItemForm) + ' ini form ')
       // console.log(this.needWasteItem + ' ini waste amount ')
       console.log(response + ' ini adalah response ')
-      await router.push({ name: 'Profile' })
+      await router.push({ name: 'Profile', query: { tab: 'recyclertab' } })
     }
   }
 }

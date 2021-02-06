@@ -1,23 +1,25 @@
 <template>
-  <form class="container-page" @submit.prevent="submit">
-    <h1>Welcome to Unpla</h1>
-    <p>Please sign in to proceed to your account</p>
-    <div class="username-box">
-      <div class="wrapper-text-field">
-        <v-text-field v-model="form.username" label="Username" filled outlined></v-text-field>
+  <div class="container-page" @submit.prevent="submit">
+    <form class="place-content">
+      <h1>Welcome to Unpla</h1>
+      <p>Please sign in to proceed to your account</p>
+      <div class="username-box">
+        <div class="wrapper-text-field">
+          <v-text-field v-model="form.username" label="Username" filled outlined></v-text-field>
+        </div>
       </div>
-    </div>
-    <div class="password-box">
-      <div class="wrapper-text-field">
-        <v-text-field v-model="form.password" type="password" label="Password" filled outlined></v-text-field>
+      <div class="password-box">
+        <div class="wrapper-text-field">
+          <v-text-field v-model="form.password" type="password" label="Password" filled outlined></v-text-field>
+        </div>
       </div>
-    </div>
-    <div class="div-button">
-      <v-btn block dark class="btn-login" @click="submit">Login</v-btn>
-    </div>
-    <span class="bottom-text">Don't have an account? <a href="/signup">Sign Up</a></span>
-    <p v-if="showError" class="p-error">Username or Password is incorrect</p>
-  </form>
+      <div class="div-button">
+        <v-btn block dark class="btn-login" @click="submit">Login</v-btn>
+      </div>
+      <span class="bottom-text">Don't have an account? <a href="/signup">Sign Up</a></span>
+      <p v-if="showError" class="p-error">Username or Password is incorrect</p>
+    </form>
+  </div>
 </template>
 
 <script>
