@@ -119,18 +119,21 @@ export default {
   },
   data: function () {
     return {
-      objRecycler: { notify: false, menuTitle: 'Notifikasi' }
+      objRecycler: { notify: false, menuTitle: 'Notifikasi' },
+      objUserNotification: [],
+      objRecyclerNotification: []
     }
   },
   async beforeMount () {
-    const response = await axios.post('/api/notification/' + this.$store.getters.StateUserId)
+    const response = await axios.get('/api/notification/' + this.$store.getters.StateUserId)
       .then(res => res.data)
       .catch(error => {
         this.errorMessage = error.message
         console.error('There was an error!', this.errorMessage)
       })
-    console.log(this.$store.getters.StateUserId + ' ini Id ')
-    console.log(response + ' ini response')
+    this.objUserNotification = response.userNotifList
+    this.objRecyclerNotification = response.recyclerNotifList
+    console.log(JSON.stringify(response) + ' ini response')
   }
 }
 </script>

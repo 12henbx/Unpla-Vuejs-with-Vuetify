@@ -101,13 +101,13 @@ export default {
         console.log(waitCheck.check + ' ini waitCheck check')
         await router.push({
           name: 'Select Waste Category',
-          params: { mainWaste: waitCheck.output },
+          params: { mainWaste: waitCheck.output, plusImage: this.img },
           query: { subWaste: waitCheck.checkTable }
         })
       } else if (waitCheck.check === false) {
         console.log(waitCheck.check + ' ini waitCheck check 2')
         console.log(waitCheck.output + ' ini waitCheck check 3')
-        await router.push({ name: 'RecyclerListToSellWaste', params: { mainWaste: waitCheck.output } })
+        await router.push({ name: 'RecyclerListToSellWaste', params: { mainWaste: waitCheck.output, plusImage: this.img } })
       }
       // eslint-disable-next-line no-undef
       // uploadFiles(this.img)

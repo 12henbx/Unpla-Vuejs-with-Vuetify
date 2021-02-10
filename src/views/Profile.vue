@@ -1,6 +1,5 @@
 <template>
   <div class="container-page">
-    <v-card>
       <v-toolbar flat class="primary toolbar-section">
         <v-app-bar-nav-icon @click.stop="drawer = !drawer" color="#fff"></v-app-bar-nav-icon>
         <v-toolbar-title>Your Dashboard</v-toolbar-title>
@@ -14,29 +13,31 @@
             <v-tab href="#recyclertab" class="color-tab">
               Profile Usaha
             </v-tab>
-            <v-tabs-items :value="tab">
-              <v-tab-item value="usertab">
-                <v-card flat>
-                  <v-card-text>
-                    <UserProfile v-bind:dataUser="objUser"></UserProfile>
-                  </v-card-text>
-                </v-card>
-              </v-tab-item>
-              <v-tab-item value="recyclertab">
-                <v-card flat>
-                  <v-card-text>
-                    <RecyclerProfile v-bind:dataRecycler="objRecycler"></RecyclerProfile>
-                  </v-card-text>
-                </v-card>
-              </v-tab-item>
-            </v-tabs-items>
           </v-tabs>
         </template>
       </v-toolbar>
-    </v-card>
+    <v-tabs-items :value="tab">
+      <v-tab-item value="usertab">
+        <v-card flat>
+          <v-card-text>
+            <UserProfile v-bind:dataUser="objUser"></UserProfile>
+          </v-card-text>
+        </v-card>
+      </v-tab-item>
+      <v-tab-item value="recyclertab">
+        <v-card flat>
+          <v-card-text>
+            <RecyclerProfile v-bind:dataRecycler="objRecycler"></RecyclerProfile>
+          </v-card-text>
+        </v-card>
+      </v-tab-item>
+    </v-tabs-items>
     <v-navigation-drawer v-model="drawer" absolute temporary>
       <v-list rounded dense nav>
         <v-list-item-group v-model="group" active-class="deep-purple--text text--accent-4">
+          <v-list-item>
+            <v-list-item-title @click="toHome">Beranda</v-list-item-title>
+          </v-list-item>
           <v-list-item>
             <v-list-item-title>Jual Sampah</v-list-item-title>
           </v-list-item>
@@ -58,6 +59,8 @@
 <script>
 import RecyclerProfile from '../components/tab/RecyclerProfile'
 import UserProfile from '../components/tab/UserProfile'
+import router from '../router'
+
 export default {
   name: 'Profile',
   components: {
@@ -78,14 +81,17 @@ export default {
     drawer: false,
     group: null,
     items: ['Profile Pribadi', 'Profile Usaha'],
-    text: 'HaloHaloHaloHaloHaloHaloHaloHalo',
     objUser: { fullName: 'Test Name' },
     objRecycler: { name: 'CV Abadi' }
   }),
-
   watch: {
     group () {
       this.drawer = false
+    }
+  },
+  methods: {
+    toHome () {
+      router.push({ name: 'Home' })
     }
   }
 }

@@ -15,9 +15,9 @@
       </div>
     </div>
     <h2 class="sub-title">Ativitasi Terakhir</h2>
-    <div class="div-last-activity" v-if="dataUser.productTransaction">
+    <div class="div-last-activity">
       <div class="each-card-activity">
-        <div v-for="item in dataUserproductTransaction" :key="item.id" class="div-each-card">
+        <div v-for="item in objUserWasteItem" :key="item.id" class="div-each-card">
           <LastActivityList v-bind:dataInDataActList="item"></LastActivityList>
         </div>
       </div>
@@ -27,6 +27,8 @@
 
 <script>
 import LastActivityList from '../list/LastActivityList'
+import axios from 'axios'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'UserProfile',
@@ -34,8 +36,28 @@ export default {
   props: {
     dataUser: Object
   },
+  computed: {
+    ...mapGetters({ userId: 'StateUserId' })
+  },
+  async beforeMount () {
+    try {
+      const resWI = await axios.get('/api/waste-item/all/' + this.userId, {
+        params: {
+          page: 1,
+          size: 10
+        }
+      })
+      console.log(JSON.stringify(resWI.data))
+      this.objUserWasteItem = resWI.data.data.listWasteItem
+      console.log(this.objUserWasteItem)
+      // console.log(resWI)
+    } catch (err) {
+      console.log(err)
+    }
+  },
   data: function () {
     return {
+      objUserWasteItem: []
     }
   }
 }

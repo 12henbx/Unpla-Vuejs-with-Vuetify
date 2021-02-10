@@ -5,8 +5,7 @@
     </div>
     <div class="place-content">
       <div class="div-add-photo">
-<!--        <h3>Foto :</h3>-->
-        <div v-for="each in iterPhoto" :key="each">
+        <div v-for="each in imageData.length" :key="each">
           <div v-if="imageData[each-1]!=null" class="div-each-photo">
             <v-img class="img-preview" aspect-ratio="1.7" :src=imageData[each-1] alt="waste item photo"></v-img>
             <br>
@@ -17,7 +16,7 @@
             <v-icon @click="click1" x-large color="black">mdi-plus</v-icon>
           </div>
         </div>
-        <input type="file" ref="inputPhotos" style="display: none" @change="previewImage" accept="image/*" >
+        <input type="file" ref="inputPhotos" style="display: none" @change="previewImage" accept="image/*">
       </div>
       <div class="div-input-title">
         <v-text-field label="Nama Produk" outlined v-model="sellReItemForm.name"></v-text-field>
@@ -30,6 +29,9 @@
         <div class="div-input-stock">
           <v-text-field label="Jumlah Stok" outlined type="number" v-model="sellReItemForm.stock"></v-text-field>
         </div>
+      </div>
+      <div class="div-input-desc">
+        <v-text-field label="Deskripsi" outlined type="text" v-model="sellReItemForm.desc"></v-text-field>
       </div>
       <div :class="{ 'inactive-text-switch': switchFeature, 'div-text-switch': !switchFeature }">
         <div class="wrapper-feature">
@@ -45,12 +47,6 @@
       <div class="div-ordered-waste-list" v-if="switchFeature">
         <div class="row-owl-list">
           <div class="text-field-waste">
-<!--            <v-select-->
-<!--              :items="items"-->
-<!--              label="Sampah yang Dibutuhkan"-->
-<!--              outlined-->
-<!--              class="text-field-waste"-->
-<!--            ></v-select>-->
             <v-combobox
               v-model="needWasteItem"
               :items="items"
@@ -61,25 +57,18 @@
               dense
             ></v-combobox>
           </div>
-<!--          <v-spacer></v-spacer>-->
-<!--          <div class="text-field-amount">-->
-<!--            <v-text-field-->
-<!--              label="Jumlah"-->
-<!--              outlined-->
-<!--              class="text-field-amount"-->
-<!--            ></v-text-field>-->
-<!--          </div>-->
         </div>
         <div v-show="showExtend">
           <div class="extend-ord-waste">
             <v-divider></v-divider>
             <v-card-text>
-              <div class="div-kategori-harga" v-for="(item, index) in needWasteItem" v-bind:key="item">
+              <div class="div-kategori-harga" v-for="(item, index) in needWasteItem" v-bind:key="index">
                 <div class="kategori-harga-row">
                   <span>{{item}}</span>
                   <v-spacer></v-spacer>
                   <span>
-                    <v-text-field label="Jumlah dan satuan" v-model="sellReItemForm.exchangeAmount[index]"
+                    <v-text-field label="Contoh: 5 Lembar / 2 Kg"
+                                  v-model="needWasteQuantity[index]"
                     ></v-text-field>
                   </span>
                 </div>
@@ -90,7 +79,8 @@
         </div>
       </div>
       <div class="div-material-list" v-else>
-        <v-combobox v-model="sellReItemForm.rawMaterial" :items="items" label="Bahan Baku Produk" multiple outlined dense
+        <v-combobox v-model="sellReItemForm.rawMaterial" :items="items" label="Bahan baku produk" multiple outlined
+                    dense
         ></v-combobox>
       </div>
       <div class="div-textarea-desc">
@@ -123,13 +113,17 @@ export default {
     needWasteItem: function (val) {
       this.showExtend = val.length !== 0
       this.totalPanjang = val.length
-      console.log(this.totalPanjang)
+      this.sellReItemForm.exchangeAmount[val.length - 1].wasteCategory = this.needWasteItem[val.length - 1]
+    },
+    needWasteQuantity: function (val) {
+      // this.totalPanjang = val.length
+      this.sellReItemForm.exchangeAmount[val.length - 1].quantityMagnitude = this.needWasteQuantity[val.length - 1]
     },
     switchFeature (val) {
       if (val === true) {
         this.sellReItemForm.rawMaterial = null
       } else if (val === false) {
-        this.needWasteItem = null
+        this.sellReItemForm.exchangeAmount = null
       }
     }
   },
@@ -137,12 +131,13 @@ export default {
     return {
       objRecycler: { notify: false, menuTitle: 'Jual Barang' },
       needWasteItem: [],
-      rawMaterial: [],
+      needWasteQuantity: [],
       items: [
-        'Botol PET',
-        'Gelas Plastik',
-        'Tutup Botol',
-        'Botol Minuman Kemasan'
+        'Botol_Bening', 'Botol_Warna', 'Plastik_Keras', 'Plastik_Sedotan', 'Kantong_Plastik', 'Plastik_Lainnya',
+        'Karton', 'Kardus',
+        'Koran', 'Kertas_Putih', 'Dupleks', 'Kertas_Buram', 'Kertas_Semen', 'Kertas_lainnya',
+        'Kaleng',
+        'Limbah_Medis'
       ],
       switchFeature: false,
       showExtend: false,
@@ -155,8 +150,13 @@ export default {
         photos: [],
         name: '',
         price: '',
+        desc: '',
         stock: '',
-        exchangeAmount: [],
+        exchangeAmount: [{
+          wasteCategory: null,
+          photoPath: '',
+          quantityMagnitude: ''
+        }],
         rawMaterial: []
       }
     }
@@ -174,22 +174,36 @@ export default {
     },
     previewImage (event) {
       // this.uploadValue = 0
-      this.imageData[this.iterPhoto] = URL.createObjectURL(event.target.files[0])
-      this.sellReItemForm.photos[this.iterPhoto] = event.target.files[0]
-      this.iterPhoto++
+      this.imageData.push(URL.createObjectURL(event.target.files[0]))
+      const reader = new FileReader()
+      reader.readAsDataURL(event.target.files[0])
+      reader.onload = () => {
+        this.sellReItemForm.photos.push(reader.result.replace('data:image/jpeg;base64,', ''))
+      }
       // this.onUpload()
     },
     async submitForm () {
+      console.log(JSON.stringify(this.sellReItemForm.rawMaterial) + ' ini rawMaterial')
+      console.log(JSON.stringify(this.sellReItemForm.exchangeAmount) + ' ini exchangeAmount')
+      console.log(JSON.stringify(this.needWasteItem.length) + ' ini needwaste length')
+      for (let i = 0; i < this.needWasteItem.length; i++) {
+
+      }
       const response = await axios.post('/api/recycled-product/add', {
         productImages: this.sellReItemForm.photos,
         name: this.sellReItemForm.name,
         price: this.sellReItemForm.price,
         quantity: this.sellReItemForm.stock,
-        orderedWasteList: [],
-        materialList: [],
-        recyclerId: this.recyclerId
+        description: this.sellReItemForm.desc,
+        orderedWasteList: this.sellReItemForm.exchangeAmount,
+        materialList: this.sellReItemForm.rawMaterial,
+        recyclerId: this.recyclerId,
+        reviews: [{
+          reviewDesc: 'string',
+          rating: 0
+        }]
       })
-        .then(res => res.data)
+        .then(res => res)
         .catch(error => {
           this.errorMessage = error.message
           console.error('There was an error!', this.errorMessage)

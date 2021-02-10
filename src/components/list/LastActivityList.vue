@@ -4,13 +4,13 @@
       <div class="div-card-container">
         <div class="div-card-row">
           <div class="div-img">
-            <v-img class="img-product" :src="dataInDataActList.photo[0]"></v-img>
+            <v-img class="img-product" :src="dataInDataActList.photoListPath[0]"></v-img>
           </div>
           <div class="col-content">
             <div class="div-waste-content">
-              <div class="judul-content">{{dataInDataActList.productName}}</div>
+              <div class="judul-content">{{dataInDataActList.subWasteCategory}}</div>
               <div class="judul-content">{{dataInDataActList.recyclerName}}</div>
-              <div class="judul-content">{{dataInDataActList.transactionDate}}</div>
+              <div class="judul-content">{{dataInDataActList.pickUpDate}}</div>
               <div class="judul-content">{{dataInDataActList.totalPrice}} item</div>
             </div>
           </div>
@@ -25,6 +25,9 @@ export default {
   name: 'LastActivityList',
   props: {
     dataInDataActList: Object
+  },
+  created () {
+    console.log(this.dataInDataActList)
   }
 }
 </script>

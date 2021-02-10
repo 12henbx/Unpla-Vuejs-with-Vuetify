@@ -76,12 +76,12 @@
         </div>
       </div>
       <div class="card-list">
-        <div v-for="itemRec in objRecyclers" :key="itemRec.wasteItemIdW" class="div-each-card">
-          <RecyclerCardList v-bind:dataWasteListW="itemRec"></RecyclerCardList>
+        <div v-for="itemRecycler in objRecyclers" :key="itemRecycler.id" class="div-each-card">
+          <RecyclerCardList v-bind:dataRecyclerList="itemRecycler"></RecyclerCardList>
         </div>
       </div>
     </div>
-    <FloatingActionButtonJual></FloatingActionButtonJual>
+    <FloatingActionButtonJual v-bind:dataFromPage="objFromHome"></FloatingActionButtonJual>
     <div v-if="objPickProducts !== null" class="div-pick-product">
       <div class="cont-title">
         <div>
@@ -103,6 +103,9 @@
     <v-navigation-drawer v-model="drawer" absolute temporary>
       <v-list rounded dense nav>
         <v-list-item-group v-model="group" active-class="deep-purple--text text--accent-4">
+          <v-list-item>
+            <v-list-item-title @click="toProfile">Profil Saya</v-list-item-title>
+          </v-list-item>
           <v-list-item>
             <v-list-item-title>Jual Sampah</v-list-item-title>
           </v-list-item>
@@ -137,6 +140,7 @@ export default {
   data: function () {
     return {
       objRecycler: { notify: false, menuTitle: 'Home' },
+      objFromHome: { name: 'Home' },
       objUserWasteItem: [{}],
       objRecyclers: [{}],
       objPickProducts: [{}],
@@ -152,9 +156,9 @@ export default {
     ...mapGetters({ userId: 'StateUserId' })
   },
   async beforeMount () {
-    console.log(this.userId)
+    // console.log(this.userId)
     try {
-      const resWI = await axios.get('/api/waste-item/' + this.userId, {
+      const resWI = await axios.get('/api/waste-item/all/' + this.userId, {
         params: {
           page: 1,
           size: 10
@@ -162,6 +166,7 @@ export default {
       })
       // console.log(resWI.data)
       this.objUserWasteItem = resWI.data.data.listWasteItem
+      // console.log(this.objUserWasteItem)
     } catch (err) {
       console.log(err)
     }
@@ -172,10 +177,20 @@ export default {
     } catch (err) {
       console.log(err)
     }
+    try {
+      const resRecycler = await axios.get('/api/recycler/all')
+      this.objRecyclers = resRecycler.data.data.listRecycler
+      // console.log(this.objRecyclers)
+    } catch (err) {
+      console.log(err)
+    }
   },
   methods: {
     toNotification () {
       router.push({ name: 'Notification' })
+    },
+    toProfile () {
+      router.push({ name: 'Profile' })
     }
   }
 }

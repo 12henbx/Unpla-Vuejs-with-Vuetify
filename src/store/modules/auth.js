@@ -3,14 +3,16 @@ import axios from 'axios'
 const state = {
   user: null,
   userId: null,
-  recyclerId: null
+  recyclerId: null,
+  weight: null
 }
 
 const getters = {
   isAuthenticated: state => !!state.user,
   StateUserId: state => state.userId,
   StateRecyclerId: state => state.recyclerId,
-  StateUser: state => state.user
+  StateUser: state => state.user,
+  StateWeight: state => state.weight
 }
 
 const actions = {
@@ -58,6 +60,9 @@ const mutations = {
   logout (state) {
     // eslint-disable-next-line no-unused-expressions
     state.user = null
+  },
+  setWeight (state, weight) {
+    state.weight = weight
   }
 }
 

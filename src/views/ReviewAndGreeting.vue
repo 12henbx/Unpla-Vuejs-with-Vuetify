@@ -4,7 +4,7 @@
       <img class="img-greeting" src="../assets/8441.webp" alt="conserve-pic">
     </div>
     <div class="div-greeting">
-      <p class="p-greeting">Terima kasih, anda telah mendaur ulang <a class="highlight-text">__Kg</a> sampah kategori<a class="highlight-text"> {kategori sampah}</a> yang sangat berarti untuk pelestarian lingkungan.</p>
+      <p class="p-greeting">Terima kasih, anda telah mendaur ulang <a class="highlight-text">{{resSellWaste.weightValue}}Kg</a> sampah kategori<a class="highlight-text"> {{resSellWaste.mainWasteCategory}}</a> yang sangat berarti untuk pelestarian lingkungan.</p>
     </div>
     <div class="text-review">
       Ulasan:
@@ -30,16 +30,25 @@
     <v-btn class="btn-submit">
       Submit
     </v-btn>
-    <a  class="text-skip">Ulas nanti</a>
+    <a  class="text-skip" @click="toHomeWithoutReview">Ulas nanti</a>
   </div>
 </template>
 
 <script>
+import router from '../router'
+
 export default {
   name: 'ReviewAndGreeting',
+  props: ['sellItem'],
   data: function () {
     return {
-      rating: 4
+      rating: 5,
+      resSellWaste: this.$route.params.sellItem
+    }
+  },
+  methods: {
+    toHomeWithoutReview () {
+      router.push({ name: 'Home' })
     }
   }
 }

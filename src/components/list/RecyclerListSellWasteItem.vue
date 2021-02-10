@@ -67,12 +67,16 @@ export default {
       show: this.eachDataRecycler.expand
     }
   },
-  created () {
-    console.log(this.eachDataRecycler + ' halo jogja ')
-  },
   methods: {
     routeToForm () {
-      router.push({ name: 'SellWasteItemForm', params: { recycler: this.eachDataRecycler, subwcategory: this.$route.params.mainWaste } })
+      router.push({
+        name: 'SellWasteItemForm',
+        params: {
+          recycler: this.eachDataRecycler,
+          subwcategory: this.$route.params.mainWaste,
+          plusImage: this.$route.params.plusImage
+        }
+      })
     }
   }
 }

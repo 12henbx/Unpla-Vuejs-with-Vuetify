@@ -4,14 +4,14 @@
         <div class="div-card-container">
           <div class="div-card-row">
             <div class="div-img">
-              <v-img class="img-product" :src="dataWasteList.photo[0]"></v-img>
+              <v-img class="img-product" :src="dataWasteList.photoListPath[0]"></v-img>
 <!--              <span>{{dataWasteList.photo[0]}}</span>-->
             </div>
             <div class="col-content">
               <div class="div-waste-content">
                 <div class="judul-content">{{dataWasteList.subWasteCategory}}</div>
-                <div class="judul-content">{{dataWasteList.pickUpDate}}</div>
-                <div class="judul-content">{{dataWasteList.weightValue}} Kg</div>
+                <div class="sub-content-weight">{{dataWasteList.pickUpDate}}</div>
+                <div class="sub-content-weight">{{dataWasteList.weightValue}} Kg</div>
               </div>
             </div>
           </div>
@@ -88,6 +88,18 @@ export default {
   .div-waste-content{
     padding: 8px 0;
     margin-left: 10px;
+  }
+
+  .judul-content{
+    font-weight: 500;
+    font-size: 18px;
+    color: #000;
+  }
+
+  .sub-content-weight{
+    font-weight: 500;
+    font-size: 16px;
+    color: #000;
   }
 
 </style>

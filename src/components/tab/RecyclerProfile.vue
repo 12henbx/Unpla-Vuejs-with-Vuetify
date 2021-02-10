@@ -31,6 +31,7 @@
         </v-row>
       </v-container>
     </div>
+    <FloatingActionButtonJual v-bind:dataFromPage="objFromRecyclerProfile"></FloatingActionButtonJual>
   </div>
 </template>
 
@@ -38,25 +39,41 @@
 import SelectedRecycledItemList from '../list/SelectedRecycledItemList'
 import axios from 'axios'
 import router from '../../router'
+import { mapGetters } from 'vuex'
+import FloatingActionButtonJual from '../fab/FloatingActionButtonJual'
 
 export default {
   name: 'RecyclerProfile',
   components: {
+    FloatingActionButtonJual,
     SelectedRecycledItemList
   },
   props: {
     dataRecycler: Object
   },
+  computed: {
+    ...mapGetters({ userId: 'StateUserId' })
+  },
   data: function () {
     return {
-      objRecyclerProducts: null
+      objRecyclerProducts: null,
+      objFromRecyclerProfile: { name: 'Recycler Profile' }
     }
   },
   async beforeMount () {
     try {
-      const resRecProduct = await axios.get('/api/recycled-product/all' + this.recyclerId)
+      const resRecProduct = await axios.get('/api/recycled-product/all/' + this.userId)
       // console.log(resWI.data)
-      // this.objUserWasteItem = resRecProduct.data.data.listWasteItem
+      this.objRecyclerProducts = resRecProduct.data.data.recycledProductList
+      // console.log(this.objRecyclerProducts)
+      // console.log(resRecProduct)
+    } catch (err) {
+      console.log(err)
+    }
+    try {
+      const resRecyclerId = await axios.get('/api/user/get/recycler/' + this.userId)
+      console.log(JSON.stringify(resRecyclerId.data.data.recyclerId) + ' ini adalah recyclerId')
+      this.$store.commit('setRecyclerId', resRecyclerId.data.data.recyclerId)
     } catch (err) {
       console.log(err)
     }
@@ -70,11 +87,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  .place-content{
+    padding-bottom: 20px;
+  }
+
   .box-border-outside{
     display: flex;
     width: auto;
     height: 140px;
-    border: #666666 2px solid;
+    border: #6c6c6c 2px solid;
     border-radius: 8px;
   }
 
@@ -91,6 +112,7 @@ export default {
     flex-direction: column;
     padding-left: 20px;
     justify-content: center;
+    color: #000;
   }
 
   .div-image-wrapper{

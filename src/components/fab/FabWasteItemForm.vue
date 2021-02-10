@@ -3,9 +3,9 @@
     <li class="li-fab">
       <div class="row fab">
         <div>
-          <span class="text-category">{{dataFabInfo.wasteCategory}}</span>
+          <span class="text-category">{{dataFabInfo.subWasteCategory}}</span>
           <br>
-          <span class="text-weight-date">{{dataFabInfo.weight}}Kg, {{dataFabInfo.date}}</span>
+          <span class="text-weight-date">{{dataFabInfo.weight}}Kg, {{dataFabInfo.pickUpDate}}</span>
         </div>
         <div class="div-grow-header"></div>
         <div class="div-cont-button">
@@ -17,14 +17,26 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'FabWasteItemForm',
   props: {
     dataFabInfo: Object
   },
-  method: {
+  computed: {
+    ...mapGetters({ weight: 'StateWeight' })
+  },
+  data: function () {
+    return {
+      dataWeight: this.weight
+    }
+  },
+  methods: {
     submitBtn () {
+      console.log(this.weight + ' ini beratnya')
       this.$emit('submitBtn')
+      console.log(this.weight + ' ini beratnya')
     }
   }
 }

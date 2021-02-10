@@ -114,6 +114,8 @@
 
 <script>
 // import OneLevelPageHeader from '../components/header/OneLevelPageHeader'
+import { mapMutations } from 'vuex'
+
 export default {
   name: 'WasteTypeDetail',
   data: function () {
@@ -121,8 +123,11 @@ export default {
       objRecycler: { notify: false, menuTitle: 'Jenis Sampah - ' },
       setList: [],
       dialog: true,
-      weightval: ''
+      weightval: 3
     }
+  },
+  computed: {
+    ...mapMutations({ weight: 'StateWeight' })
   },
   props: {
     dataWasteCategory: String
@@ -130,6 +135,7 @@ export default {
   methods: {
     setWeight () {
       this.dialog = false
+      this.$store.commit('setWeight', this.weightval)
       this.$emit('setWeight', this.weightval)
     }
   }

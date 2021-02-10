@@ -36,14 +36,14 @@ export default {
       objQuery: this.$route.query.subWaste
     }
   },
-  props: ['mainWaste'],
+  props: ['mainWaste', 'plusImage'],
   mounted () {
     console.log(this.$route.params.mainWaste + ' propssss')
   },
   methods: {
     toRecycledList () {
       this.dialog = false
-      router.push({ name: 'RecyclerListSellWaste', params: { mainWaste: this.selectSubWaste } })
+      router.push({ name: 'RecyclerListToSellWaste', params: { mainWaste: this.selectSubWaste, plusImage: this.$route.params.plusImage } })
     }
   }
 }

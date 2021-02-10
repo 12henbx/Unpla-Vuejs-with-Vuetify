@@ -7,26 +7,30 @@
       <div class="wrapper-content">
         <div class="div-img-title-product">
           <div class="wrapper-img-product">
-            <v-carousel v-model="model" hide-delimiter-background>
-              <v-carousel-item v-for="color in colors" :key="color">
+            <v-carousel hide-delimiter-background>
+              <v-carousel-item v-for="(item,i) in objProduct.productImages"
+                               :key="i"
+                               :src="item">
               </v-carousel-item>
             </v-carousel>
           </div>
           <div class="div-title-price-rating">
             <span class="span-title">
-              Sandal Plastik Cantik
+              {{ objProduct.name }}
             </span>
             <span class="span-price">
-              Rp 20.000
+              Rp {{ objProduct.price }},00
             </span>
             <span class="span-ratings">
-              ratings (5)
+              Ratings ({{ objProduct.totalRating }})
             </span>
           </div>
         </div>
         <div class="div-feature-section">
           <div name="product_description" class="css-19xlv9d"></div>
-          <ProductDetailFeatureList></ProductDetailFeatureList>
+          <keep-alive>
+            <ProductDetailFeatureList v-bind:dataFeature="objFeature"></ProductDetailFeatureList>
+          </keep-alive>
         </div>
         <div class="div-product-info">
           <div name="product_description" class="css-19xlv9d"></div>
@@ -36,11 +40,7 @@
               <p class="css-c0gh7v">P1 Face shield kacamata bahan akrilik full face shield new model</p>
             </h2>
             <div class="content-paragraph">
-              Deskripsi P1 Face shield kacamata bahan akrilik full face shield new model<br>
-              SUPER KEREN MODEL TERBARU FACESHIELD TOP QUALITY<br>
-              HIGHCLASS<br><br>
-              Material Plastik High Quality<br>
-              Ringan Sangat nyaman Digunakan
+              {{ objProduct.description }}
             </div>
             <span></span>
           </div>
@@ -53,7 +53,7 @@
             <div>
               <a class="recyler-name-photo">
                 <img data-testid="pdpShopBadgeGM" class="css-ebxddb" src="https://assets.tokopedia.net/assets-tokopedia-lite/v2/atreus/kratos/3320de88.svg" alt="shop_badge">
-                <h2>MadisonShop</h2>
+                <h2>{{ recycler.recyclerName }}</h2>
               </a>
               <span class="span-online-with-city">Online
                 <b>23 menit lalu</b>
@@ -89,7 +89,7 @@
 
 <script>
 import OneLevelPageHeader from '../components/header/OneLevelPageHeader'
-import ProductDetailFeatureList from '../components/list/ProductDetailFeatureList'
+// import ProductDetailFeatureList from '../components/list/ProductDetailFeatureList'
 import axios from 'axios'
 // import router from '../router'
 
@@ -97,7 +97,7 @@ export default {
   name: 'ProductDetail',
   components: {
     OneLevelPageHeader,
-    ProductDetailFeatureList
+    ProductDetailFeatureList: () => import('../components/list/ProductDetailFeatureList')
   },
   data: function () {
     return {
@@ -109,13 +109,35 @@ export default {
         'red lighten-1',
         'deep-purple accent-4'
       ],
-      objProduct: ''
+      objProduct: {},
+      recycler: '',
+      objFeature: {
+        orderedWasteList: [],
+        materialList: []
+      }
     }
   },
   async created () {
-    const resp = await axios.get('/api/recycled-product/' + this.route.params.reproduct)
-    this.objProduct = resp
-    console.log(resp + ' ini response product detail ')
+    const resp = await axios.get('/api/recycled-product/get/' + this.$route.params.productName)
+      .then(res => res.data)
+      .catch(error => {
+        this.errorMessage = error.message
+        console.error('There was an error!', this.errorMessage)
+      })
+    this.objProduct = resp.data
+    this.objProduct.price = resp.data.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')
+    this.objFeature.orderedWasteList = this.objProduct.orderedWasteList
+    this.objFeature.materialList = this.objProduct.materialList
+    console.log(JSON.stringify(this.objFeature) + ' ini response objfeature list ')
+
+    const recyclerName = await axios.get('/api/recycler/get/name/' + this.objProduct.recyclerId)
+      .then(res => res.data)
+      .catch(error => {
+        this.errorMessage = error.message
+        console.error('There was an error!', this.errorMessage)
+      })
+    this.recycler = recyclerName.data
+    // console.log(JSON.stringify(this.recycler) + ' ini recyclernya')
   },
   methods: {
     clickBuy () {

@@ -16,7 +16,6 @@ const SellRecycledItemForm = () => import('../views/SellRecycledItemForm')
 const ProductDetail = () => import('../views/ProductDetail')
 const Login = () => import('../views/Login')
 const SignUp = () => import('../views/SignUp')
-// const WasteTypeDetail = () => import('../views/WasteTypeDetail')
 const Cart = () => import('../views/Cart')
 const ProductBuy = () => import('../views/ProductBuy')
 
@@ -42,6 +41,18 @@ const routes = [
     path: '/profile',
     name: 'Profile',
     component: Profile
+    // children: [
+    //   {
+    //     path: 'blabla',
+    //     name: 'UserProfile',
+    //     component: UserProfile
+    //   },
+    //   {
+    //     path: 'blublu',
+    //     name: 'RecyclerProfile',
+    //     component: RecyclerProfile
+    //   }
+    // ]
   },
   {
     path: '/sell-item/camera',
@@ -54,7 +65,7 @@ const routes = [
         path: '/sell-item/camera/:mainWaste',
         name: 'Select Waste Category',
         component: SelectWasteCategory,
-        props: { mainWaste: '' }
+        props: { mainWaste: '', plusImage: '' }
       }
     ]
   },
@@ -66,19 +77,21 @@ const routes = [
   {
     path: '/waste-item/list-recycler/:mainWaste',
     name: 'RecyclerListToSellWaste',
-    component: RecyclerListToSellWasteItem
+    component: RecyclerListToSellWasteItem,
+    props: { plusImage: '' }
   },
   {
     path: '/waste-item/:subwcategory/sell',
     name: 'SellWasteItemForm',
     component: SellWasteItemForm,
-    props: { recycler: '' }
+    props: { recycler: '', plusImage: '' }
   },
   {
     // path: '/waste-item/:sub-waste-category/thank-you',
     path: '/waste-item/thank-you',
     name: 'ReviewAndGreeting',
-    component: ReviewAndGreeting
+    component: ReviewAndGreeting,
+    props: { sellItem: '' }
   },
   {
     path: '/notification',
@@ -97,8 +110,8 @@ const routes = [
   //   component: WasteTypeDetail
   // },
   {
-    // path: '/product/:category/:productName',
-    path: '/product',
+    path: '/:recycler/:productName',
+    // path: '/product',
     name: 'ProductDetail',
     component: ProductDetail
   },

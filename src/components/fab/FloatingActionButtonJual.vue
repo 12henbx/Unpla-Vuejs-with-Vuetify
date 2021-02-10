@@ -1,7 +1,12 @@
 <template>
-  <ul class="ul-fab">
+  <ul class="ul-fab" v-if="dataFromPage.name === 'Home'">
     <li class="li-fab">
       <a @click="openCamera()" class="fab"> + JUAL </a>
+    </li>
+  </ul>
+  <ul class="ul-fab" v-else-if="dataFromPage.name === 'Recycler Profile'">
+    <li class="li-fab">
+      <a @click="toSellRecycledProductForm()" class="fab-produk"> + Jual Produk </a>
     </li>
   </ul>
 </template>
@@ -12,11 +17,14 @@ import router from '../../router'
 export default {
   name: 'FloatingActionButtonJual',
   props: {
-
+    dataFromPage: Object
   },
   methods: {
     openCamera () {
       router.push({ path: '/sell-item/camera' })
+    },
+    toSellRecycledProductForm () {
+      router.push({ name: 'SellRecycledItemForm' })
     }
   }
 }
@@ -59,6 +67,23 @@ export default {
     position: relative;
     display: inline-block;
     width: 104px;
+    height: 48px;
+  }
+
+  .fab-produk{
+    background-color: white;
+    border-radius: 110px;
+    border: $fab-border-color 7px solid;
+    box-shadow: 0 6px 10px 0 #666;
+    transition: all 0.1s ease-in-out;
+    font-size: 17px;
+    font-weight: bold;
+    color: #000;
+    padding-top: 5px;
+    padding-bottom: auto;
+    position: relative;
+    display: inline-block;
+    width: 154px;
     height: 48px;
   }
 
