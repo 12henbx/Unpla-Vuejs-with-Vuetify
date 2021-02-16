@@ -16,7 +16,7 @@
         background-color="grey darken-1"
         empty-icon="$vuetify.icons.ratingFull"
         half-increments
-        size="54"
+        size="48"
         hover
       ></v-rating>
     </div>
@@ -27,7 +27,7 @@
         label="Ulasan"
       ></v-textarea>
     </div>
-    <v-btn class="btn-submit">
+    <v-btn class="btn-submit" @click="toHomeWithoutReview">
       Submit
     </v-btn>
     <a  class="text-skip" @click="toHomeWithoutReview">Ulas nanti</a>

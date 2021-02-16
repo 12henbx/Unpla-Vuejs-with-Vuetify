@@ -9,9 +9,9 @@
           <div class="col-content">
             <div class="div-waste-content">
               <div class="judul-content">{{dataInDataActList.subWasteCategory}}</div>
-              <div class="judul-content">{{dataInDataActList.recyclerName}}</div>
-              <div class="judul-content">{{dataInDataActList.pickUpDate}}</div>
-              <div class="judul-content">{{dataInDataActList.totalPrice}} item</div>
+              <div class="text-sub-content">{{dataInDataActList.recyclerName}}</div>
+              <div class="text-sub-content">{{dataInDataActList.weightValue}} {{dataInDataActList.magnitude}}</div>
+              <div class="text-sub-content">Rp {{dataInDataActList.totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')}},00</div>
             </div>
           </div>
         </div>
@@ -26,7 +26,8 @@ export default {
   props: {
     dataInDataActList: Object
   },
-  created () {
+  beforeCreate () {
+    this.dataInDataActList.totalPrice = this.dataInDataActList.totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')
     console.log(this.dataInDataActList)
   }
 }
@@ -36,15 +37,18 @@ export default {
   @import "../../styles/basics/variables";
 
   .div-card-waste{
-    display: inline-block;
-    width: 300px;
-    margin-right: 10px;
+    /*display: inline-block;*/
+    display: flex;
+    /*width: 90%;*/
+    margin-bottom: 7px;
+    margin-top: 7px;
   }
 
   .card-waste{
     border: $border-card-color 2px solid;
     border-radius: 20px;
     height: 120px;
+    width: 90%;
   }
 
   .div-card-container{
@@ -74,10 +78,24 @@ export default {
   .col-content{
     display: flex;
     width: 150px;
+    align-items: center;
+    margin-left: 5px;
   }
 
   .div-waste-content{
     padding: 8px 0;
     margin-left: 10px;
+  }
+
+  .judul-content{
+    font-size: 20px;
+    font-weight: bold;
+    color: #6c6c6c;
+  }
+
+  .text-sub-content{
+    font-size: 16px;
+    font-weight: normal;
+    color: #6c6c6c;
   }
 </style>

@@ -14,7 +14,7 @@
         </span>
       </div>
     </div>
-    <h2 class="sub-title">Ativitasi Terakhir</h2>
+    <h2 class="sub-title">Aktivitas Terakhir</h2>
     <div class="div-last-activity">
       <div class="each-card-activity">
         <div v-for="item in objUserWasteItem" :key="item.id" class="div-each-card">
@@ -111,5 +111,14 @@ export default {
     font-weight: normal;
     font-family: "Roboto", sans-serif;
     color: #000;
+  }
+
+  .div-last-activity{
+    display: flex;
+    justify-content: center;
+  }
+
+  .each-card-activity{
+    width: 100%;
   }
 </style>

@@ -5,12 +5,12 @@
 .div-img{
   display: flex;
   justify-content: center;
-  width: $max-phone-width;
+  width: 100%;
 }
 
 .img-greeting{
   display: flex;
-  width: 400px;
+  width: 90%;
 }
 
 .div-greeting{
@@ -22,7 +22,7 @@
 
 .p-greeting{
   display: inline;
-  width: 400px;
+  width: 100%;
   justify-content: center;
   overflow: hidden;
   font-size: 16px;

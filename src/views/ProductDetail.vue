@@ -22,15 +22,19 @@
               Rp {{ objProduct.price }},00
             </span>
             <span class="span-ratings">
-              Ratings ({{ objProduct.totalRating }})
+              <v-rating
+                v-model="objProduct.totalRating"
+                color="warning"
+                background-color="warning lighten-1"
+                readonly
+                size="18"
+              ></v-rating>
             </span>
           </div>
         </div>
         <div class="div-feature-section">
           <div name="product_description" class="css-19xlv9d"></div>
-          <keep-alive>
             <ProductDetailFeatureList v-bind:dataFeature="objFeature"></ProductDetailFeatureList>
-          </keep-alive>
         </div>
         <div class="div-product-info">
           <div name="product_description" class="css-19xlv9d"></div>
@@ -48,11 +52,11 @@
         <div class="div-recycler-account">
           <div class="css-1ptigug">
             <a>
-              <img class="css-14a39gt" src="https://ecs7-p.tokopedia.net/img/cache/215-square/shops-1/2016/5/23/1110373/1110373_e75ed84a-5551-4537-b685-463471f0b763.jpg" alt="Logo MadisonShop">
+              <img class="css-14a39gt" src="https://picsum.photos/510/300?random" alt="Logo MadisonShop">
             </a>
             <div>
               <a class="recyler-name-photo">
-                <img data-testid="pdpShopBadgeGM" class="css-ebxddb" src="https://assets.tokopedia.net/assets-tokopedia-lite/v2/atreus/kratos/3320de88.svg" alt="shop_badge">
+<!--                <img data-testid="pdpShopBadgeGM" class="css-ebxddb" src="https://assets.tokopedia.net/assets-tokopedia-lite/v2/atreus/kratos/3320de88.svg" alt="shop_badge">-->
                 <h2>{{ recycler.recyclerName }}</h2>
               </a>
               <span class="span-online-with-city">Online
@@ -117,7 +121,7 @@ export default {
       }
     }
   },
-  async created () {
+  async beforeCreate () {
     const resp = await axios.get('/api/recycled-product/get/' + this.$route.params.productName)
       .then(res => res.data)
       .catch(error => {
@@ -137,7 +141,7 @@ export default {
         console.error('There was an error!', this.errorMessage)
       })
     this.recycler = recyclerName.data
-    // console.log(JSON.stringify(this.recycler) + ' ini recyclernya')
+    console.log(JSON.stringify(this.recycler) + ' ini recyclernya')
   },
   methods: {
     clickBuy () {

@@ -10,8 +10,9 @@
             <div class="col-content">
               <div class="div-waste-content">
                 <div class="judul-content">{{dataWasteList.subWasteCategory}}</div>
-                <div class="sub-content-weight">{{dataWasteList.pickUpDate}}</div>
-                <div class="sub-content-weight">{{dataWasteList.weightValue}} Kg</div>
+                <div class="sub-content-weight">{{dataWasteList.recyclerName}}</div>
+                <div class="sub-content-weight">{{dataWasteList.weightValue}} {{dataWasteList.magnitude}}</div>
+                <div class="sub-content-weight">Rp {{dataWasteList.totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')}},00</div>
               </div>
             </div>
           </div>

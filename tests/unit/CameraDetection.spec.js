@@ -1,4 +1,6 @@
 // import { shallowMount } from '@vue/test-utils'
+// import CameraDetection from '../../src/views/CameraDetection'
+// import SelectWasteCategory from '../../src/components/modal/SelectWasteCategory'
 //
 // const getKey = 2
 // const assignObject = {
@@ -7,12 +9,11 @@
 //   ]
 // }
 //
-// describe('Home.vue', () => {
-//   it('click emit button', function () {
-//     const wrapper = shallowMount(AssignLDList, {
+// describe('CameraDetection.vue', () => {
+//   it('click Capture button', function () {
+//     const wrapper = shallowMount(SelectWasteCategory, {
 //       propsData: {
-//         getKey,
-//         assignObject
+//
 //       }
 //     })
 //     wrapper.vm.emitToAssignLd(getKey)
@@ -29,17 +30,5 @@
 //     wrapper.find('div.card-box').trigger('click')
 //     expect(wrapper.emitted().openModal).toBeTruthy()
 //     expect(wrapper.emitted().openModal).toEqual([[2]])
-//   })
-//
-//   it('should render to a snapshot when list is empty', () => {
-//     const propsData = { todos: [] }
-//     const wrapper = shallowMount(TodoList, { propsData })
-//     expect(wrapper.element).toMatchSnapshot()
-//   })
-//
-//   it('should render to a snapshot when list has items', () => {
-//     const propsData = { todos: [{ id: 1, text: 'Todo #1' }] }
-//     const wrapper = shallowMount(TodoList, { propsData })
-//     expect(wrapper.element).toMatchSnapshot()
 //   })
 // })

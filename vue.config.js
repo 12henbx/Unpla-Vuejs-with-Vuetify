@@ -12,7 +12,7 @@ module.exports = {
     'vuetify'
   ],
   devServer: {
-    proxy:{
+    proxy: {
       // '^/waste-item/': {
       //   target: 'http://localhost:8080/',
       //   changeOrigin: true

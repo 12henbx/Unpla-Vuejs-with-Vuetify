@@ -3,9 +3,9 @@
     <li class="li-fab">
       <div class="row fab">
         <div>
-          <span class="text-category">{{dataFabInfo.subWasteCategory}}</span>
+          <span class="text-category">{{dataForm.subWasteCategory}}Plastik Botol Warna</span>
           <br>
-          <span class="text-weight-date">{{dataFabInfo.weight}}Kg, {{dataFabInfo.pickUpDate}}</span>
+          <span class="text-weight-date">{{dataWeight}} Kg, {{dataForm.pickUpDate}} 16 Februari 2021</span>
         </div>
         <div class="div-grow-header"></div>
         <div class="div-cont-button">
@@ -27,9 +27,30 @@ export default {
   computed: {
     ...mapGetters({ weight: 'StateWeight' })
   },
+  mounted () {
+    console.log(JSON.stringify(this.dataFabInfo) + ' ini berat distringify0')
+    this.dataForm = this.dataFabInfo
+  },
+  beforeUpdate () {
+    console.log(JSON.stringify(this.dataFabInfo) + ' ini berat distringify1')
+    this.dataForm = this.dataFabInfo
+  },
+  updated () {
+    console.log(JSON.stringify(this.dataFabInfo) + ' ini berat distringify2')
+    this.dataForm = this.dataFabInfo
+  },
+  watch: {
+    dataFabInfo (val) {
+      this.dataWeight = val
+    },
+    weight (value) {
+      this.dataWeight = value
+    }
+  },
   data: function () {
     return {
-      dataWeight: this.weight
+      dataWeight: this.weight,
+      dataForm: {}
     }
   },
   methods: {

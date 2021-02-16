@@ -10,6 +10,12 @@
   width: 100%;
 }
 
+.span-title{
+  font-size: 22px;
+  font-weight: 600;
+  color: #525252;
+}
+
 .div-title-price-rating{
   display: flex;
   flex-direction: column;
@@ -53,7 +59,6 @@
   display: -webkit-box;
   -webkit-line-clamp: 4;
   -moz-box-orient: vertical;
-  height: 70px;
   color: rgba(49, 53, 59, 0.68);
   white-space: normal;
   overflow: hidden;

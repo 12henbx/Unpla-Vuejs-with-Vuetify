@@ -82,7 +82,7 @@
         </div>
         <input type="file" ref="inputPhotos" style="display: none" @change="previewImage" accept="image/*" >
       </div>
-      <FabWasteItemForm @submitBtn="submitBtn($event)" v-bind:dataFabInfo.sync="objFabDetail"></FabWasteItemForm>
+      <FabWasteItemForm @submitBtn="submitBtn($event)" @click="forceRerender" v-bind:dataFabInfo="objFabDetail" :key="componentKey"></FabWasteItemForm>
     </div>
   </div>
 </template>
@@ -121,6 +121,7 @@ export default {
       showDetail: false,
       imageData: [],
       iterPhoto: 0,
+      componentKey: 0,
       sellWsItemForm: {
         photos: [],
         mainWasteCategory: 'Plastik',
@@ -155,6 +156,7 @@ export default {
     setWeight (weight) {
       this.sellWsItemForm.weightValue = weight
       this.objFabDetail.weightValue = weight
+      console.log(JSON.stringify(this.objFabDetail) + ' ini berat distringify')
     },
     previewImage (event) {
       // this.uploadValue = 0
@@ -187,6 +189,10 @@ export default {
         this.imageTmp = event.target.result
       }
       reader.readAsBinaryString(file)
+    },
+    forceRerender () {
+      console.log(' halo ')
+      this.componentKey += 1
     }
   }
 }
